@@ -1,6 +1,6 @@
 <template>
-<q-layout view="lHh Lpr lFf" class="shadow-2 rounded-borders">
-    <q-header elevated>
+<q-layout view="lHh Lpr lFf" class="shadow-2 rounded-borders" >
+    <q-header elevated >
         <q-toolbar class="bg-blue-grey-1 text-blue-grey-7">
             <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
             <q-toolbar-title> Inventario App </q-toolbar-title>
@@ -21,14 +21,11 @@
             <q-btn flat round dense icon="more_vert" size="md" />
         </q-toolbar>
     </q-header>
-    <q-drawer class="bg-blue-grey-1" v-model="leftDrawerOpen" show-if-above>
-        <div align="center">
-            <img alt="Quasar logo" src="~assets/quasar-logo-vertical.svg" style="width: 100px; height: 100px display: block" />
-        </div>
-        <div class="q-pa-md" style="max-width: 350px;">
-            <q-btn flat icon="dashboard" label="Tablero" no-caps></q-btn>
+    <q-drawer class="bg-blue-grey-1" v-model="leftDrawerOpen" show-if-above :width="250">
+        <img alt="Quasar logo" src="~assets/quasar-logo-vertical.svg" style="width: 100px; height: 100px; display: block; margin: 0px auto" />
             <q-list dense padding>
-                <q-expansion-item class="rounded-borders" expand-separator icon="mail" label="Adminstración" no-caps>
+              <q-btn flat icon="dashboard" label="Tablero" no-caps></q-btn>
+                <q-expansion-item class="rounded-borders" expand-separator icon="home_work" label="Adminstración" no-caps>
                     <q-expansion-item :header-inset-level="1" expand-separator icon="receipt" label="Receipts">
                         <q-expansion-item switch-toggle-side dense-toggle label="Today" :header-inset-level="1" :content-inset-level="2">
                             <q-card>
@@ -101,7 +98,6 @@
                     </q-expansion-item>
                 </q-expansion-item>
             </q-list>
-        </div>
     </q-drawer>
     <q-page-container>
         <router-view />
@@ -127,8 +123,8 @@ import {
 import {
     fabGithub,
     fabFacebook,
-    fabInstagram
-} from '@quasar/extras/fontawesome-v6';
+    fabInstagram,
+} from "@quasar/extras/fontawesome-v6";
 
 export default defineComponent({
     name: "MainLayout",
@@ -146,10 +142,8 @@ export default defineComponent({
             text: "",
             fabGithub,
             fabFacebook,
-            fabInstagram
-
+            fabInstagram,
         };
     },
-
 });
 </script>
