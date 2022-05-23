@@ -21,8 +21,8 @@
             <q-btn flat round dense icon="more_vert" size="md" />
         </q-toolbar>
     </q-header>
-    <q-drawer class="bg-blue-grey-1" v-model="drawer" show-if-above :width="250" :breakpoint="500" :mini="miniState" @mouseover="miniState = false" @mouseout="miniState = true">
-        <div class="relative-position	text-center">
+    <q-drawer class="bg-blue-grey-1" v-model="drawer" show-if-above :width="250" :breakpoint="0" :mini="miniState" @mouseover="miniState = false" @mouseout="miniState = true">
+        <div class="relative-position text-center">
             <img alt="Quasar logo" src="~assets/quasar-logo-vertical.svg" sizes="(max-width: 100px) 100w,
               " style="height: 60px; max-width: 60px" />
         </div>
@@ -36,9 +36,9 @@
                         <q-card>
                             <q-card-section>
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Quidem, eius reprehenderit eos corrupti commodi magni
-                                quaerat ex numquam, dolorum officiis modi facere maiores
-                                architecto suscipit iste eveniet doloribus ullam aliquid.
+                                Quidem, eius reprehenderit eos corrupti commodi magni quaerat
+                                ex numquam, dolorum officiis modi facere maiores architecto
+                                suscipit iste eveniet doloribus ullam aliquid.
                             </q-card-section>
                         </q-card>
                     </q-expansion-item>
@@ -46,9 +46,9 @@
                         <q-card>
                             <q-card-section>
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Quidem, eius reprehenderit eos corrupti commodi magni
-                                quaerat ex numquam, dolorum officiis modi facere maiores
-                                architecto suscipit iste eveniet doloribus ullam aliquid.
+                                Quidem, eius reprehenderit eos corrupti commodi magni quaerat
+                                ex numquam, dolorum officiis modi facere maiores architecto
+                                suscipit iste eveniet doloribus ullam aliquid.
                             </q-card-section>
                         </q-card>
                     </q-expansion-item>
@@ -57,8 +57,8 @@
                     <q-card>
                         <q-card-section>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Quidem, eius reprehenderit eos corrupti commodi magni quaerat
-                            ex numquam, dolorum officiis modi facere maiores architecto
+                            Quidem, eius reprehenderit eos corrupti commodi magni quaerat ex
+                            numquam, dolorum officiis modi facere maiores architecto
                             suscipit iste eveniet doloribus ullam aliquid.
                         </q-card-section>
                     </q-card>
@@ -78,9 +78,9 @@
                         <q-card>
                             <q-card-section>
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Quidem, eius reprehenderit eos corrupti commodi magni
-                                quaerat ex numquam, dolorum officiis modi facere maiores
-                                architecto suscipit iste eveniet doloribus ullam aliquid.
+                                Quidem, eius reprehenderit eos corrupti commodi magni quaerat
+                                ex numquam, dolorum officiis modi facere maiores architecto
+                                suscipit iste eveniet doloribus ullam aliquid.
                             </q-card-section>
                         </q-card>
                     </q-expansion-item>
@@ -88,9 +88,9 @@
                         <q-card>
                             <q-card-section>
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Quidem, eius reprehenderit eos corrupti commodi magni
-                                quaerat ex numquam, dolorum officiis modi facere maiores
-                                architecto suscipit iste eveniet doloribus ullam aliquid.
+                                Quidem, eius reprehenderit eos corrupti commodi magni quaerat
+                                ex numquam, dolorum officiis modi facere maiores architecto
+                                suscipit iste eveniet doloribus ullam aliquid.
                             </q-card-section>
                         </q-card>
                     </q-expansion-item>
@@ -99,8 +99,8 @@
                     <q-card>
                         <q-card-section>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Quidem, eius reprehenderit eos corrupti commodi magni quaerat
-                            ex numquam, dolorum officiis modi facere maiores architecto
+                            Quidem, eius reprehenderit eos corrupti commodi magni quaerat ex
+                            numquam, dolorum officiis modi facere maiores architecto
                             suscipit iste eveniet doloribus ullam aliquid.
                         </q-card-section>
                     </q-card>
@@ -126,34 +126,23 @@
 
 <script>
 import {
-    defineComponent,
-    ref
-} from "vue";
-import {
     fabGithub,
     fabFacebook,
     fabInstagram,
-} from "@quasar/extras/fontawesome-v6";
+}
+from "@quasar/extras/fontawesome-v6";
 
-export default defineComponent({
+export default ({
     name: "MainLayout",
-
-    setup() {
-
-        const drawer = ref(false)
-        const miniState = ref(true)
+    data() {
         return {
-
-            toggleLeftDrawer() {
-                drawer.value = !drawer.value
-            },
-            drawer,
+            drawer: false,
+            miniState: true,
             text: "",
             fabGithub,
             fabFacebook,
             fabInstagram,
-            miniState
-        };
+        }
     },
 });
 </script>
