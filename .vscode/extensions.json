@@ -2,7 +2,9 @@
   "recommendations": [
     "editorconfig.editorconfig",
     "johnsoncodehk.volar",
-    "wayou.vscode-todo-highlight"
+    "wayou.vscode-todo-highlight",
+    "remixproject.ethereum-remix",
+    "ms-azuretools.vscode-docker"
   ],
   "unwantedRecommendations": [
     "octref.vetur",

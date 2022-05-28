@@ -1,21 +1,72 @@
 <template>
   <div class="row">
+    <div class="col-12">
+      <p class="text-bold text-h5" style="margin: 10px 0px 0px 40px">
+        Clientes
+      </p>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-md-8 col-lg-8 col-xs-12 col-sm-12">
-      <q-table
-        class="my-card q-pa-sm flex flex-center text-center box-shadow"
-        style="margin: 50px 20px 0px 35px"
-        title="Treats"
-        :rows="rows"
-        :columns="columns"
-        row-key="name"
-        :pagination="initialPagination"
-      />
+      <q-card flat>
+        <q-card-section>
+          <q-table
+            :rows="rows"
+            :columns="columns"
+            row-key="name"
+            separator="none"
+            dense
+            :pagination="initialPagination"
+            class="text-center box-shadow"
+            style="margin: 10px 0px 0px 20px"
+          >
+            <template v-slot:top-left>
+              <q-input
+                color="primary"
+                class="q-mb-lg q-mt-sm"
+                standout
+                round
+                bg-color="grey-4"
+                dense
+                debounce="300"
+                v-model="filter"
+                placeholder="Búsqueda"
+              >
+                <template v-slot:prepend>
+                  <q-icon color="primary" name="search" />
+                </template>
+              </q-input>
+            </template>
+            <template v-slot:body="props">
+              <q-tr :props="props">
+                <q-td auto-width> 1 </q-td>
+                <q-td auto-width> 1234567890 </q-td>
+                <q-td auto-width> Jhon Doe </q-td>
+                <q-td auto-width> 300 123 45 67 </q-td>
+                <q-td auto-width> cliente@correo.com </q-td>
+                <q-td auto-width> Abejorral (ANT) </q-td>
+                <q-td auto-width>
+                  <q-btn
+                    flat
+                    dense
+                    icon="visibility"
+                    size="xs"
+                    class="q-ma-none"
+                  />
+                  <q-btn flat dense icon="edit" size="xs" class="q-ma-none" />
+                  <q-btn flat dense icon="delete" size="xs" class="q-ma-none" />
+                </q-td>
+              </q-tr>
+            </template>
+          </q-table>
+        </q-card-section>
+      </q-card>
     </div>
 
     <div class="col col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 q-pa-sm">
       <q-card
         class="my-card q-pa-md box-shadow"
-        style="margin: 49px 20px 0px 10px"
+        style="margin: 15px 20px 0px 10px"
       >
         <div class="row">
           <div class="col col-md-12 col-lg-12 col-xs-12 col-sm-12">
@@ -93,41 +144,52 @@
               </q-input>
             </div>
           </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 text-no-wrap q-pt-md q-pr-md">
-              <p class="col text-weight-medium">Documento</p>
-              <div>
-                <q-input label="" class="q-mt-sm" round dense v-model="cedula">
-                  <template v-slot:prepend>
-                    <q-icon class="q-mr-sm" name="wallet" />
-                    <q-btn-dropdown
-                      dense
-                      flat
-                      no-caps
-                      label="Tipo"
-                      class="q-mr-none q-ml-none"
-                    >
-                      <q-list>
-                        <q-item clickable v-close-popup>
-                          <q-item-section>
-                            <q-item-label>V</q-item-label>
-                          </q-item-section>
-                        </q-item>
+          <div
+            class="
+              col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6
+              text-no-wrap
+              q-pt-md q-pr-md
+            "
+          >
+            <p class="col text-weight-medium">Documento</p>
+            <div>
+              <q-input label="" class="q-mt-sm" round dense v-model="cedula">
+                <template v-slot:prepend>
+                  <q-icon class="q-mr-sm" name="wallet" />
+                  <q-btn-dropdown
+                    dense
+                    flat
+                    no-caps
+                    label="Tipo"
+                    class="q-mr-none q-ml-none"
+                  >
+                    <q-list>
+                      <q-item clickable v-close-popup>
+                        <q-item-section>
+                          <q-item-label>V</q-item-label>
+                        </q-item-section>
+                      </q-item>
 
-                        <q-item clickable v-close-popup>
-                          <q-item-section>
-                            <q-item-label>E</q-item-label>
-                          </q-item-section>
-                        </q-item>
-                      </q-list>
-                    </q-btn-dropdown>
-                    <span class="text-black">|</span>
-                  </template>
-                </q-input>
-              </div>
+                      <q-item clickable v-close-popup>
+                        <q-item-section>
+                          <q-item-label>E</q-item-label>
+                        </q-item-section>
+                      </q-item>
+                    </q-list>
+                  </q-btn-dropdown>
+                  <span class="text-black">|</span>
+                </template>
+              </q-input>
+            </div>
           </div>
 
           <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 q-pr-md q-pt-md">
+            <div
+              class="
+                col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6
+                q-pr-md q-pt-md
+              "
+            >
               <p class="col text-subtitle2">Telefono</p>
               <q-input
                 dense
@@ -150,7 +212,12 @@
               </q-input>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 q-pr-md q-pt-md">
+            <div
+              class="
+                col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6
+                q-pr-md q-pt-md
+              "
+            >
               <p class="col text-subtitle2">Correo</p>
               <q-input
                 dense
@@ -207,10 +274,10 @@
               input-style="height:2px"
             />
           </div>
-          <div class="col-12">
-            <q-btn label="Submit" type="submit" color="primary" />
+          <div class="col-12 q-pt-md">
+            <q-btn label="Enviar" type="submit" color="primary" />
             <q-btn
-              label="Reset"
+              label="Limpiar"
               type="reset"
               color="primary"
               flat
@@ -263,8 +330,8 @@ const columns = [
     field: "sodium",
   },
   {
-    name: "email",
-    label: "Correo",
+    name: "acciones",
+    label: "Acciones",
     field: "calcium",
     sortable: true,
     sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),

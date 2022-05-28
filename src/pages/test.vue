@@ -5,6 +5,7 @@
         <p class="text-bold text-secondary text-h5">Clientes</p>
       </div>
     </div>
+
     <div class="row">
       <div class="col col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 q-pa-sm">
         <q-card flat>
@@ -82,6 +83,7 @@
           </q-card-section>
         </q-card>
       </div>
+      
       <div class="col col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 q-pa-sm">
         <q-card flat class="q-pa-md">
           <div class="row">
@@ -122,6 +124,7 @@
                     </q-input>
                   </div>
                 </div>
+
                 <div class="col q-pa-sm">
                   <p class="text-primary text-weight-medium">
                     Apellidos
