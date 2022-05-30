@@ -87,9 +87,9 @@
               q-pt-md q-pr-md
             "
           >
-            <p class="col text-weight-medium">Documento</p>
+            <p class="col text-weight-medium">Rif:</p>
             <div>
-              <q-input label="" class="q-mt-sm" round dense v-model="cedula">
+              <q-input fill-mask mask="########-#" label="" class="q-mt-sm" round dense v-model="cedula">
                 <template v-slot:prepend>
                   <q-icon color="primary" class="q-mr-sm" name="wallet" />
                   <q-btn-dropdown
