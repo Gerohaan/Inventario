@@ -10,7 +10,9 @@
           aria-label="Menu"
           @click="drawer = !drawer"
         />
-        <q-toolbar-title class="text-secondary"> Inventario Activados </q-toolbar-title>
+        <q-toolbar-title class="text-secondary">
+          Inventario Activados
+        </q-toolbar-title>
         <q-input
           rounded
           dense
@@ -70,7 +72,7 @@
           src="~assets/quasar-logo-vertical.svg"
           sizes="(max-width: 100px) 100w,
               "
-          style="height:60px; max-width:60px"
+          style="height: 60px; max-width: 60px"
         />
       </div>
       <q-list dense padding>
@@ -86,24 +88,57 @@
         </q-item>
         <q-item>
           <q-expansion-item
-          class="rounded-borders"
-          expand-separator
-          icon="home_work"
-          label="Adminstración"
-          no-caps
-        >
-          <q-expansion-item
-            :header-inset-level="1"
+            class="rounded-borders"
             expand-separator
-            icon="receipt"
-            label="Receipts"
+            icon="home_work"
+            label="Adminstración"
+            no-caps
           >
             <q-expansion-item
-              switch-toggle-side
-              dense-toggle
-              label="Today"
               :header-inset-level="1"
-              :content-inset-level="2"
+              expand-separator
+              icon="receipt"
+              label="Receipts"
+            >
+              <q-expansion-item
+                switch-toggle-side
+                dense-toggle
+                label="Today"
+                :header-inset-level="1"
+                :content-inset-level="2"
+              >
+                <q-card>
+                  <q-card-section>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Quidem, eius reprehenderit eos corrupti commodi magni
+                    quaerat ex numquam, dolorum officiis modi facere maiores
+                    architecto suscipit iste eveniet doloribus ullam aliquid.
+                  </q-card-section>
+                </q-card>
+              </q-expansion-item>
+              <q-expansion-item
+                switch-toggle-side
+                dense-toggle
+                label="Yesterday"
+                :header-inset-level="1"
+                :content-inset-level="2"
+              >
+                <q-card>
+                  <q-card-section>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Quidem, eius reprehenderit eos corrupti commodi magni
+                    quaerat ex numquam, dolorum officiis modi facere maiores
+                    architecto suscipit iste eveniet doloribus ullam aliquid.
+                  </q-card-section>
+                </q-card>
+              </q-expansion-item>
+            </q-expansion-item>
+            <q-expansion-item
+              :header-inset-level="1"
+              :content-inset-level="1"
+              expand-separator
+              icon="schedule"
+              label="Postponed"
             >
               <q-card>
                 <q-card-section>
@@ -114,12 +149,80 @@
                 </q-card-section>
               </q-card>
             </q-expansion-item>
+          </q-expansion-item>
+        </q-item>
+        <q-item>
+          <q-expansion-item
+            :content-inset-level="0.5"
+            expand-separator
+            icon="person"
+            label="Terceros"
+            no-caps
+          >
+            <q-item-section>
+              <q-btn
+                size="14px"
+                to="/Cliente"
+                flat
+                icon="person_add"
+                label="Clientes"
+                no-caps
+                color="primary"
+              ></q-btn>
+            </q-item-section>
+            <q-item-section>
+              <q-btn
+                to="/Proveedor"
+                size="14px"
+                flat
+                icon="group_add"
+                label="Proveedores"
+                color="primary"
+                no-caps
+              ></q-btn>
+            </q-item-section>
+          </q-expansion-item>
+        </q-item>
+        <q-item>
+          <q-expansion-item
+            :content-inset-level="0.5"
+            expand-separator
+            icon="payments"
+            label="Ventas"
+            no-caps
+          >
             <q-expansion-item
-              switch-toggle-side
-              dense-toggle
-              label="Yesterday"
-              :header-inset-level="1"
-              :content-inset-level="2"
+              expand-separator
+              :content-inset-level="0.5"
+              icon="receipt"
+              label="Receipts"
+            >
+              <q-expansion-item label="Today" :content-inset-level="0.5">
+                <q-card>
+                  <q-card-section>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Quidem, eius reprehenderit eos corrupti commodi magni
+                    quaerat ex numquam, dolorum officiis modi facere maiores
+                    architecto suscipit iste eveniet doloribus ullam aliquid.
+                  </q-card-section>
+                </q-card>
+              </q-expansion-item>
+              <q-expansion-item label="Yesterday" :content-inset-level="0.5">
+                <q-card>
+                  <q-card-section>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Quidem, eius reprehenderit eos corrupti commodi magni
+                    quaerat ex numquam, dolorum officiis modi facere maiores
+                    architecto suscipit iste eveniet doloribus ullam aliquid.
+                  </q-card-section>
+                </q-card>
+              </q-expansion-item>
+            </q-expansion-item>
+            <q-expansion-item
+              :content-inset-level="0.5"
+              expand-separator
+              icon="schedule"
+              label="Postponed"
             >
               <q-card>
                 <q-card-section>
@@ -131,106 +234,7 @@
               </q-card>
             </q-expansion-item>
           </q-expansion-item>
-          <q-expansion-item
-            :header-inset-level="1"
-            :content-inset-level="1"
-            expand-separator
-            icon="schedule"
-            label="Postponed"
-          >
-            <q-card>
-              <q-card-section>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Quidem, eius reprehenderit eos corrupti commodi magni quaerat ex
-                numquam, dolorum officiis modi facere maiores architecto
-                suscipit iste eveniet doloribus ullam aliquid.
-              </q-card-section>
-            </q-card>
-          </q-expansion-item>
-        </q-expansion-item>
         </q-item>
-        <q-item>
-          <q-expansion-item
-          :content-inset-level="0.5"
-          expand-separator
-          icon="person"
-          label="Terceros"
-          no-caps
-        >
-          <q-item-section>
-            <q-btn
-              size="14px"
-              to="/Cliente"
-              flat
-              icon="person_add"
-              label="Clientes"
-              no-caps
-            ></q-btn>
-          </q-item-section>
-          <q-item-section>
-            <q-btn
-              size="14px"
-              flat
-              icon="group_add"
-              label="Proveedores"
-              no-caps
-            ></q-btn>
-          </q-item-section>
-        </q-expansion-item>
-        </q-item>
-        <q-item>
-          <q-expansion-item
-          :content-inset-level="0.5"
-          expand-separator
-          icon="payments"
-          label="Ventas"
-          no-caps
-        >
-          <q-expansion-item
-            expand-separator
-            :content-inset-level="0.5"
-            icon="receipt"
-            label="Receipts"
-          >
-            <q-expansion-item label="Today" :content-inset-level="0.5">
-              <q-card>
-                <q-card-section>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Quidem, eius reprehenderit eos corrupti commodi magni quaerat
-                  ex numquam, dolorum officiis modi facere maiores architecto
-                  suscipit iste eveniet doloribus ullam aliquid.
-                </q-card-section>
-              </q-card>
-            </q-expansion-item>
-            <q-expansion-item label="Yesterday" :content-inset-level="0.5">
-              <q-card>
-                <q-card-section>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Quidem, eius reprehenderit eos corrupti commodi magni quaerat
-                  ex numquam, dolorum officiis modi facere maiores architecto
-                  suscipit iste eveniet doloribus ullam aliquid.
-                </q-card-section>
-              </q-card>
-            </q-expansion-item>
-          </q-expansion-item>
-          <q-expansion-item
-            :content-inset-level="0.5"
-            expand-separator
-            icon="schedule"
-            label="Postponed"
-          >
-            <q-card>
-              <q-card-section>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Quidem, eius reprehenderit eos corrupti commodi magni quaerat ex
-                numquam, dolorum officiis modi facere maiores architecto
-                suscipit iste eveniet doloribus ullam aliquid.
-              </q-card-section>
-            </q-card>
-          </q-expansion-item>
-        </q-expansion-item>
-        </q-item>
-
       </q-list>
     </q-drawer>
     <q-page-container>
