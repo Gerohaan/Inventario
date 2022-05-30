@@ -10,13 +10,13 @@
           aria-label="Menu"
           @click="drawer = !drawer"
         />
-        <q-toolbar-title> Inventario Activados </q-toolbar-title>
+        <q-toolbar-title class="text-secondary"> Inventario Activados </q-toolbar-title>
         <q-input
           rounded
           dense
           standout
           label="Busqueda..."
-          bg-color="blue-grey-2"
+          bg-color="accent"
           v-model="text"
           class="q-ml-md text-black"
         >
