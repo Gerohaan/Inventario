@@ -159,7 +159,7 @@
             label="Terceros"
             no-caps
           >
-            <q-item-section>
+            <q-item-section side>
               <q-btn
                 size="14px"
                 to="/Cliente"
@@ -170,7 +170,7 @@
                 color="primary"
               ></q-btn>
             </q-item-section>
-            <q-item-section>
+            <q-item-section side>
               <q-btn
                 to="/Proveedor"
                 size="14px"
@@ -188,50 +188,45 @@
             :content-inset-level="0.5"
             expand-separator
             icon="payments"
-            label="Ventas"
+            label="Definición"
             no-caps
           >
             <q-expansion-item
               expand-separator
               :content-inset-level="0.5"
               icon="receipt"
-              label="Receipts"
+              label="Categorias"
             >
-              <q-expansion-item label="Today" :content-inset-level="0.5">
-                <q-card>
-                  <q-card-section>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Quidem, eius reprehenderit eos corrupti commodi magni
-                    quaerat ex numquam, dolorum officiis modi facere maiores
-                    architecto suscipit iste eveniet doloribus ullam aliquid.
-                  </q-card-section>
-                </q-card>
-              </q-expansion-item>
-              <q-expansion-item label="Yesterday" :content-inset-level="0.5">
-                <q-card>
-                  <q-card-section>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Quidem, eius reprehenderit eos corrupti commodi magni
-                    quaerat ex numquam, dolorum officiis modi facere maiores
-                    architecto suscipit iste eveniet doloribus ullam aliquid.
-                  </q-card-section>
-                </q-card>
-              </q-expansion-item>
+              <q-item-section side>
+                <q-btn
+                  label="Agregar"
+                  to="/Categoria"
+                  size="md"
+                  flat
+                  icon="add"
+                  no-caps
+                  color="primary"
+                ></q-btn>
+              </q-item-section>
             </q-expansion-item>
             <q-expansion-item
               :content-inset-level="0.5"
               expand-separator
               icon="schedule"
-              label="Postponed"
+              label="Almacenes"
             >
-              <q-card>
-                <q-card-section>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Quidem, eius reprehenderit eos corrupti commodi magni quaerat
-                  ex numquam, dolorum officiis modi facere maiores architecto
-                  suscipit iste eveniet doloribus ullam aliquid.
-                </q-card-section>
-              </q-card>
+              <q-item-section side>
+                <q-btn
+                  size="md"
+                  flat
+                  icon="add"
+                  color="primary"
+                  no-caps
+                  to="/Almacen"
+                  label="Agregar"
+                >
+                </q-btn>
+              </q-item-section>
             </q-expansion-item>
           </q-expansion-item>
         </q-item>

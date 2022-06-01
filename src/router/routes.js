@@ -7,7 +7,11 @@ const routes = [
       { path: '', component: () => import('pages/Index.vue') },
       { path: 'Login', name:'Login', component: () => import('pages/Login.vue') },
       { path: 'Cliente', name:'Cliente', component: () => import('pages/Cliente.vue') },
-      { path: 'Proveedor', name:'Proveedor', component: () => import('pages/Proveedor.vue') }
+      { path: 'Proveedor', name:'Proveedor', component: () => import('pages/Proveedor.vue') },
+      { path: 'Categoria', name:'Categoria', component: () => import('pages/Categoria.vue') },
+      { path: 'Almacen', name:'Almacen', component: () => import('pages/Almacen.vue') }
+
+
 
 
 
