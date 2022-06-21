@@ -1,29 +1,56 @@
 <template>
   <div class="row">
     <div class="col-12">
-      <p class="text-bold text-primary text-h5" style="margin: 10px 0px 0px 40px">
+      <p
+        class="text-bold text-primary text-h5"
+        style="margin: 10px 0px 0px 40px"
+      >
         Clientes
       </p>
     </div>
   </div>
   <div class="row">
-    <List />
+    <List :pcapiList="this.apiListcliente" />
     <Add />
   </div>
 </template>
 
 <script>
-import List from "../components/Clientes/List.vue";
-import Add from "../components/Clientes/Add.vue";
+import List from '../components/Clientes/List.vue'
+import Add from '../components/Clientes/Add.vue'
+import { Global } from '../Global'
+import { Headers } from '../../Headers'
+import axios from 'axios'
 
 export default {
-  name: "Cliente",
+  name: 'Cliente',
   components: {
     List,
-    Add,
+    Add
   },
-  data() {
-    return {};
+  data () {
+    return {
+      apiListcliente: []
+    }
   },
-};
+  mounted () {
+    this.listCliente()
+  },
+
+  updated () {
+    this.listCliente()
+  },
+
+  methods: {
+     async listCliente (req, res) {
+      try {
+        let list = await axios.get(Global.url + 'cliente/list', Headers)
+        this.apiListcliente = list.data
+        //console.log(this.apiList)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+}
 </script>

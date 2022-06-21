@@ -3,9 +3,9 @@
     <q-card flat>
       <q-card-section>
         <q-table
-          :rows="rows"
+          :rows="pcapiList"
           :columns="columns"
-          row-key="name"
+          :row-key="row => row.id"
           separator="none"
           dense
           :filter="filter"
@@ -30,27 +30,34 @@
               </template>
             </q-input>
           </template>
-          <template v-slot:body="props">
-            <q-tr :props="props">
-              <q-td auto-width> 1 </q-td>
-              <q-td auto-width> 1234567890 </q-td>
-              <q-td auto-width> Jhon Doe </q-td>
-              <q-td auto-width> 300 123 45 67 </q-td>
-              <q-td auto-width> cliente@correo.com </q-td>
-              <q-td auto-width> Abejorral (ANT) </q-td>
-              <q-td auto-width>
-                <q-btn
-                  flat
-                  dense
-                  icon="visibility"
-                  size="xs"
-                  class="q-ma-none"
-                  color="primary"
-                />
-                <q-btn flat dense icon="edit" size="xs" color="primary" class="q-ma-none" />
-                <q-btn flat dense icon="delete" size="xs" color="primary" class="q-ma-none" />
-              </q-td>
-            </q-tr>
+          <template v-slot:body-cell-actions="props">
+            <q-td :props="props">
+              <q-btn
+                flat
+                dense
+                icon="visibility"
+                size="xs"
+                class="q-ma-none"
+                color="primary"
+              />
+              <q-btn
+                flat
+                dense
+                icon="edit"
+                size="xs"
+                color="primary"
+                class="q-ma-none"
+              />
+              <q-btn
+                flat
+                dense
+                icon="delete"
+                size="xs"
+                color="primary"
+                class="q-ma-none"
+                @click="props.row.id;"
+              />
+            </q-td>
           </template>
         </q-table>
       </q-card-section>
@@ -61,169 +68,69 @@
 <script>
 const columns = [
   {
-    name: "nacionalidad",
+    name: 'nac_client',
     required: true,
-    label: "Nacionalidad",
-    align: "left",
-    field: (row) => row.name,
-    format: (val) => `${val}`,
-    sortable: true,
+    label: 'Nacionalidad',
+    align: 'left',
+    field: row => row.nac_client,
+    format: val => `${val}`,
+    sortable: true
   },
   {
-    name: "cedula",
-    align: "center",
-    label: "Cedula",
-    field: "calories",
-    sortable: true,
+    name: 'cedula_client',
+    align: 'center',
+    label: 'Cedula',
+    field: 'cedula_client'
   },
   {
-    name: "nombres",
-    label: "Nombres",
-    field: "fat",
-    sortable: true,
+    name: 'nombre_client',
+    label: 'Nombres',
+    align: 'center',
+    field: 'nombre_client'
   },
   {
-    name: "apellidos",
-    label: "Apellidos",
-    field: "carbs",
+    name: 'apellido_client',
+    label: 'Apellidos',
+    align: 'center',
+    field: 'apellido_client'
   },
   {
-    name: "razon",
-    label: "Razón Social",
-    field: "protein",
+    name: 'razonsocial_client',
+    label: 'Razón Social',
+    align: 'center',
+    field: 'razonsocial_client'
   },
   {
-    name: "telefono",
-    label: "Telefono",
-    field: "sodium",
+    name: 'tlf_client',
+    label: 'Telefono',
+    align: 'center',
+    field: 'tlf_client'
   },
   {
-    name: "acciones",
-    label: "Acciones",
-    field: "calcium",
-    sortable: true,
-    sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
-  },
-];
+    name: 'actions',
+    align: 'center',
+    label: 'Acciones'
+  }
+]
 
-const rows = [
-  {
-    name: "Frozen Yogurt",
-    calories: 159,
-    fat: 6.0,
-    carbs: 24,
-    protein: 4.0,
-    sodium: 87,
-    calcium: "14%",
-    iron: "1%",
-  },
-  {
-    name: "Ice cream sandwich",
-    calories: 237,
-    fat: 9.0,
-    carbs: 37,
-    protein: 4.3,
-    sodium: 129,
-    calcium: "8%",
-    iron: "1%",
-  },
-  {
-    name: "Eclair",
-    calories: 262,
-    fat: 16.0,
-    carbs: 23,
-    protein: 6.0,
-    sodium: 337,
-    calcium: "6%",
-    iron: "7%",
-  },
-  {
-    name: "Cupcake",
-    calories: 305,
-    fat: 3.7,
-    carbs: 67,
-    protein: 4.3,
-    sodium: 413,
-    calcium: "3%",
-    iron: "8%",
-  },
-  {
-    name: "Gingerbread",
-    calories: 356,
-    fat: 16.0,
-    carbs: 49,
-    protein: 3.9,
-    sodium: 327,
-    calcium: "7%",
-    iron: "16%",
-  },
-  {
-    name: "Jelly bean",
-    calories: 375,
-    fat: 0.0,
-    carbs: 94,
-    protein: 0.0,
-    sodium: 50,
-    calcium: "0%",
-    iron: "0%",
-  },
-  {
-    name: "Lollipop",
-    calories: 392,
-    fat: 0.2,
-    carbs: 98,
-    protein: 0,
-    sodium: 38,
-    calcium: "0%",
-    iron: "2%",
-  },
-  {
-    name: "Honeycomb",
-    calories: 408,
-    fat: 3.2,
-    carbs: 87,
-    protein: 6.5,
-    sodium: 562,
-    calcium: "0%",
-    iron: "45%",
-  },
-  {
-    name: "Donut",
-    calories: 452,
-    fat: 25.0,
-    carbs: 51,
-    protein: 4.9,
-    sodium: 326,
-    calcium: "2%",
-    iron: "22%",
-  },
-  {
-    name: "KitKat",
-    calories: 518,
-    fat: 26.0,
-    carbs: 65,
-    protein: 7,
-    sodium: 54,
-    calcium: "12%",
-    iron: "6%",
-  },
-];
+const rows = []
 export default {
-  name: "List",
+  name: 'List',
 
-  data() {
+  data () {
     return {
-       initialPagination: {
-        sortBy: "desc",
+      initialPagination: {
+        sortBy: 'desc',
         descending: false,
         page: 1,
-        rowsPerPage: 10,
+        rowsPerPage: 10
         // rowsNumber: xx if getting data from a server
       },
       columns,
       rows,
       filter: ''
-    };
+    }
   },
-};
+  props: ['pcapiList']
+}
 </script>
