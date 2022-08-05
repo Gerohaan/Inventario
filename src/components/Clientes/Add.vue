@@ -13,7 +13,7 @@
           </q-card-section>
         </div>
         <div class="col-12 text-left">
-          <p class="text-subtitle2">Tipo de Persona</p>
+          <p class="text-subtitle2">Tipo Cliente</p>
         </div>
       </div>
       <q-form @submit.prevent="addCliente()" @reset="onReset">
@@ -39,219 +39,80 @@
             </div>
           </div>
         </div>
-
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 q-pr-md">
-            <q-input
-              dense
-              filled
-              v-model="name"
-              standout
-              bg-color="accent"
-              label="Nombres"
-              hint="Primero y Segundo Nombre"
-              lazy-rules
-              :rules="[val => (val && val.length > 0) || 'Escriba sus Nombres']"
-            >
-              <template v-slot:prepend>
-                <q-icon color="primary" name="person" />
-              </template>
-            </q-input>
-          </div>
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 q-pr-md">
-            <q-input
-              dense
-              standout
-              bg-color="accent"
-              filled
-              v-model="apellido"
-              label="Apellidos"
-              hint="Primero y Segundo Apellidos"
-              lazy-rules
-              :rules="[
-                val => (val && val.length > 0) || 'Escriba sus Apellidos'
-              ]"
-            >
-              <template v-slot:prepend>
-                <q-icon color="primary" name="person" />
-              </template>
-            </q-input>
-          </div>
-        </div>
-        <div
-          class="
-              col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6
-              text-no-wrap
-              q-pt-md q-pr-md
-            "
-        >
-          <p class="col text-weight-medium">Documento</p>
+        <div class="col-12 text-left">
+          <p class="text-subtitle2">Persona</p>
         </div>
         <div class="row">
           <div
-            class="
-              col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4
-              text-no-wrap
-              q-pt-xs
-            "
+            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md"
           >
             <q-select
-              borderless
               dense
               filled
-              color="purple-12"
-              v-model="nacionalidad"
-              :options="options"
-              label="Tipo"
+              v-model="persona"
+              :options="apiList"
+              :option-label="
+                apiList => (apiList === null ? null : apiList.nombres_per)
+              "
+              :option-value="apiList => (apiList === null ? null : apiList.id)"
+              emit-value
+              map-options
+              standout
               bg-color="accent"
-              :rules="[
-                val => (val && val.length > 0) || 'Nacionalidad Invalidad'
-              ]"
+              label="Persona"
+              hint="Seleccione Persona"
             >
               <template v-slot:prepend>
-                <q-icon color="primary" name="wallet" />
+                <q-icon color="primary" name="person" />
               </template>
             </q-select>
           </div>
-          <div
-            class="
-              col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xl-8
-              text-no-wrap
-              q-pt-xs q-pr-md
-            "
-          >
-            <q-input
-              borderless
-              type="number"
-              dense
-              filled
-              v-model="cedula"
-              label="Cedula"
-              bg-color="accent"
-              lazy-rules
-              :rules="[val => (val && val.length > 0) || 'Cedula Invalidad']"
-            />
-          </div>
-          <!-- <q-input label="" class="q-mt-sm" round dense v-model="nacionalidad">
-              <template v-slot:prepend>
-                <q-icon color="primary" class="q-mr-sm" name="wallet" />
-                <q-btn-dropdown
-                  dense
-                  flat
-                  no-caps
-                  label="Tipo"
-                  class="q-mr-xl q-ml-none q-mb-xl"
-                >
-                  <q-list>
-                    <q-item clickable v-close-popup>
-                      <q-item-section>
-                        <q-item-label>V</q-item-label>
-                      </q-item-section>
-                    </q-item>
-
-                    <q-item clickable v-close-popup>
-                      <q-item-section>
-                        <q-item-label>E</q-item-label>
-                      </q-item-section>
-                    </q-item>
-                  </q-list>
-                </q-btn-dropdown>
-                <span class="text-black">|</span>
-              </template>
-            </q-input> -->
         </div>
-
         <div class="row">
-          <div
-            class="
-                col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6
-                q-pr-md q-pt-md
-              "
-          >
-            <p class="col text-subtitle2">Telefono</p>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pt-md">
             <q-input
               dense
               filled
-              type="tel"
-              v-model="telefono"
+              v-model="detalle"
               standout
               bg-color="accent"
-              label="Telefono"
-              hint="Telefono de Contacto"
+              label="Detalle Cliente"
+              hint="Detalle Cliente"
               lazy-rules
-              :rules="[
-                val =>
-                  (val && val.length > 0) || 'Telefono de Conctato No valido'
-              ]"
+              :rules="[val => (val && val.length > 0) || 'Escriba un Detalle']"
             >
               <template v-slot:prepend>
-                <q-icon color="primary" name="phone_android" />
-              </template>
-            </q-input>
-          </div>
-
-          <div
-            class="
-                col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6
-                q-pr-md q-pt-md
-              "
-          >
-            <p class="col text-subtitle2">Correo</p>
-            <q-input
-              dense
-              filled
-              v-model="correo"
-              type="email"
-              standout
-              bg-color="accent"
-              label="Corrreo"
-              hint="Correo de Contacto"
-              lazy-rules
-              :rules="[
-                val => (val && val.length > 0) || 'Correo de Conctato No valido'
-              ]"
-            >
-              <template v-slot:prepend>
-                <q-icon color="primary" name="contact_mail" />
+                <q-icon color="primary" name="person" />
               </template>
             </q-input>
           </div>
         </div>
-
-        <div class="col-12 q-pr-md q-pt-md">
-          <p class="col text-subtitle2">Razón Social</p>
-          <q-input
-            dense
-            standout="bg-teal text-blue"
-            color="black"
-            bg-color="accent"
-            v-model="razon"
-            label="Razón Social"
-            hint="Razón Social"
-            lazy-rules
-            :rules="[
-              val => (val && val.length > 0) || 'Razón Social no Valida'
-            ]"
-          >
-            <template v-slot:prepend>
-              <q-icon color="primary" name="storefront" />
-            </template>
-          </q-input>
+        <div class="col-12 text-left q-pt-md">
+          <p class="text-subtitle2">Status Cliente</p>
+        </div>
+        <div class="row">
+          <div class="col q-pt-none q-pl-md q-pr-md q-pb-md">
+            <div class="q-gutter-sm">
+              <q-radio
+                dense
+                v-model="status"
+                checked-icon="task_alt"
+                unchecked-icon="panorama_fish_eye"
+                val="ACTIVO"
+                label="ACTIVO"
+              />
+              <q-radio
+                dense
+                v-model="status"
+                checked-icon="task_alt"
+                unchecked-icon="panorama_fish_eye"
+                val="INACTIVO"
+                label="INACTIVO"
+              />
+            </div>
+          </div>
         </div>
 
-        <div class="col-12 q-pr-md q-pt-md">
-          <p class="col text-subtitle2">Dirección de Habitación</p>
-          <q-input
-            v-model="direccion"
-            filled
-            clearable
-            type="textarea"
-            color="red-12"
-            label="Dirección de Habitacion"
-            input-style="height:2px"
-            bg-color="accent"
-          />
-        </div>
         <div class="col-12 q-pt-md">
           <q-btn label="Enviar" type="submit" color="primary" />
           <q-btn
@@ -271,24 +132,15 @@ import { Headers } from '../../../Headers'
 import axios from 'axios'
 import { Global } from '../../Global'
 import { Notify } from 'quasar'
-
 export default {
   name: 'Add',
+  props: ['apiList'],
   data () {
     return {
       shape: 'N',
-      name: null,
-      cedula: null,
-      apellido: null,
-      correo: null,
-      telefono: null,
-      razon: null,
-      direccion: null,
-      nacionalidad: null,
-      accept: false,
-      model: null,
-      nacionalidad: null,
-      options: ['V', 'E']
+      detalle: null,
+      persona: null,
+      status: 'ACTIVO',
     }
   },
   methods: {
@@ -310,31 +162,25 @@ export default {
     },
 
     onReset () {
-      this.name = null
-      this.cedula = null
-      this.correo = null
-      this.telefono = null
-      this.apellido = null
-      this.razon = null
-      this.direccion = null
-      this.nacionalidad = null
+      this.detalle = null
+      this.persona = null
+      this.status = 'ACTIVO'
       this.shape = 'N'
     },
 
     async addCliente (req, res) {
       let params = {
-        nombre_client: this.name,
-        cedula_client: this.cedula,
-        email_client: this.correo,
-        tlf_client: this.telefono,
-        apellido_client: this.apellido,
-        razonsocial_client: this.razon,
-        nac_client: this.nacionalidad,
-        dircc_client: this.direccion,
-        tipo_client: this.shape
+       personaId : this.persona,
+       status_client: this.status,
+       detalle_client: this.detalle,
+       tipo_client: this.shape,
       }
       try {
-        let add = await axios.post(Global.url + 'cliente/add', params, Headers)
+        const add = await axios.post(
+          Global.url + 'cliente/add',
+          params,
+          Headers
+        )
         if (add.status === 200) {
           Notify.create({
             type: 'positive',
@@ -343,7 +189,13 @@ export default {
           })
         }
       } catch (error) {
-        console.log(error, params)
+        //console.log(params)
+        Notify.create({
+          type: 'warning',
+          message: 'Error con el Servidor!',
+          color: 'warning',
+          position: 'center'
+        })
       }
     }
   }

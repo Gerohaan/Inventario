@@ -11,7 +11,7 @@
   </div>
   <div class="row">
     <List :pcapiList="this.apiListcliente" />
-    <Add />
+    <Add :apiList="this.apiListPer" />
   </div>
 </template>
 
@@ -30,11 +30,13 @@ export default {
   },
   data () {
     return {
-      apiListcliente: []
+      apiListcliente: [],
+      apiListPer: []
     }
   },
   mounted () {
     this.listCliente()
+    this.listPer()
   },
 
   updated () {
@@ -42,10 +44,19 @@ export default {
   },
 
   methods: {
-     async listCliente (req, res) {
+    async listCliente (req, res) {
       try {
         let list = await axios.get(Global.url + 'cliente/list', Headers)
         this.apiListcliente = list.data
+        //console.log(this.apiList)
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    async listPer (req, res) {
+      try {
+        let listPersona = await axios.get(Global.url + 'persona/list', Headers)
+        this.apiListPer = listPersona.data
         //console.log(this.apiList)
       } catch (error) {
         console.log(error)

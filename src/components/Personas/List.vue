@@ -3,7 +3,7 @@
     <q-card flat>
       <q-card-section>
         <q-table
-          :rows="pcapiList"
+          :rows="apiList"
           :columns="columns"
           :row-key="row => row.id"
           separator="none"
@@ -68,39 +68,44 @@
 <script>
 const columns = [
   {
-    name: 'Persona.nombres_per',
+    name: 'nacionalidad_per',
     required: true,
-    label: 'Cliente',
-    align: 'left',
-    field: row => row.Persona.nombres_per,
+    label: 'Nacionalidad',
+    align: 'center',
+    field: row => row.nacionalidad_per,
     format: val => `${val}`,
     sortable: true
   },
   {
-    name: 'Persona.documento_per',
+    name: 'documento_per',
     align: 'center',
     label: 'Cedula',
-    field: row => row.Persona.documento_per,
+    field: 'documento_per'
   },
   {
-    name: 'detalle_client',
-    label: 'Detalle del Cliente',
+    name: 'nombres_per',
+    label: 'Nombres',
     align: 'center',
-    field: 'detalle_client'
+    field: 'nombres_per'
   },
   {
-    name: 'status_client',
-    label: 'Status Cliente',
+    name: 'apellidos_per',
+    label: 'Apellidos',
     align: 'center',
-    field: 'status_client'
+    field: 'apellidos_per'
   },
   {
-    name: 'tipo_client',
-    label: 'Tipo Cliente',
+    name: 'tlf_per',
+    label: 'Telefono',
     align: 'center',
-    field: 'tipo_client'
+    field: 'tlf_per'
   },
-
+  {
+    name: 'direccion_per',
+    label: 'Dirección',
+    align: 'center',
+    field: 'direccion_per'
+  },
   {
     name: 'actions',
     align: 'center',
@@ -126,6 +131,6 @@ export default {
       filter: ''
     }
   },
-  props: ['pcapiList']
+  props: ['apiList']
 }
 </script>
