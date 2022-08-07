@@ -220,10 +220,28 @@
               </q-item-section>
             </q-expansion-item>
             <q-expansion-item
+              expand-separator
+              :content-inset-level="0.5"
+              icon="receipt"
+              label="Empresas"
+            >
+              <q-item-section side>
+                <q-btn
+                  label="Agregar"
+                  to="/Empresa"
+                  size="md"
+                  flat
+                  icon="add"
+                  no-caps
+                  color="primary"
+                ></q-btn>
+              </q-item-section>
+            </q-expansion-item>
+            <q-expansion-item
               :content-inset-level="0.5"
               expand-separator
               icon="schedule"
-              label="Almacenes"
+              label="Bodegas"
             >
               <q-item-section side>
                 <q-btn

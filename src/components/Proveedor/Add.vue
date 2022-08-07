@@ -1,21 +1,26 @@
 <template>
-   <div class="col col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 q-pa-sm">
-      <q-card
-        class="my-card q-pa-md box-shadow"
-        style="margin: 15px 20px 0px 10px"
-      >
-        <div class="row">
-          <div class="col col-md-12 col-lg-12 col-xs-12 col-sm-12">
-            <q-card-section>
-              <div class="col text-center text-primary text-bold text-h5">
-                Agregar Proveedor
-              </div>
-            </q-card-section>
-          </div>
-          <div class="col-12 text-left">
-            <p class="text-subtitle2">Tipo de Persona</p>
-          </div>
+  <div class="col col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 q-pa-sm">
+    <q-card
+      class="my-card q-pa-md box-shadow"
+      style="margin: 15px 20px 0px 10px"
+    >
+      <div class="row">
+        <div class="col col-md-12 col-lg-12 col-xs-12 col-sm-12">
+          <q-card-section>
+            <div class="col text-center text-primary text-bold text-h5">
+              Agregar Proveedor
+            </div>
+            <!--             <pre>{{apipersona}}</pre>
+ -->
+          </q-card-section>
         </div>
+
+        <div class="col-12 text-left">
+          <p class="text-subtitle2">Status Proveedor</p>
+        </div>
+      </div>
+
+      <q-form @submit.prevent="addProveedor()" @reset="onReset">
         <div class="row">
           <div class="col q-pt-none q-pl-md q-pr-md q-pb-md">
             <div class="q-gutter-sm">
@@ -24,254 +29,215 @@
                 v-model="shape"
                 checked-icon="task_alt"
                 unchecked-icon="panorama_fish_eye"
-                val="line"
-                label="Persona Natural"
+                val="ACTIVO"
+                label="ACTIVO"
               />
               <q-radio
                 dense
                 v-model="shape"
                 checked-icon="task_alt"
                 unchecked-icon="panorama_fish_eye"
-                val="rectangle"
-                label="Persona Juridica"
+                val="INACTIVO"
+                label="INACTIVO"
               />
             </div>
           </div>
         </div>
-
-        <q-form @submit="onSubmit" @reset="onReset">
-          <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 q-pr-md">
-              <q-input
-                dense
-                filled
-                v-model="name"
-                standout
-                bg-color="accent"
-                label="Nombres"
-                hint="Primero y Segundo Nombre"
-                lazy-rules
-                :rules="[
-                  (val) => (val && val.length > 0) || 'Escriba sus Nombres',
-                ]"
-              >
-                <template v-slot:prepend>
-                  <q-icon color="primary" name="person" />
-                </template>
-              </q-input>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 q-pr-md">
-              <q-input
-                dense
-                standout
-                bg-color="accent"
-                filled
-                v-model="apellido"
-                label="Apellidos"
-                hint="Primero y Segundo Apellidos"
-                lazy-rules
-                :rules="[
-                  (val) => (val && val.length > 0) || 'Escriba sus Apellidos',
-                ]"
-              >
-                <template v-slot:prepend>
-                  <q-icon color="primary" name="person" />
-                </template>
-              </q-input>
-            </div>
-          </div>
+        <div class="row">
           <div
-            class="
-              col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6
-              text-no-wrap
-              q-pt-md q-pr-md
-            "
+            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md"
           >
-            <p class="col text-weight-medium">Rif:</p>
-            <div>
-              <q-input fill-mask mask="########-#" label="" class="q-mt-sm" round dense v-model="cedula">
-                <template v-slot:prepend>
-                  <q-icon color="primary" class="q-mr-sm" name="wallet" />
-                  <q-btn-dropdown
-                    dense
-                    flat
-                    no-caps
-                    label="Tipo"
-                    class="q-mr-none q-ml-none"
-                  >
-                    <q-list>
-                      <q-item clickable v-close-popup>
-                        <q-item-section>
-                          <q-item-label>V</q-item-label>
-                        </q-item-section>
-                      </q-item>
-
-                      <q-item clickable v-close-popup>
-                        <q-item-section>
-                          <q-item-label>E</q-item-label>
-                        </q-item-section>
-                      </q-item>
-                    </q-list>
-                  </q-btn-dropdown>
-                  <span class="text-black">|</span>
-                </template>
-              </q-input>
-            </div>
-          </div>
-
-          <div class="row">
-            <div
-              class="
-                col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6
-                q-pr-md q-pt-md
-              "
-            >
-              <p class="col text-subtitle2">Telefono</p>
-              <q-input
-                dense
-                filled
-                type="tel"
-                v-model="telefono"
-                standout
-                bg-color="accent"
-                label="Telefono"
-                hint="Telefono de Contacto"
-                lazy-rules
-                :rules="[
-                  (val) =>
-                    (val && val.length > 0) || 'Telefono de Conctato No valido',
-                ]"
-              >
-                <template v-slot:prepend>
-                  <q-icon color="primary" name="phone_android" />
-                </template>
-              </q-input>
-            </div>
-
-            <div
-              class="
-                col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6
-                q-pr-md q-pt-md
-              "
-            >
-              <p class="col text-subtitle2">Correo</p>
-              <q-input
-                dense
-                filled
-                v-model="correo"
-                type="email"
-                standout
-                bg-color="accent"
-                label="Corrreo"
-                hint="Correo de Contacto"
-                lazy-rules
-                :rules="[
-                  (val) =>
-                    (val && val.length > 0) || 'Correo de Conctato No valido',
-                ]"
-              >
-                <template v-slot:prepend>
-                  <q-icon color="primary" name="contact_mail" />
-                </template>
-              </q-input>
-            </div>
-          </div>
-
-          <div class="col-12 q-pr-md q-pt-md">
-            <p class="col text-subtitle2">Razón Social</p>
-            <q-input
+            <q-select
+              use-input
+              hide-selected
+              fill-input
+              input-debounce="0"
               dense
-              standout="bg-teal text-blue"
-              color="black"
+              filled
+              v-model="persona"
+              :options="apipersona"
+              :option-label="
+                apipersona =>
+                  apipersona === null
+                    ? null
+                    : apipersona.nombres_per + ' ' + apipersona.apellidos_per
+              "
+              :option-value="
+                apipersona => (apipersona === null ? null : apipersona.id)
+              "
+              @filter="filterFn"
+              emit-value
+              map-options
+              standout
               bg-color="accent"
-              v-model="razon"
-              label="Razón Social"
-              hint="Razón Social"
-              lazy-rules
-              :rules="[
-                (val) => (val && val.length > 0) || 'Razón Social no Valida',
-              ]"
+              label="Persona "
+              hint="Seleccione Persona"
             >
               <template v-slot:prepend>
-                <q-icon color="primary" name="storefront" />
+                <q-icon color="primary" name="person" />
               </template>
-            </q-input>
+              <template v-slot:no-option>
+                <q-item>
+                  <q-item-section class="text-grey">
+                    No results
+                  </q-item-section>
+                </q-item>
+              </template>
+            </q-select>
           </div>
-
-          <div class="col-12 q-pr-md q-pt-md">
-            <p class="col text-subtitle2">Dirección de Habitación</p>
-            <q-input
-              v-model="direccion"
-              filled
-              clearable
-              type="textarea"
-              color="red-12"
-              label="Dirección de Habitacion"
-              input-style="height:2px"
+          <div
+            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pt-md"
+          >
+            <q-select
+              dense
+              standout
               bg-color="accent"
-            />
+              :options="apiempresa"
+              :option-label="
+                apiempresa =>
+                  apiempresa === null
+                    ? null
+                    : apiempresa.nombre_empre + '  Rif:' + apiempresa.rif_empre
+              "
+              :option-value="
+                apiempresa => (apiempresa === null ? null : apiempresa.id)
+              "
+              emit-value
+              map-options
+              filled
+              v-model="empresa"
+              label="Empresa"
+              hint="Seleccione una Empresa"
+            >
+              <template v-slot:prepend>
+                <q-icon color="primary" name="person" />
+              </template>
+            </q-select>
           </div>
-          <div class="col-12 q-pt-md">
-            <q-btn label="Enviar" type="submit" color="primary" />
-            <q-btn
-              label="Limpiar"
-              type="reset"
-              color="primary"
-              flat
-              class="q-ml-sm"
-            />
-          </div>
-        </q-form>
-      </q-card>
-    </div>
+        </div>
+
+        <div class="col-12 q-pr-md q-pt-md">
+          <q-input
+            dense
+            standout="bg-teal text-blue"
+            color="black"
+            bg-color="accent"
+            v-model="detalle"
+            label="Detalles"
+            hint="Escriba Algún detalle"
+            lazy-rules
+            :rules="[
+              val => (val && val.length > 0) || 'Razón Social no Valida'
+            ]"
+          >
+            <template v-slot:prepend>
+              <q-icon color="primary" name="storefront" />
+            </template>
+          </q-input>
+        </div>
+
+        <div class="col-12 q-pt-md">
+          <q-btn label="Enviar" type="submit" color="primary" />
+          <q-btn
+            label="Limpiar"
+            type="reset"
+            color="primary"
+            flat
+            class="q-ml-sm"
+          />
+        </div>
+      </q-form>
+    </q-card>
+  </div>
 </template>
 <script>
+import { Headers } from '../../../Headers'
+import axios from 'axios'
+import { Global } from '../../Global'
+import { Notify } from 'quasar'
 export default {
-  name: "Add",
-  data() {
-    return{
-      shape: "rectangle",
-      name: null,
-      cedula: null,
-      apellido: null,
-      correo: null,
-      telefono: null,
-      razon: null,
-      direccion: null,
-      accept: false,
-      model: null,
-      options: ["V", "E"],
-    }
+  name: 'Add',
+  props: ['apiempresa', 'apipersona'],
 
+  data () {
+    return {
+      shape: 'ACTIVO',
+      persona: null,
+      empresa: null,
+      detalle: null
+    }
   },
-    methods: {
-    onSubmit() {
+  methods: {
+    onSubmit () {
       if (this.accept !== true) {
         this.$q.notify({
-          color: "red-5",
-          textColor: "white",
-          icon: "warning",
-        });
+          color: 'red-5',
+          textColor: 'white',
+          icon: 'warning'
+        })
       } else {
         this.$q.notify({
-          color: "green-4",
-          textColor: "white",
-          icon: "cloud_done",
-          message: "Submitted",
-        });
+          color: 'green-4',
+          textColor: 'white',
+          icon: 'cloud_done',
+          message: 'Submitted'
+        })
       }
     },
 
-    onReset() {
-      this.name = null;
-      this.cedula = null;
-      this.correo = null;
-      this.telefono = null;
-      this.accept = false;
-      this.apellido = null;
-      this.razon = null;
-      this.direccion = null;
+    onReset () {
+      this.persona = null
+      this.empresa = null
+      this.detalle = null
     },
-  },
+    filterFn (val, update) {
+      if (val === '') {
+        update(() => {
+          this.options = this.apipersona
+        })
+        return
+      }
+
+      update(() => {
+        const needle = val.toLowerCase()
+        this.options = this.apipersona.filter(
+          v => v.toLowerCase().indexOf(needle) > -1
+        )
+      })
+    },
+
+    async addProveedor (req, res) {
+      let params = {
+        personaId: this.persona,
+        empresaId: this.empresa,
+        status_prov: this.shape,
+        detalle_prov: this.detalle
+      }
+
+      try {
+        const add = await axios.post(
+          Global.url + 'proveedor/add',
+          params,
+          Headers
+        )
+        if (add.status === 200) {
+          Notify.create({
+            type: 'positive',
+            message: 'Proveedor Agregado',
+            color: 'positive'
+          })
+          this.onReset()
+        }
+      } catch (error) {
+        console.log(error)
+        Notify.create({
+          type: 'warning',
+          message: 'Error con el Servidor!',
+          color: 'warning',
+          position: 'center'
+        })
+      }
+    }
+  }
 }
 </script>
