@@ -5,7 +5,7 @@
     transition-show="scale"
     transition-hide="scale"
   >
-    <q-card class="bg-teal text-white" style="width: 700px">
+    <q-card class="bg-secondary text-white" style="width: 700px">
       <q-card-section>
         <div class="text-h6">Editar Categoria</div>
       </q-card-section>
@@ -124,7 +124,7 @@ export default {
   methods: {
     onReset () {
       this.nombre_categoria = null
-      this.detalle_categoria = null
+      this.apiedit.detalle_categoria = null
       this.status_categoria = null
     },
 
@@ -133,7 +133,6 @@ export default {
         nombre_categoria: this.apiedit.nombre_categoria,
         detalle_categoria: this.apiedit.detalle_categoria,
         status_categoria: this.apiedit.status_categoria,
-        id:this.apiedit.id
       }
       try {
         let updateCategoria = await axios.put(
@@ -146,7 +145,7 @@ export default {
           Notify.create({
             type: 'positive',
             message: 'Categoria Actualizada!',
-            color: 'purple'
+            color: 'positive'
             //position:'center'
           })
         }
