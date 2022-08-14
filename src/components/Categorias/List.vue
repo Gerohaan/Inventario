@@ -33,40 +33,36 @@
 
           <template v-slot:body-cell-actions="props">
             <q-td :props="props">
-                <q-btn
-                  flat
-                  dense
-                  icon="visibility"
-                  size="xs"
-                  class="q-ma-none"
-                  color="primary"
-                />
-                <q-btn
-                  flat
-                  dense
-                  icon="edit"
-                  size="xs"
-                  color="primary"
-                  class="q-ma-none"
-                />
-                <q-btn
-                  flat
-                  dense
-                  icon="delete"
-                  size="xs"
-                  color="primary"
-                  class="q-ma-none"
-                  @click="deleteCategoria(props.row.id)"
-                />
-              </q-td>
+              <q-btn
+                flat
+                dense
+                icon="visibility"
+                size="xs"
+                class="q-ma-none"
+                color="primary"
+                @click="openModal(), editCategoria(props.row.id)"
+              />
+
+              <q-btn
+                flat
+                dense
+                icon="delete"
+                size="xs"
+                color="primary"
+                class="q-ma-none"
+                @click="deleteCategoria(props.row.id)"
+              />
+            </q-td>
           </template>
         </q-table>
       </q-card-section>
     </q-card>
+    <ModalEdit :persistent="persistent" :apiedit="this.editApi"> </ModalEdit>
   </div>
 </template>
 
 <script>
+import ModalEdit from './ModalEdit.vue'
 import { Headers } from '../../../Headers'
 import axios from 'axios'
 import { Global } from '../../Global'
@@ -106,16 +102,20 @@ const columns = [
 const rows = []
 export default {
   name: 'List',
+  components: {
+    ModalEdit
+  },
 
   data () {
     return {
+      persistent: false,
       initialPagination: {
         sortBy: 'desc',
         descending: false,
         page: 1,
         rowsPerPage: 10
-        // rowsNumber: xx if getting data from a server
       },
+      editApi: {},
       columns,
       rows,
       filter: ''
@@ -133,23 +133,38 @@ export default {
         )
         if (list.status === 200) {
           Notify.create({
-            type:'positive',
+            type: 'positive',
             message: 'Usuario Eliminado!',
-            color:'purple',
+            color: 'purple'
             //position:'center'
           })
         }
       } catch (error) {
         console.log(error)
         Notify.create({
-            type:'warning',
-            message: 'Error al intentar eliminar el Usuario!',
-            color:'warning',
-            position:'center'
-          })
+          type: 'warning',
+          message: 'Error al intentar eliminar el Usuario!',
+          color: 'warning',
+          position: 'center'
+        })
       }
-    }
-  },
+    },
 
+    async editCategoria (req, res) {
+      try {
+        let lista = await axios.get(
+          Global.url + 'categoria/show/' + `${req}`,
+          Headers
+        )
+        this.editApi = lista.data
+      } catch (error) {
+        console.log(error)
+      }
+    },
+
+    openModal () {
+      this.persistent = true
+    }
+  }
 }
 </script>

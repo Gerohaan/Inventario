@@ -16,7 +16,7 @@
         </div>
       </div>
 
-      <q-form id="form" @submit.prevent="onSubmit()" @reset="onReset">
+      <q-form id="form" @submit.prevent="addBodega()" @reset="onReset">
         <div class="row">
           <div
             class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md"
@@ -24,13 +24,13 @@
             <q-input
               dense
               filled
-              v-model="name"
+              v-model="nombre_bodega"
               standout
               bg-color="accent"
-              label="Nombre de la Categoria"
+              label="Nombre de la Bodega"
               hint="Nombre Identificatorio"
               lazy-rules
-              :rules="[(val) => (val && val.length > 0) || 'Escriba El Nombre']"
+              :rules="[val => (val && val.length > 0) || 'Escriba la Bodega']"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="person" />
@@ -48,12 +48,12 @@
               standout
               bg-color="accent"
               filled
-              v-model="direccion"
-              label="Ubicación"
-              hint="Dirreción "
+              v-model="descripcion_bodega"
+              label="Breve Descripción"
+              hint="Descripción"
               lazy-rules
               :rules="[
-                (val) => (val && val.length > 0) || 'Escriba la Dirreción',
+                val => (val && val.length > 0) || 'Escriba la Descripción'
               ]"
             >
               <template v-slot:prepend>
@@ -72,12 +72,12 @@
               standout
               bg-color="accent"
               filled
-              v-model="apellido"
-              label="Detalle de la Categoria"
-              hint="Breve Descripcion"
+              v-model="ubicacion_bodega"
+              label="Ubicación de la Bodega"
+              hint="Dirección"
               lazy-rules
               :rules="[
-                (val) => (val && val.length > 0) || 'Escriba El Detalle',
+                val => (val && val.length > 0) || 'Escriba la Dirección'
               ]"
             >
               <template v-slot:prepend>
@@ -128,47 +128,79 @@
   </div>
 </template>
 <script>
+import { Headers } from '../../../Headers'
+import axios from 'axios'
+import { Global } from '../../Global'
+import { Notify } from 'quasar'
 export default {
-  name: "Add",
-  data() {
+  name: 'Add',
+  data () {
     return {
-      shape: "line",
-      name: null,
-      cedula: null,
-      apellido: null,
-      direccion: null,
+      nombre_bodega: null,
+      descripcion_bodega: null,
+      ubicacion_bodega: null,
       accept: false,
       model: null,
-      theModel2: "",
-    };
+      theModel2: ''
+    }
   },
   methods: {
-    onSubmit() {
+    onSubmit () {
       if (this.accept !== true) {
         this.$q.notify({
-          color: "red-5",
-          textColor: "white",
-          icon: "warning",
-        });
+          color: 'red-5',
+          textColor: 'white',
+          icon: 'warning'
+        })
       } else {
         this.$q.notify({
-          color: "green-4",
-          textColor: "white",
-          icon: "cloud_done",
-          message: "Submitted",
-        });
+          color: 'green-4',
+          textColor: 'white',
+          icon: 'cloud_done',
+          message: 'Submitted'
+        })
       }
     },
 
-    onReset() {
-      this.name = null;
-      this.cedula = null;
-      this.direccion = null;
-      this.telefono = null;
-      this.accept = false;
-      this.apellido = null;
-      this.theModel2 = "";
+    onReset () {
+      this.nombre_bodega = null
+      this.descripcion_bodega = null
+      this.ubicacion_bodega = null
+      this.theModel2 = ''
     },
+
+    async addBodega (req, res) {
+      try {
+        let addform = {
+          nombre_bodega: this.nombre_bodega,
+          descripcion_bodega: this.descripcion_bodega,
+          ubicacion_bodega: this.ubicacion_bodega,
+          status_bodega: this.theModel2
+        }
+
+        const addBodegas = await axios.post(
+          Global.url + 'bodega/add',
+          addform,
+          Headers
+        )
+
+        if (addBodegas.status === 200) {
+          Notify.create({
+            type: 'positive',
+            message: 'Bodega Agregada',
+            color: 'positive'
+          })
+        }
+      } catch (error) {
+        console.log(addform)
+        Notify.create({
+          type: 'warning',
+          message: 'Error con el Servidor!',
+          color: 'warning',
+          position: 'center'
+        })
+      }
+    }
   },
-};
+}
 </script>
