@@ -33,40 +33,37 @@
 
           <template v-slot:body-cell-actions="props">
             <q-td :props="props">
-                <q-btn
-                  flat
-                  dense
-                  icon="visibility"
-                  size="xs"
-                  class="q-ma-none"
-                  color="primary"
-                />
-                <q-btn
-                  flat
-                  dense
-                  icon="edit"
-                  size="xs"
-                  color="primary"
-                  class="q-ma-none"
-                />
-                <q-btn
-                  flat
-                  dense
-                  icon="delete"
-                  size="xs"
-                  color="primary"
-                  class="q-ma-none"
-                  @click="deleteCategoria(props.row.id)"
-                />
-              </q-td>
+              <q-btn
+                flat
+                dense
+                icon="visibility"
+                size="xs"
+                class="q-ma-none"
+                color="primary"
+                @click="openModal(), editEmpresa(props.row.id)"
+              />
+
+              <q-btn
+                flat
+                dense
+                icon="delete"
+                size="xs"
+                color="primary"
+                class="q-ma-none"
+                @click="deleteEmpresa(props.row.id)"
+              />
+            </q-td>
           </template>
         </q-table>
       </q-card-section>
     </q-card>
+    <ModalEdit :persistent="persistent" :apiedit="this.editempresa" @closeModel="persistent">
+    </ModalEdit>
   </div>
 </template>
 
 <script>
+import ModalEdit from './ModalEdit.vue'
 import { Headers } from '../../../Headers'
 import axios from 'axios'
 import { Global } from '../../Global'
@@ -79,28 +76,28 @@ const columns = [
     label: 'Nombre Empresa',
     align: 'center',
     field: row => row.nombre_empre,
-    format: val => `${val}`,
+    format: val => `${val}`
   },
   {
     name: 'rif_empre',
     align: 'center',
     label: 'Rif Empresa',
-    field: 'rif_empre',
+    field: 'rif_empre'
   },
   {
     name: 'representante_empre',
     align: 'center',
     label: 'Representante',
-    field: 'representante_empre',
+    field: 'representante_empre'
   },
-   {
+  {
     name: 'tlf_local_empre',
     align: 'center',
     label: 'Telefono de Conctacto',
     field: 'tlf_local_empre',
     sortable: true
   },
-   {
+  {
     name: 'tipo_empre',
     align: 'center',
     label: 'Tipo de Empresa',
@@ -117,9 +114,13 @@ const columns = [
 const rows = []
 export default {
   name: 'List',
+  components: {
+    ModalEdit
+  },
 
   data () {
     return {
+      persistent: false,
       initialPagination: {
         sortBy: 'desc',
         descending: false,
@@ -129,38 +130,52 @@ export default {
       },
       columns,
       rows,
-      filter: ''
+      filter: '',
+      editempresa: {}
     }
   },
 
   props: ['papiList'],
 
   methods: {
-    async deleteCategoria (req, res) {
+    async deleteEmpresa (req, res) {
       try {
         let list = await axios.delete(
-          Global.url + 'categoria/delete/' + `${req}`,
+          Global.url + 'empresa/delete/' + `${req}`,
           Headers
         )
         if (list.status === 200) {
           Notify.create({
-            type:'positive',
-            message: 'Usuario Eliminado!',
-            color:'purple',
+            type: 'positive',
+            message: 'Empresa Eliminado!',
+            color: 'purple'
             //position:'center'
           })
         }
       } catch (error) {
         console.log(error)
         Notify.create({
-            type:'warning',
-            message: 'Error al intentar eliminar el Usuario!',
-            color:'warning',
-            position:'center'
-          })
+          type: 'warning',
+          message: 'Esta Empresa esta Asociada A un Proveedor!',
+          color: 'warning',
+          position: 'center'
+        })
+      }
+    },
+    openModal () {
+      this.persistent = true
+    },
+    async editEmpresa (req, res) {
+      try {
+        let lista = await axios.get(
+          Global.url + 'empresa/show/' + `${req}`,
+          Headers
+        )
+        this.editempresa = lista.data
+      } catch (error) {
+        console.log(error)
       }
     }
-  },
-
+  }
 }
 </script>

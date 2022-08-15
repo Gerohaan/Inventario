@@ -57,7 +57,12 @@
         </q-table>
       </q-card-section>
     </q-card>
-    <ModalEdit :persistent="persistent" :apiedit="this.editApi"> </ModalEdit>
+    <ModalEdit
+      :persistent="persistent"
+      :apiedit="this.editApi"
+      @closeModel="persistent"
+    >
+    </ModalEdit>
   </div>
 </template>
 

@@ -89,11 +89,12 @@
                 v-close-popup
               />
               <q-btn
-                label="Limpiar"
-                type="reset"
+                label="Cancelar"
                 color="primary"
                 flat
                 class="q-ml-sm"
+                v-close-popup
+                @click="closeModal()"
               />
             </div>
           </q-card-actions>
@@ -116,9 +117,9 @@ export default {
   name: 'ModalEdit',
   data () {
     return {
-      nombre_categoria:this.apiedit.nombre_categoria,
-      detalle_categoria:this.apiedit.detalle_categoria,
-      status_categoria:this.apiedit.status_categoria
+      nombre_categoria: this.apiedit.nombre_categoria,
+      detalle_categoria: this.apiedit.detalle_categoria,
+      status_categoria: this.apiedit.status_categoria
     }
   },
   methods: {
@@ -132,8 +133,9 @@ export default {
       let params = {
         nombre_categoria: this.apiedit.nombre_categoria,
         detalle_categoria: this.apiedit.detalle_categoria,
-        status_categoria: this.apiedit.status_categoria,
+        status_categoria: this.apiedit.status_categoria
       }
+      let persistent = false
       try {
         let updateCategoria = await axios.put(
           Global.url + 'categoria/update/' + `${this.apiedit.id}`,
@@ -142,6 +144,7 @@ export default {
         )
 
         if (updateCategoria.status === 200) {
+          this.$emit('closeModel', persistent)
           Notify.create({
             type: 'positive',
             message: 'Categoria Actualizada!',
@@ -158,6 +161,10 @@ export default {
           position: 'center'
         })
       }
+    },
+    closeModal () {
+      let persistent = false
+      this.$emit('closeModel', persistent)
     }
   }
 }
