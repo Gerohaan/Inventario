@@ -1,7 +1,6 @@
 <template>
   <div class="col-md-8 col-lg-8 col-xs-12 col-sm-12">
-<!--     <pre>{{vialist}}</pre>
- -->    <q-card flat>
+    <q-card flat>
       <q-card-section>
         <q-table
           :rows="vialist"
@@ -12,7 +11,6 @@
           :filter="filter"
           :pagination="initialPagination"
           class="text-center box-shadow"
-          style="margin: 10px 0px 0px 20px"
         >
           <template v-slot:top-left>
             <q-input
@@ -40,14 +38,7 @@
                 size="xs"
                 class="q-ma-none"
                 color="primary"
-              />
-              <q-btn
-                flat
-                dense
-                icon="edit"
-                size="xs"
-                color="primary"
-                class="q-ma-none"
+                @click="openModal(), editBodega(props.row.id)"
               />
               <q-btn
                 flat
@@ -56,17 +47,29 @@
                 size="xs"
                 color="primary"
                 class="q-ma-none"
-                @click="props.row.id;"
+                @click="deleteBodega(props.row.id)"
               />
             </q-td>
           </template>
         </q-table>
       </q-card-section>
     </q-card>
+    <ModalEdit
+      :persistent="persistent"
+      :apiedit="this.editApi"
+      @closeModel="persistent"
+    >
+    </ModalEdit>
   </div>
 </template>
 
 <script>
+import ModalEdit from './ModalEdit.vue'
+import { Headers } from '../../../Headers'
+import axios from 'axios'
+import { Global } from '../../Global'
+import { Notify } from 'quasar'
+
 const columns = [
   {
     name: 'nombre_bodega',
@@ -105,9 +108,13 @@ const columns = [
 const rows = []
 export default {
   name: 'List',
+  components: {
+    ModalEdit
+  },
 
   data () {
     return {
+      persistent: false,
       initialPagination: {
         sortBy: 'desc',
         descending: false,
@@ -117,9 +124,50 @@ export default {
       },
       columns,
       rows,
-      filter: ''
+      filter: '',
+      editApi: {}
     }
   },
-  props: ['vialist']
+  props: ['vialist'],
+  methods: {
+    async editBodega (req, res) {
+      try {
+        let list = await axios.get(
+          Global.url + 'bodega/show/' + `${req}`,
+          Headers
+        )
+        this.editApi = list.data
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    openModal () {
+      this.persistent = true
+    },
+    async deleteBodega (req, res) {
+      try {
+        let lista = await axios.delete(
+          Global.url + 'bodega/delete/' + `${req}`,
+          Headers
+        )
+        if (lista.status === 200) {
+          Notify.create({
+            type: 'positive',
+            message: 'Bodega Eliminada!',
+            color: 'purple'
+            //position:'center'
+          })
+        }
+      } catch (error) {
+        console.log(error)
+        Notify.create({
+          type: 'warning',
+          message: 'Error al intentar eliminar el Bodega!',
+          color: 'warning',
+          position: 'center'
+        })
+      }
+    }
+  }
 }
 </script>

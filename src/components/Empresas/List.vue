@@ -156,7 +156,7 @@ export default {
         console.log(error)
         Notify.create({
           type: 'warning',
-          message: 'Esta Empresa esta Asociada A un Proveedor!',
+          message: 'Esta Persona esta Asociada A un Proveedor o Cliente!',
           color: 'warning',
           position: 'center'
         })

@@ -154,21 +154,22 @@ export default {
         )
         this.apiAdd = add.data
 
-        if(add.status === 200){
+        if (add.status === 200) {
+          this.onReset()
           Notify.create({
-            type:'positive',
+            type: 'positive',
             message: 'Categoria Agregada!',
-            color:'positive',
+            color: 'positive'
           })
         }
       } catch (error) {
         console.log(error)
         Notify.create({
-            type:'warning',
-            message: 'Error al intentar eliminar la Categoria!',
-            color:'warning',
-            position:'center'
-          })
+          type: 'warning',
+          message: 'Error al intentar eliminar la Categoria!',
+          color: 'warning',
+          position: 'center'
+        })
       }
     }
   }

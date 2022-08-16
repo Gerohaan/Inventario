@@ -7,14 +7,14 @@
     </div>
   </div>
   <div class="row">
-    <Add :vialist="this.apiList"/>
-    <List  />
+     <List :vialist="this.apiList" />
+    <Add />
   </div>
 </template>
 
 <script>
-import List from '../components/Almacen/Add.vue'
-import Add from '../components/Almacen/List.vue'
+import List from '../components/Almacen/List.vue'
+import Add from '../components/Almacen/Add.vue'
 import { Headers } from '../../Headers'
 import axios from 'axios'
 import { Global } from '../Global'

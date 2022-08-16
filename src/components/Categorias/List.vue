@@ -139,16 +139,15 @@ export default {
         if (list.status === 200) {
           Notify.create({
             type: 'positive',
-            message: 'Usuario Eliminado!',
-            color: 'purple'
-            //position:'center'
+            message: 'Categoria Eliminada!',
+            color: 'positive'
           })
         }
       } catch (error) {
         console.log(error)
         Notify.create({
           type: 'warning',
-          message: 'Error al intentar eliminar el Usuario!',
+          message: 'Error al intentar eliminar Categoria!',
           color: 'warning',
           position: 'center'
         })

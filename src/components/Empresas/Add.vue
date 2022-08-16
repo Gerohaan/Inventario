@@ -216,13 +216,13 @@ export default {
     return {
       nombre_empre: null,
       rif_empre: null,
-      representante_empre:null,
-      direccion_empre:null,
-      tlf_local_empre:null,
-      tlf_celular_empre:null,
-      correo_empre:null,
-      porltal_web_empre:null,
-      tipo_empre:null,
+      representante_empre: null,
+      direccion_empre: null,
+      tlf_local_empre: null,
+      tlf_celular_empre: null,
+      correo_empre: null,
+      porltal_web_empre: null,
+      tipo_empre: null,
       model: null,
       apiAdd: []
     }
@@ -270,14 +270,11 @@ export default {
         tipo_empre: this.tipo_empre
       }
       try {
-        let add = await axios.post(
-          Global.url + 'empresa/add',
-          params,
-          Headers
-        )
+        let add = await axios.post(Global.url + 'empresa/add', params, Headers)
         this.apiAdd = add.data
 
         if (add.status === 200) {
+          this.onReset()
           Notify.create({
             type: 'positive',
             message: 'Empresa Agregada!',

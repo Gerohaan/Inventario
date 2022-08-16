@@ -39,14 +39,7 @@
                 size="xs"
                 class="q-ma-none"
                 color="primary"
-              />
-              <q-btn
-                flat
-                dense
-                icon="edit"
-                size="xs"
-                color="primary"
-                class="q-ma-none"
+                @click="openModal(), editPersona(props.row.id)"
               />
               <q-btn
                 flat
@@ -55,17 +48,28 @@
                 size="xs"
                 color="primary"
                 class="q-ma-none"
-                @click="props.row.id;"
+                @click="deletePersona(props.row.id)"
               />
             </q-td>
           </template>
         </q-table>
       </q-card-section>
     </q-card>
+    <ModalEdit
+      :persistent="persistent"
+      :apiedit="this.editApi"
+      @closeModel="persistent"
+    >
+    </ModalEdit>
   </div>
 </template>
 
 <script>
+import ModalEdit from './ModalEdit.vue'
+import { Headers } from '../../../Headers'
+import axios from 'axios'
+import { Global } from '../../Global'
+import { Notify } from 'quasar'
 const columns = [
   {
     name: 'nacionalidad_per',
@@ -116,9 +120,13 @@ const columns = [
 const rows = []
 export default {
   name: 'List',
+  components: {
+    ModalEdit
+  },
 
   data () {
     return {
+      persistent: false,
       initialPagination: {
         sortBy: 'desc',
         descending: false,
@@ -128,7 +136,50 @@ export default {
       },
       columns,
       rows,
-      filter: ''
+      filter: '',
+      editApi: {}
+    }
+  },
+
+  methods: {
+    async editPersona (req, res) {
+      try {
+        let list = await axios.get(
+          Global.url + 'persona/show/' + `${req}`,
+          Headers
+        )
+        this.editApi = list.data
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    openModal () {
+      this.persistent = true
+    },
+
+    async deletePersona (req, res) {
+      try {
+        let lista = await axios.delete(
+          Global.url + 'persona/delete/' + `${req}`,
+          Headers
+        )
+        if (lista.status === 200) {
+          Notify.create({
+          type: 'positive',
+          message: 'Persona Eliminada!',
+          color: 'positive',
+          position: 'center'
+        })
+        }
+      } catch (error) {
+        console.log(error)
+        Notify.create({
+          type: 'warning',
+          message: 'Esta Empresa esta Asociada A un Proveedor!',
+          color: 'warning',
+          position: 'center'
+        })
+      }
     }
   },
   props: ['apiList']

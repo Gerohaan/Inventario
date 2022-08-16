@@ -185,6 +185,7 @@ export default {
         )
 
         if (addBodegas.status === 200) {
+          this.onReset()
           Notify.create({
             type: 'positive',
             message: 'Bodega Agregada',
@@ -201,6 +202,6 @@ export default {
         })
       }
     }
-  },
+  }
 }
 </script>
