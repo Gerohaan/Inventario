@@ -10,7 +10,7 @@
     </div>
   </div>
   <div class="row">
-    <List :pcapiList="this.apiListcliente" />
+    <List :pcapiList="this.apiListcliente" :apiList="this.apiListPer" />
     <Add :apiList="this.apiListPer" />
   </div>
 </template>

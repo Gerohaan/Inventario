@@ -39,14 +39,7 @@
                 size="xs"
                 class="q-ma-none"
                 color="primary"
-              />
-              <q-btn
-                flat
-                dense
-                icon="edit"
-                size="xs"
-                color="primary"
-                class="q-ma-none"
+                @click="openModal(), editarCliente(props.row.id)"
               />
               <q-btn
                 flat
@@ -55,17 +48,31 @@
                 size="xs"
                 color="primary"
                 class="q-ma-none"
-                @click="props.row.id;"
+                @click="deleteCliente(props.row.id)"
               />
             </q-td>
           </template>
         </q-table>
       </q-card-section>
     </q-card>
+    <ModalEdit
+      :persistent="persistent"
+      :apiedit="this.editcliente"
+      :apipersona="this.apiList"
+      @closeModel="persistent"
+    >
+    </ModalEdit>
+    <!--     <pre>{{apiList}}</pre>
+ -->
   </div>
 </template>
 
 <script>
+import ModalEdit from './ModalEdit.vue'
+import { Headers } from '../../../Headers'
+import axios from 'axios'
+import { Global } from '../../Global'
+import { Notify } from 'quasar'
 const columns = [
   {
     name: 'Persona.nombres_per',
@@ -80,7 +87,7 @@ const columns = [
     name: 'Persona.documento_per',
     align: 'center',
     label: 'Cedula',
-    field: row => row.Persona.documento_per,
+    field: row => row.Persona.documento_per
   },
   {
     name: 'detalle_client',
@@ -111,9 +118,13 @@ const columns = [
 const rows = []
 export default {
   name: 'List',
+  components: {
+    ModalEdit
+  },
 
   data () {
     return {
+      persistent: false,
       initialPagination: {
         sortBy: 'desc',
         descending: false,
@@ -123,9 +134,52 @@ export default {
       },
       columns,
       rows,
-      filter: ''
+      filter: '',
+      editcliente: {}
     }
   },
-  props: ['pcapiList']
+  methods: {
+    async editarCliente (req, res) {
+      try {
+        let list = await axios.get(
+          Global.url + 'cliente/show/' + `${req}`,
+          Headers
+        )
+        this.editcliente = list.data
+      } catch (error) {
+        console.log(error)
+      }
+    },
+
+    async deleteCliente (req, res) {
+      try {
+        let lista = await axios.delete(
+          Global.url + 'cliente/delete/' + `${req}`,
+          Headers
+        )
+        if (lista.status === 200) {
+          Notify.create({
+            type: 'positive',
+            message: 'Cliente Eliminado!',
+            color: 'positive'
+            //position:'center'
+          })
+        }
+      } catch (error) {
+        console.log(error)
+        Notify.create({
+          type: 'warning',
+          message: 'Este Cliente esta Asociado a un Proveedor!',
+          color: 'warning',
+          position: 'center'
+        })
+      }
+    },
+
+    openModal () {
+      this.persistent = true
+    }
+  },
+  props: ['pcapiList', 'apiList']
 }
 </script>

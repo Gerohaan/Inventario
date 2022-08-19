@@ -93,8 +93,8 @@
                 color="primary"
                 flat
                 class="q-ml-sm"
-                v-close-popup
                 @click="closeModal()"
+                v-close-popup
               />
             </div>
           </q-card-actions>

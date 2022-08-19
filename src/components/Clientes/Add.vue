@@ -182,6 +182,7 @@ export default {
           Headers
         )
         if (add.status === 200) {
+          this.onReset()
           Notify.create({
             type: 'positive',
             message: 'Cliente Agregado',
