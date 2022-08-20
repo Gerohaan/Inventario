@@ -1,6 +1,5 @@
 <template>
   <div class="col-md-8 col-lg-8 col-xs-12 col-sm-12">
-
     <q-card flat>
       <q-card-section>
         <q-table
@@ -40,14 +39,7 @@
                 size="xs"
                 class="q-ma-none"
                 color="primary"
-              />
-              <q-btn
-                flat
-                dense
-                icon="edit"
-                size="xs"
-                color="primary"
-                class="q-ma-none"
+                @click="openModal(), editProveedor(props.row.id)"
               />
               <q-btn
                 flat
@@ -63,10 +55,23 @@
         </q-table>
       </q-card-section>
     </q-card>
+    <ModalEdit
+      :persistent="persistent"
+      :apiedit="this.editApi"
+      :apipersona="this.apipersona"
+      :apiempresa="this.apiempresa"
+      @closeModel="persistent"
+    >
+    </ModalEdit>
   </div>
 </template>
 
 <script>
+import ModalEdit from './ModalEdit.vue'
+import { Headers } from '../../../Headers'
+import axios from 'axios'
+import { Global } from '../../Global'
+import { Notify } from 'quasar'
 const columns = [
   {
     name: 'Empresa.rif_empre',
@@ -89,7 +94,6 @@ const columns = [
     label: 'Apellidos',
     align: 'center',
     field: row => row.Persona.apellidos_per
-
   },
   {
     name: 'Persona.tlf_per',
@@ -113,9 +117,13 @@ const columns = [
 const rows = []
 export default {
   name: 'List',
+  components: {
+    ModalEdit
+  },
 
   data () {
     return {
+      persistent: false,
       initialPagination: {
         sortBy: 'desc',
         descending: false,
@@ -125,9 +133,26 @@ export default {
       },
       columns,
       rows,
-      filter: ''
+      filter: '',
+      editApi: {}
     }
   },
-  props: ['datapi']
+  methods: {
+    openModal () {
+      this.persistent = true
+    },
+    async editProveedor (req, res) {
+      try {
+        let list = await axios.get(
+          Global.url + 'proveedor/show/' + `${req}`,
+          Headers
+        )
+        this.editApi = list.data
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  },
+  props: ['datapi', 'apipersona','apiempresa']
 }
 </script>

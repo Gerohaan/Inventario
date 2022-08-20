@@ -10,7 +10,7 @@
     </div>
   </div>
   <div class="row">
-    <List :datapi="this.apilist" />
+    <List :datapi="this.apilist" :apipersona="this.apilist3" :apiempresa="this.apilist2" />
     <Add :apiempresa="this.apilist2" :apipersona="this.apilist3" />
   </div>
 </template>
