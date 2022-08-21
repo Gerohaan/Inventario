@@ -11,7 +11,9 @@ const routes = [
       { path: 'Proveedor', name:'Proveedor', component: () => import('pages/Proveedor.vue') },
       { path: 'Categoria', name:'Categoria', component: () => import('pages/Categoria.vue') },
       { path: 'Almacen', name:'Almacen', component: () => import('pages/Almacen.vue') },
-      { path: 'Empresa', name:'Empresa', component: () => import('pages/Empresa.vue') }
+      { path: 'Empresa', name:'Empresa', component: () => import('pages/Empresa.vue') },
+      { path: 'UnidadMedidad', name:'UnidadMedidad', component: () => import('pages/UnidadMedidad.vue') },
+      { path: 'PresentacionProd', name:'PresentacionProd', component: () => import('pages/PresentacionProd.vue') }
 
 
 

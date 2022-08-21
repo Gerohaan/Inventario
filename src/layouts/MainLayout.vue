@@ -61,7 +61,7 @@
       class="bg-blue-grey-1"
       v-model="drawer"
       show-if-above
-      :width="250"
+      :width="260"
       :mini="miniState"
       @mouseover="miniState = false"
       @mouseout="miniState = true"
@@ -251,6 +251,44 @@
                   color="primary"
                   no-caps
                   to="/Almacen"
+                  label="Agregar"
+                >
+                </q-btn>
+              </q-item-section>
+            </q-expansion-item>
+            <q-expansion-item
+              :content-inset-level="0.5"
+              expand-separator
+              icon="schedule"
+              label="Unidad de Medidad"
+            >
+              <q-item-section side>
+                <q-btn
+                  size="md"
+                  flat
+                  icon="add"
+                  color="primary"
+                  no-caps
+                  to="/UnidadMedidad"
+                  label="Agregar"
+                >
+                </q-btn>
+              </q-item-section>
+            </q-expansion-item>
+            <q-expansion-item
+              :content-inset-level="0.5"
+              expand-separator
+              icon="schedule"
+              label="Presentación del Producto"
+            >
+              <q-item-section side>
+                <q-btn
+                  size="md"
+                  flat
+                  icon="add"
+                  color="primary"
+                  no-caps
+                  to="/PresentacionProd"
                   label="Agregar"
                 >
                 </q-btn>
