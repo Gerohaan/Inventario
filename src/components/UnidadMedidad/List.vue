@@ -154,7 +154,7 @@ export default {
           Notify.create({
             type: 'positive',
             message: 'Unidad de Medidad Eliminada!',
-            color: 'purple'
+            color: 'positive'
             //position:'center'
           })
         }

@@ -38,7 +38,7 @@
                 size="xs"
                 class="q-ma-none"
                 color="primary"
-                @click="openModal(), editUnidad(props.row.id)"
+                @click="openModal(), editPresent(props.row.id)"
               />
               <q-btn
                 flat
@@ -47,7 +47,7 @@
                 size="xs"
                 color="primary"
                 class="q-ma-none"
-                @click="deleteunidad(props.row.id)"
+                @click="deletePresent(props.row.id)"
               />
             </q-td>
           </template>
@@ -57,6 +57,7 @@
     <ModalEdit
       :persistent="persistent"
       :apiedit="this.editApi"
+      :apilista="this.apilista"
       @closeModel="persistent"
     >
     </ModalEdit>
@@ -72,31 +73,37 @@ import { Notify } from 'quasar'
 
 const columns = [
   {
-    name: 'nombre_unidad',
+    name: 'nombre_present',
     required: true,
-    label: 'Unidad de Medidad',
+    label: 'Nombre Presentación',
     align: 'center',
-    field: row => row.nombre_unidad,
+    field: row => row.nombre_present,
     format: val => `${val}`,
     sortable: true
   },
   {
-    name: 'descripcion_unidad',
+    name: 'descripcion_present',
     align: 'center',
     label: 'Descripción',
-    field: 'descripcion_unidad'
+    field: 'descripcion_present'
   },
   {
-    name: 'cantidad_unidad',
-    label: 'Cantidad',
+    name: 'UnidadMedidad.nombre_unidad',
+    label: 'Unidad de Medidad',
     align: 'center',
-    field: 'cantidad_unidad'
+    field: row => row.UnidadMedidad.nombre_unidad
   },
   {
-    name: 'status_unidad',
+    name: 'abreviatura_present',
+    label: 'Abrevitura',
+    align: 'center',
+    field: 'abreviatura_present'
+  },
+  {
+    name: 'status_present',
     label: 'Status',
     align: 'center',
-    field: 'status_unidad'
+    field: 'status_present'
   },
   {
     name: 'actions',
@@ -128,12 +135,12 @@ export default {
       editApi: {}
     }
   },
-  props: ['vialist'],
+  props: ['vialist','apilista'],
   methods: {
-    async editUnidad (req, res) {
+    async editPresent (req, res) {
       try {
         let list = await axios.get(
-          Global.url + 'unidad/show/' + `${req}`,
+          Global.url + 'presentacion/show/' + `${req}`,
           Headers
         )
         this.editApi = list.data
@@ -144,17 +151,17 @@ export default {
     openModal () {
       this.persistent = true
     },
-    async deleteunidad (req, res) {
+    async deletePresent (req, res) {
       try {
         let lista = await axios.delete(
-          Global.url + 'unidad/delete/' + `${req}`,
+          Global.url + 'presentacion/delete/' + `${req}`,
           Headers
         )
         if (lista.status === 200) {
           Notify.create({
             type: 'positive',
-            message: 'Unidad de Medidad Eliminada!',
-            color: 'purple'
+            message: 'Presentación del Producto Eliminada!',
+            color: 'positive'
             //position:'center'
           })
         }
@@ -162,7 +169,7 @@ export default {
         console.log(error)
         Notify.create({
           type: 'warning',
-          message: 'Error al intentar eliminar el Unidad de Medidad!',
+          message: 'Error al intentar eliminar la Presentación del Producto!',
           color: 'warning',
           position: 'center'
         })

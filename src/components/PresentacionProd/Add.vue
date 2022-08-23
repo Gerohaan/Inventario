@@ -16,7 +16,7 @@
         </div>
       </div>
 
-      <q-form id="form" @submit.prevent="addUnidad()" @reset="onReset">
+      <q-form id="form" @submit.prevent="addPresent()" @reset="onReset">
         <div class="row">
           <div
             class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md"
@@ -24,36 +24,14 @@
             <q-input
               dense
               filled
-              v-model="nombre_unidad"
+              v-model="nombre_present"
               standout
               bg-color="accent"
-              label="Nombre de la Unidad de Medidad"
+              label="Nombre de la Presentación"
               hint="Nombre Identificatorio"
               lazy-rules
-              :rules="[val => (val && val.length > 0) || 'Escriba la Unidad']"
-            >
-              <template v-slot:prepend>
-                <q-icon color="primary" name="person" />
-              </template>
-            </q-input>
-          </div>
-          <div
-            class="
-              col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
-              q-pr-md q-pt-md
-            "
-          >
-            <q-input
-              dense
-              standout
-              bg-color="accent"
-              filled
-              v-model="descripcion_unidad"
-              label="Breve Descripción de la Unidad"
-              hint="Descripción"
-              lazy-rules
               :rules="[
-                val => (val && val.length > 0) || 'Escriba la Unidad de Medidad'
+                val => (val && val.length > 0) || 'Escriba la Presentación'
               ]"
             >
               <template v-slot:prepend>
@@ -72,12 +50,36 @@
               standout
               bg-color="accent"
               filled
-              v-model="cantidad_unidad"
-              label="Cantidad de la Unidad"
-              hint="Cantidad contenidad en la Unidad"
+              v-model="descripcion_present"
+              label="Breve Descripción de la Presentación"
+              hint="Descripción"
               lazy-rules
               :rules="[
-                val => (val && val.length > 0) || 'Escriba la Cantidad'
+                val => (val && val.length > 0) || 'Escriba la Presentación'
+              ]"
+            >
+              <template v-slot:prepend>
+                <q-icon color="primary" name="person" />
+              </template>
+            </q-input>
+          </div>
+          <div
+            class="
+              col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
+              q-pr-md q-pt-md
+            "
+          >
+            <q-input
+              dense
+              standout
+              bg-color="accent"
+              filled
+              v-model="abreviatura_present"
+              label="Abreviatura de la Presentación"
+              hint=" Abreviatura Identificatoria"
+              lazy-rules
+              :rules="[
+                val => (val && val.length > 0) || 'Escriba la Abreviatura'
               ]"
             >
               <template v-slot:prepend>
@@ -86,7 +88,46 @@
             </q-input>
           </div>
         </div>
-
+        <div class="row">
+          <div
+            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md"
+          >
+            <q-select
+              use-input
+              hide-selected
+              fill-input
+              input-debounce="0"
+              dense
+              filled
+              v-model="unidadMedidadId"
+              :options="apilista"
+              :option-label="
+                apilista => (apilista === null ? null : apilista.nombre_unidad)
+              "
+              :option-value="
+                apilista => (apilista === null ? null : apilista.id)
+              "
+              @filter="filterFn"
+              emit-value
+              map-options
+              standout
+              bg-color="accent"
+              label="Unidad de Medidad"
+              hint="Seleccione Unidad"
+            >
+              <template v-slot:prepend>
+                <q-icon color="primary" name="person" />
+              </template>
+              <template v-slot:no-option>
+                <q-item>
+                  <q-item-section class="text-grey">
+                    No results
+                  </q-item-section>
+                </q-item>
+              </template>
+            </q-select>
+          </div>
+        </div>
         <div class="row">
           <div
             class="
@@ -99,14 +140,14 @@
               icon="task_alt"
               true-value="ACTIVO"
               false-value="INACTIVO"
-              v-model="status_unidad"
+              v-model="status_present"
               label="Status"
             ></q-toggle>
             <div class="q-px-sm">
               Seleccione Un Status:
               <strong>
                 <q-chip outline text-color="primary ">{{
-                  JSON.stringify(status_unidad)
+                  JSON.stringify(status_present)
                 }}</q-chip></strong
               >
             </div>
@@ -136,14 +177,16 @@ export default {
   name: 'Add',
   data () {
     return {
-      nombre_unidad: null,
-      descripcion_unidad: null,
-     cantidad_unidad : null,
+      nombre_present: null,
+      descripcion_present: null,
+      abreviatura_present: null,
+      unidadMedidadId: null,
       accept: false,
       model: null,
-      status_unidad: ''
+      status_present: ''
     }
   },
+  props: ['apilista'],
   methods: {
     onSubmit () {
       if (this.accept !== true) {
@@ -163,23 +206,26 @@ export default {
     },
 
     onReset () {
-      this.nombre_unidad = null
-      this.descripcion_unidad = null
-      this.cantidad_unidad = null
-      this.status_unidad = ''
+      this.nombre_present = null
+      this.descripcion_present = null
+      this.unidadMedidadId = null
+      this.abreviatura_present = null
+      this.status_present = ''
     },
 
-    async addUnidad (req, res) {
+    async addPresent (req, res) {
       try {
         let addform = {
-          nombre_unidad: this.nombre_unidad,
-          descripcion_unidad: this.descripcion_unidad,
-          cantidad_unidad: this.cantidad_unidad,
-          status_unidad: this.status_unidad
+          nombre_present: this.nombre_present,
+          descripcion_present: this.descripcion_present,
+          unidadMedidadId: this.unidadMedidadId,
+          abreviatura_present: this.abreviatura_present,
+          status_present: this.status_present,
+
         }
 
         const add = await axios.post(
-          Global.url + 'unidad/add',
+          Global.url + 'presentacion/add',
           addform,
           Headers
         )
@@ -188,7 +234,7 @@ export default {
           this.onReset()
           Notify.create({
             type: 'positive',
-            message: 'Unidad de Medidad Agregada',
+            message: 'Presentación del Producto Agregada',
             color: 'positive'
           })
         }
@@ -201,7 +247,22 @@ export default {
           position: 'center'
         })
       }
-    }
+    },
+    filterFn (val, update) {
+      if (val === '') {
+        update(() => {
+          this.options = this.apilista
+        })
+        return
+      }
+
+      update(() => {
+        const needle = val.toLowerCase()
+        this.options = this.apilista.filter(
+          v => v.toLowerCase().indexOf(needle) > -1
+        )
+      })
+    },
   }
 }
 </script>

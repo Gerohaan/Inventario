@@ -7,8 +7,8 @@
     </div>
   </div>
   <div class="row">
-     <List :vialist="this.apiList" />
-    <Add />
+    <List :vialist="this.apiList" :apilista="this.apiLista"/>
+    <Add :apilista="this.apiLista" />
   </div>
 </template>
 
@@ -19,30 +19,41 @@ import { Headers } from '../../Headers'
 import axios from 'axios'
 import { Global } from '../Global'
 export default {
-  name: 'UnidadMedidad',
+  name: 'PresentacionProd',
   components: {
     List,
     Add
   },
   data () {
     return {
-      apiList: []
+      apiList: [],
+      apiLista: []
     }
   },
   mounted () {
+    this.ListPresentacion()
     this.ListUnidad()
   },
 
   updated () {
-    this.ListUnidad()
+    this.ListPresentacion()
   },
 
   methods: {
-    async ListUnidad (req, res) {
+    async ListPresentacion (req, res) {
       try {
-        let list = await axios.get(Global.url + 'unidad/list', Headers)
+        let list = await axios.get(Global.url + 'presentacion/list', Headers)
         this.apiList = list.data
         //console.log(this.apiList)
+      } catch (error) {
+        console.log(error)
+      }
+    },
+
+    async ListUnidad (req, res) {
+      try {
+        let lista = await axios.get(Global.url + 'unidad/list', Headers)
+          this.apiLista = lista.data
       } catch (error) {
         console.log(error)
       }
