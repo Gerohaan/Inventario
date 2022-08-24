@@ -13,7 +13,8 @@ const routes = [
       { path: 'Almacen', name:'Almacen', component: () => import('pages/Almacen.vue') },
       { path: 'Empresa', name:'Empresa', component: () => import('pages/Empresa.vue') },
       { path: 'UnidadMedidad', name:'UnidadMedidad', component: () => import('pages/UnidadMedidad.vue') },
-      { path: 'PresentacionProd', name:'PresentacionProd', component: () => import('pages/PresentacionProd.vue') }
+      { path: 'PresentacionProd', name:'PresentacionProd', component: () => import('pages/PresentacionProd.vue') },
+      { path: 'Producto', name:'Producto', component: () => import('pages/Producto.vue') },
 
 
 
