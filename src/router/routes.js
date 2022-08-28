@@ -15,6 +15,7 @@ const routes = [
       { path: 'UnidadMedidad', name:'UnidadMedidad', component: () => import('pages/UnidadMedidad.vue') },
       { path: 'PresentacionProd', name:'PresentacionProd', component: () => import('pages/PresentacionProd.vue') },
       { path: 'Producto', name:'Producto', component: () => import('pages/Producto.vue') },
+      { path: 'ProductoEdit/:id', name:'ProductoEdit', component: () => import('pages/ProductoEdit.vue') },
 
 
 

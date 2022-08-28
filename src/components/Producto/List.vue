@@ -39,7 +39,7 @@
                 size="xs"
                 class="q-ma-none"
                 color="primary"
-                @click="openModal(), editProveedor(props.row.id)"
+                @click="openModal(), editProducto(props.row.id)"
               />
               <q-btn
                 flat
@@ -147,18 +147,14 @@ export default {
     openModal () {
       this.persistent = true
     },
-    async editProveedor (req, res) {
+    async editProducto (req, res) {
       try {
-        let list = await axios.get(
-          Global.url + 'proveedor/show/' + `${req}`,
-          Headers
-        )
-        this.editApi = list.data
+        this.$router.push('/ProductoEdit/'+ `${req}`)
       } catch (error) {
         console.log(error)
       }
     }
   },
-  props: ['datapi', 'apipersona','apiempresa']
+  props: ['datapi', 'apipersona', 'apiempresa']
 }
 </script>

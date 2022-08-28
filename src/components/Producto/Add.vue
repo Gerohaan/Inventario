@@ -23,7 +23,7 @@
       <q-form @submit.prevent="addProducto()" @reset="onReset">
         <div class="row">
           <div
-            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md"
+            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pb-xs"
           >
             <q-input
               dense
@@ -42,7 +42,7 @@
             </q-input>
           </div>
 
-          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md">
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md q-pb-xs">
             <q-input
               dense
               type="number"
@@ -82,7 +82,7 @@
               </template>
             </q-input>
           </div>
-          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md">
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md q-pb-xs">
             <q-input
               dense
               type="number"
@@ -118,9 +118,7 @@
               </template>
             </q-input>
           </div>
-          <div
-            class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md"
-          >
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md">
             <q-input
               dense
               standout
@@ -136,9 +134,7 @@
               </template>
             </q-input>
           </div>
-           <div
-            class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md"
-          >
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md">
             <q-input
               dense
               standout
@@ -206,9 +202,7 @@
               :options="apibodega"
               :option-label="
                 apibodega =>
-                  apibodega === null
-                    ? null
-                    : apibodega.nombre_bodega
+                  apibodega === null ? null : apibodega.nombre_bodega
               "
               :option-value="
                 apibodega => (apibodega === null ? null : apibodega.id)
@@ -225,7 +219,7 @@
               </template>
             </q-select>
           </div>
-           <div
+          <div
             class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pt-md"
           >
             <q-select
@@ -235,12 +229,10 @@
               :options="apipresent"
               :option-label="
                 apipresent =>
-                   apipresent=== null
-                    ? null
-                    : apipresent.nombre_present
+                  apipresent === null ? null : apipresent.nombre_present
               "
               :option-value="
-                 apipresent=> (apipresent === null ? null : apipresent.id)
+                apipresent => (apipresent === null ? null : apipresent.id)
               "
               emit-value
               map-options
@@ -256,14 +248,13 @@
           </div>
         </div>
         <div class="row">
-           <div class="col-12 text-left q-pt-xs">
-          <p class="text-subtitle2">Stock</p>
-        </div>
- <div
-            class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md"
-          >
+          <div class="col-12 text-left q-pt-xs">
+            <p class="text-subtitle2">Stock</p>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md">
             <q-input
               dense
+              type="number"
               standout
               bg-color="accent"
               filled
@@ -271,26 +262,28 @@
               label="Cantidad Inicial"
               hint="Valor Inicial"
               lazy-rules
-              :rules="[val => (val && val.length > 0) || 'Escriba Cantidad Inicial']"
+              :rules="[
+                val => (val && val.length > 0) || 'Escriba Cantidad Inicial']"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="storefront" />
               </template>
             </q-input>
           </div>
-           <div
-            class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md"
-          >
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md">
             <q-input
               dense
               standout
+              type="number"
               bg-color="accent"
               filled
               v-model="cantidad_reservda"
-              label=" Reserva"
-              hint="Valor de Reserva"
+              label="Notificación"
+              hint="Alerta sin Stock"
               lazy-rules
-              :rules="[val => (val && val.length > 0) || 'Escriba la Reserva']"
+              :rules="[val => (val && val.length > 0) || 'Escriba Alerta',
+              //val =>  ( val === -(val))|| 'No se aceptan Numeros Negativos',
+              val => (val < cantidadinicial) || 'Debe indicar un valor menor a la Cantidad Inicial' ]"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="storefront" />
@@ -319,7 +312,7 @@ import { Global } from '../../Global'
 import { Notify } from 'quasar'
 export default {
   name: 'Add',
-  props: ['apicategoria', 'apibodega','apipresent'],
+  props: ['apicategoria', 'apibodega', 'apipresent'],
 
   data () {
     return {
@@ -333,10 +326,19 @@ export default {
       bodegaId: null,
       categoriaId: null,
       presentacionProdId: null,
-      cantidad_inicial:null,
-      cantidad_reservda:null
+      cantidad_inicial: null,
+      cantidad_reservda: null
     }
   },
+  computed: {
+    cantidadinicial () {
+      return this.cantidad_inicial
+    },
+    notificacion(){
+      return this.cantidad_reservda
+    }
+  },
+
   methods: {
     onSubmit () {
       if (this.accept !== true) {

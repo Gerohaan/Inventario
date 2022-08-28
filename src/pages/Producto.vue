@@ -10,8 +10,12 @@
     </div>
   </div>
   <div class="row">
-    <List :datapi="this.apilist"  />
-    <Add :apibodega="this.apilist3" :apicategoria="this.apilist2" :apipresent="this.apilist4" />
+    <List :datapi="this.apilist" />
+    <Add
+      :apibodega="this.apilist3"
+      :apicategoria="this.apilist2"
+      :apipresent="this.apilist4"
+    />
   </div>
 </template>
 
@@ -40,7 +44,6 @@ export default {
     this.listCategoria()
     this.ListBodega()
     this.ListPresent()
-
   },
   updated () {
     this.listProducto()
@@ -52,7 +55,7 @@ export default {
         let list = await axios.get(Global.url + 'producto/list', Headers)
         this.apilist = list.data
       } catch (error) {
-        console.log(error)
+        throw new Error('error en la consulta', error)
       }
     },
 
@@ -61,7 +64,7 @@ export default {
         let list2 = await axios.get(Global.url + 'categoria/list', Headers)
         this.apilist2 = list2.data
       } catch (error) {
-        console.log(error)
+        throw new Error('error en la consulta', error)
       }
     },
     async ListBodega (req, res) {
@@ -69,7 +72,7 @@ export default {
         let list3 = await axios.get(Global.url + 'bodega/list', Headers)
         this.apilist3 = list3.data
       } catch (error) {
-        console.log(error)
+        throw new Error('error en la consulta', error)
       }
     },
 
@@ -78,7 +81,7 @@ export default {
         let list4 = await axios.get(Global.url + 'presentacion/list', Headers)
         this.apilist4 = list4.data
       } catch (error) {
-        console.log(error)
+        throw new Error('error en la consulta', error)
       }
     }
   }
