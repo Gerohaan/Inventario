@@ -42,9 +42,12 @@
             </q-input>
           </div>
 
-          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md q-pb-xs">
+          <div
+            class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md q-pb-xs"
+          >
             <q-input
               dense
+              min="0"
               type="number"
               standout
               bg-color="accent"
@@ -65,6 +68,7 @@
           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md">
             <q-input
               dense
+              min="0"
               type="number"
               standout
               bg-color="accent"
@@ -82,9 +86,12 @@
               </template>
             </q-input>
           </div>
-          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md q-pb-xs">
+          <div
+            class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md q-pb-xs"
+          >
             <q-input
               dense
+              min="0"
               type="number"
               standout
               bg-color="accent"
@@ -254,6 +261,7 @@
           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md">
             <q-input
               dense
+              min="0"
               type="number"
               standout
               bg-color="accent"
@@ -263,7 +271,8 @@
               hint="Valor Inicial"
               lazy-rules
               :rules="[
-                val => (val && val.length > 0) || 'Escriba Cantidad Inicial']"
+                val => (val && val.length > 0) || 'Escriba Cantidad Inicial'
+              ]"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="storefront" />
@@ -273,6 +282,7 @@
           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md">
             <q-input
               dense
+              min="0"
               standout
               type="number"
               bg-color="accent"
@@ -281,9 +291,13 @@
               label="Notificación"
               hint="Alerta sin Stock"
               lazy-rules
-              :rules="[val => (val && val.length > 0) || 'Escriba Alerta',
-              //val =>  ( val === -(val))|| 'No se aceptan Numeros Negativos',
-              val => (val < cantidadinicial) || 'Debe indicar un valor menor a la Cantidad Inicial' ]"
+              :rules="[
+                val => (val && val.length > 0) || 'Escriba Alerta',
+                //val =>  ( val === -(val))|| 'No se aceptan Numeros Negativos',
+                val =>
+                  val < cantidadinicial ||
+                  'Debe indicar un valor menor a la Cantidad Inicial'
+              ]"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="storefront" />
@@ -334,7 +348,7 @@ export default {
     cantidadinicial () {
       return this.cantidad_inicial
     },
-    notificacion(){
+    notificacion () {
       return this.cantidad_reservda
     }
   },

@@ -11,7 +11,7 @@
                 icon-right="edit"
                 flat
                 glossy
-                class="full-width"
+                class="full-width" @click="openModal()"
               ></q-btn
             ></q-item-label>
           </q-item-section>
@@ -38,13 +38,35 @@
       </q-card>
     </div>
   </div>
+  <ModalEditCosto
+    :persistent="persistent"
+    :apiedit="this.editApi"
+    @closeModel="persistent = $event"
+  />
 </template>
 <script>
+import ModalEditCosto from '../../components/ProductoEdit/ModalEditCosto.vue'
 export default {
   name: 'Precio',
+  components: {
+    ModalEditCosto
+  },
   props: { editApi: '' },
   data () {
-    return {}
+    return {
+      persistent: false
+    }
+  },
+  methods: {
+     openModal () {
+      this.persistent = true
+    }
   }
 }
 </script>
+<style lang="sass" scoped>
+.my-card
+  width: 550px
+  height: 170px
+  //max-width: 350px
+</style>

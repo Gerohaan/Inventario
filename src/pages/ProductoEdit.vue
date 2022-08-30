@@ -43,80 +43,24 @@
         </q-carousel>
       </div>
     </div>
-<Caracteristicas :editApi="this.editApi"  />
-<Precio  :editApi="this.editApi" />
+    <Caracteristicas :editApi="this.editApi" />
+    <Precio :editApi="this.editApi" />
   </div>
   <div class="row">
-    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
-      <div class="q-pa-md">
-        <q-markup-table flat bordered>
-          <thead class="bg-grey-6">
-            <tr>
-              <th colspan="5">
-                <div class="row no-wrap items-center">
-                  <div class="text-h6 q-ml-md text-white">
-                    Movimiento Producto
-                  </div>
-                </div>
-              </th>
-            </tr>
-            <tr>
-              <th class="text-left">Dessert (100g serving)</th>
-              <th class="text-right">Calories</th>
-              <th class="text-right">Fat (g)</th>
-              <th class="text-right">Carbs (g)</th>
-              <th class="text-right">Protein (g)</th>
-            </tr>
-          </thead>
-          <tbody class="bg-grey-3">
-            <tr>
-              <td class="text-left">Frozen Yogurt</td>
-              <td class="text-right">159</td>
-              <td class="text-right">6</td>
-              <td class="text-right">24</td>
-              <td class="text-right">4</td>
-            </tr>
-            <tr>
-              <td class="text-left">Ice cream sandwich</td>
-              <td class="text-right">237</td>
-              <td class="text-right">9</td>
-              <td class="text-right">37</td>
-              <td class="text-right">4.3</td>
-            </tr>
-            <tr>
-              <td class="text-left">Eclair</td>
-              <td class="text-right">262</td>
-              <td class="text-right">16</td>
-              <td class="text-right">23</td>
-              <td class="text-right">6</td>
-            </tr>
-            <tr>
-              <td class="text-left">Cupcake</td>
-              <td class="text-right">305</td>
-              <td class="text-right">3.7</td>
-              <td class="text-right">67</td>
-              <td class="text-right">4.3</td>
-            </tr>
-            <tr>
-              <td class="text-left">Gingerbread</td>
-              <td class="text-right">356</td>
-              <td class="text-right">16</td>
-              <td class="text-right">49</td>
-              <td class="text-right">3.9</td>
-            </tr>
-          </tbody>
-        </q-markup-table>
-      </div>
-    </div>
+    <Movimiento />
+    <Stock  :editApi="this.editApi" />
   </div>
 </template>
 <script>
+
 import Precio from '../components/ProductoEdit/Precio.vue'
 import Caracteristicas from '../components/ProductoEdit/Caracteristicas.vue'
+import Movimiento from '../components/ProductoEdit/Movimiento.vue'
 import { Headers } from '../../Headers'
 import axios from 'axios'
 import { Global } from '../Global'
 import { Notify } from 'quasar'
+import Stock from 'src/components/ProductoEdit/Stock.vue'
 
 export default {
   props: {
@@ -125,8 +69,11 @@ export default {
     apiempresa: Array
   },
   components: {
-    Caracteristicas
-  },
+    Caracteristicas,
+    Precio,
+    Movimiento,
+    Stock
+},
   name: 'ModalEdit',
   data () {
     return {
@@ -138,6 +85,10 @@ export default {
   mounted () {
     this.editProducto(this.$route.params.id)
   },
+  /*  updated () {
+    this.editProducto(this.$route.params.id)
+
+  }, */
   methods: {
     async updateProducto (req, res) {
       let params = {
