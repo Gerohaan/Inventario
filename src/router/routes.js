@@ -16,10 +16,7 @@ const routes = [
       { path: 'PresentacionProd', name:'PresentacionProd', component: () => import('pages/PresentacionProd.vue') },
       { path: 'Producto', name:'Producto', component: () => import('pages/Producto.vue') },
       { path: 'ProductoEdit/:id', name:'ProductoEdit', component: () => import('pages/ProductoEdit.vue') },
-
-
-
-
+      { path: 'FormaPago', name:'FormaPago', component: () => import('pages/FormaPago.vue') }
 
     ]
   },

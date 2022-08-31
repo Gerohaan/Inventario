@@ -40,7 +40,7 @@
                 size="xs"
                 class="q-ma-none"
                 color="primary"
-                @click="openModal(), editCategoria(props.row.id)"
+                @click="openModal(), editPago(props.row.id)"
               />
 
               <q-btn
@@ -50,7 +50,7 @@
                 size="xs"
                 color="primary"
                 class="q-ma-none"
-                @click="deleteCategoria(props.row.id)"
+                @click="deletePago(props.row.id)"
               />
             </q-td>
           </template>
@@ -75,24 +75,24 @@ import { Notify } from 'quasar'
 
 const columns = [
   {
-    name: 'nombre_categoria',
+    name: 'nombre_pago',
     required: true,
     label: 'Nombre',
     align: 'center',
-    field: row => row.nombre_categoria,
+    field: row => row.nombre_pago,
     format: val => `${val}`,
   },
   {
-    name: 'detalle_categoria',
+    name: 'descripcion_pago',
     align: 'center',
     label: 'Detalle',
-    field: 'detalle_categoria',
+    field: 'descripcion_pago',
   },
   {
-    name: 'status_categoria',
+    name: 'status_pago',
     align: 'center',
     label: 'Estado',
-    field: 'status_categoria',
+    field: 'status_pago',
   },
   {
     name: 'actions',
@@ -127,40 +127,41 @@ export default {
   props: ['papiList'],
 
   methods: {
-    async deleteCategoria (req, res) {
+    async deletePago (req, res) {
       try {
         let list = await axios.delete(
-          Global.url + 'categoria/delete/' + `${req}`,
+          Global.url + 'formaPago/delete/' + `${req}`,
           Headers
         )
         if (list.status === 200) {
           Notify.create({
             type: 'positive',
-            message: 'Categoria eliminada!',
+            message: 'Forma de pago eliminada!',
             color: 'positive',
             position: 'bottom-right'
           })
         }
       } catch (error) {
-        console.log(error)
+       // console.log(error)
         Notify.create({
           type: 'warning',
-          message: 'Error al intentar eliminar categoria!',
+          message: 'Error al intentar eliminar forma de pago!',
           color: 'warning',
           position: 'center'
         })
       }
     },
 
-    async editCategoria (req, res) {
+    async  editPago(req, res) {
       try {
         let lista = await axios.get(
-          Global.url + 'categoria/show/' + `${req}`,
+          Global.url + 'formaPago/show/' + `${req}`,
           Headers
         )
         this.editApi = lista.data
       } catch (error) {
-        console.log(error)
+        throw new Error('error en la consulta', error)
+        //console.log(error)
       }
     },
 

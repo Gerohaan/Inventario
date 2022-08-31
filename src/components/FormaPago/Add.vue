@@ -7,7 +7,7 @@
         <div class="col col-md-12 col-lg-12 col-xs-12 col-sm-12">
           <q-card-section>
             <div class="col text-center text-primary text-bold text-h5">
-              Agregar categoria
+              Agregar pago
             </div>
           </q-card-section>
         </div>
@@ -16,7 +16,7 @@
         </div>
       </div>
 
-      <q-form @submit.prevent="onSubmit, addCategoria()" @reset="onReset">
+      <q-form @submit.prevent="onSubmit, addPago()" @reset="onReset">
         <div class="row">
           <div
             class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pt-sm"
@@ -24,13 +24,13 @@
             <q-input
               dense
               filled
-              v-model="nombre_categoria"
+              v-model="nombre_pago"
               standout
               bg-color="accent"
-              label="Categoria"
+              label="Forma de pago"
               hint="Nombre identificatorio"
               lazy-rules
-              :rules="[val => (val && val.length > 0) || 'Escriba categoria']"
+              :rules="[val => (val && val.length > 0) || 'Escriba forma de pago']"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="person" />
@@ -45,7 +45,7 @@
               standout
               bg-color="accent"
               filled
-              v-model="detalle_categoria"
+              v-model="descripcion_pago"
               label="Detalle"
               hint="Descripción"
               lazy-rules
@@ -70,14 +70,14 @@
               icon="task_alt"
               true-value="ACTIVO"
               false-value="INACTIVO"
-              v-model="status_categoria"
+              v-model="status_pago"
               label="Estado"
             ></q-toggle>
             <div class="q-px-sm">
               Seleccione un estado:
               <strong>
                 <q-chip outline text-color="primary ">{{
-                  JSON.stringify(status_categoria)
+                  JSON.stringify(status_pago)
                 }}</q-chip></strong
               >
             </div>
@@ -110,10 +110,10 @@ export default {
   data () {
     return {
       shape: 'line',
-      nombre_categoria: null,
-      detalle_categoria: null,
+      nombre_pago: null,
+      descripcion_pago: null,
       model: null,
-      status_categoria: '',
+      status_pago: '',
       apiAdd: []
     }
   },
@@ -136,20 +136,20 @@ export default {
     },
 
     onReset () {
-      this.nombre_categoria = null
-      this.detalle_categoria = null
-      this.status_categoria = ''
+      this.nombre_pago = null
+      this.descripcion_pago = null
+      this.status_pago = ''
     },
 
-    async addCategoria (req, res) {
+    async addPago (req, res) {
       let params = {
-        nombre_categoria: this.nombre_categoria,
-        detalle_categoria: this.detalle_categoria,
-        status_categoria: this.status_categoria
+        nombre_pago: this.nombre_pago,
+        descripcion_pago: this.descripcion_pago,
+        status_pago: this.status_pago
       }
       try {
         let add = await axios.post(
-          Global.url + 'categoria/add',
+          Global.url + 'formaPago/add',
           params,
           Headers
         )
@@ -159,7 +159,7 @@ export default {
           this.onReset()
           Notify.create({
             type: 'positive',
-            message: 'Categoria agregada!',
+            message: 'Forma de pago agregada!',
             color: 'positive',
             position:'bottom-right'
           })
@@ -168,7 +168,7 @@ export default {
         console.log(error)
         Notify.create({
           type: 'warning',
-          message: 'Error al intentar eliminar la categoria!',
+          message: 'Error al intentar eliminar la forma de pago!',
           color: 'warning',
           position: 'center'
         })

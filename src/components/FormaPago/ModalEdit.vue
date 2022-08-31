@@ -7,11 +7,11 @@
   >
     <q-card class="bg-secondary text-white" style="width: 700px">
       <q-card-section>
-        <div class="text-h6">Editar categoria</div>
+        <div class="text-h6">Editar forma de pago</div>
       </q-card-section>
 
       <q-card-section class="q-pt-none">
-        <q-form @submit.prevent="onSubmit, updateCategoria(), closeModal()" @reset="onReset">
+        <q-form @submit.prevent="onSubmit, updatePago(), closeModal()" @reset="onReset">
           <div class="row">
             <div
               class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pt-sm"
@@ -19,13 +19,13 @@
               <q-input
                 dense
                 filled
-                v-model="apiedit.nombre_categoria"
+                v-model="apiedit.nombre_pago"
                 standout
                 bg-color="accent"
-                label="Categoria"
+                label="Forma de pago"
                 hint="Nombre identificatorio"
                 lazy-rules
-                :rules="[val => (val && val.length > 0) || 'Escriba categoria']"
+                :rules="[val => (val && val.length > 0) || 'Escriba forma de pago']"
               >
                 <template v-slot:prepend>
                   <q-icon color="primary" name="person" />
@@ -40,7 +40,7 @@
                 standout
                 bg-color="accent"
                 filled
-                v-model="apiedit.detalle_categoria"
+                v-model="apiedit.descripcion_pago"
                 label="Detalle"
                 hint="Descripción"
                 lazy-rules
@@ -67,14 +67,14 @@
                 icon="task_alt"
                 true-value="ACTIVO"
                 false-value="INACTIVO"
-                v-model="apiedit.status_categoria"
+                v-model="apiedit.status_pago"
                 label="EStado"
               ></q-toggle>
               <div class="q-px-sm">
                 Seleccione estado:
                 <strong>
                   <q-chip outline text-color="primary ">{{
-                    JSON.stringify(apiedit.status_categoria)
+                    JSON.stringify(apiedit.status_pago)
                   }}</q-chip></strong
                 >
               </div>
@@ -115,46 +115,44 @@ export default {
   name: 'ModalEdit',
   data () {
     return {
-      nombre_categoria: this.apiedit.nombre_categoria,
-      detalle_categoria: this.apiedit.detalle_categoria,
-      status_categoria: this.apiedit.status_categoria
+      nombre_pago: this.apiedit.nombre_pago,
+      descripcion_pago: this.apiedit.descripcion_pago,
+      status_pago: this.apiedit.status_pago
     }
   },
   methods: {
     onReset () {
-      this.nombre_categoria = null
-      this.apiedit.detalle_categoria = null
-      this.status_categoria = null
+      this.apiedit.nombre_pago = null
+      this.apiedit.descripcion_pago = null
+      this.status_pago = null
     },
 
-    async updateCategoria (req, res) {
+    async updatePago (req, res) {
       let params = {
-        nombre_categoria: this.apiedit.nombre_categoria,
-        detalle_categoria: this.apiedit.detalle_categoria,
-        status_categoria: this.apiedit.status_categoria
+        nombre_pago : this.apiedit.nombre_pago,
+        descripcion_pago: this.apiedit.descripcion_pago,
+        status_pago: this.apiedit.status_pago
       }
-      let persistent = false
       try {
-        let updateCategoria = await axios.put(
-          Global.url + 'categoria/update/' + `${this.apiedit.id}`,
+        let add = await axios.put(
+          Global.url + 'formaPago/update/' + `${this.apiedit.id}`,
           params,
           Headers
         )
 
-        if (updateCategoria.status === 200) {
-          this.$emit('closeModel', persistent)
+        if (add.status === 200) {
           Notify.create({
             type: 'positive',
-            message: 'Categoria actualizada!',
+            message: 'Forma de pago actualizada!',
             color: 'positive',
-            position:'botton-right'
+            position:'bottom-right'
           })
         }
       } catch (error) {
-        console.log(params)
+        //console.log(params)
         Notify.create({
           type: 'warning',
-          message: 'Error al intentar actualizar la categoria!',
+          message: 'Error al intentar actualizar la forma de pago!',
           color: 'warning',
           position: 'center'
         })
