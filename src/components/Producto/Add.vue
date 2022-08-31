@@ -8,10 +8,8 @@
         <div class="col col-md-12 col-lg-12 col-xs-12 col-sm-12">
           <q-card-section>
             <div class="col text-center text-primary text-bold text-h5">
-              Agregar Producto
+              Agregar producto
             </div>
-            <!--             <pre>{{apipersona}}</pre>
- -->
           </q-card-section>
         </div>
 
@@ -31,10 +29,10 @@
               bg-color="accent"
               filled
               v-model="nombre_prod"
-              label="Nombre del Producto"
+              label="Nombre"
               hint="Nombre Identificatorio"
               lazy-rules
-              :rules="[val => (val && val.length > 0) || 'Escriba el Nombre']"
+              :rules="[val => (val && val.length > 0) || 'Escriba nombre']"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="storefront" />
@@ -53,11 +51,11 @@
               bg-color="accent"
               filled
               v-model="costo_prod"
-              label="Precio Costo"
-              hint="Valor Inicial"
+              label="Precio costo"
+              hint="Valor inicial"
               lazy-rules
               :rules="[
-                val => (val && val.length > 0) || 'Escriba Precio Costo'
+                val => (val && val.length > 0) || 'Escriba precio costo'
               ]"
             >
               <template v-slot:prepend>
@@ -74,11 +72,11 @@
               bg-color="accent"
               filled
               v-model="precio_prod"
-              label="Precio Venta"
-              hint="Valor de Venta"
+              label="Precio venta"
+              hint="Valor de venta"
               lazy-rules
               :rules="[
-                val => (val && val.length > 0) || 'Escriba Precio Venta'
+                val => (val && val.length > 0) || 'Escriba precio venta'
               ]"
             >
               <template v-slot:prepend>
@@ -98,9 +96,9 @@
               filled
               v-model="codigo_prod"
               label="Código"
-              hint="Numero Identificatorio"
+              hint="Numero identificatorio"
               lazy-rules
-              :rules="[val => (val && val.length > 0) || 'Escriba Código']"
+              :rules="[val => (val && val.length > 0) || 'Escriba código']"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="storefront" />
@@ -116,9 +114,9 @@
               filled
               v-model="impuesto_prod"
               label="Impuesto"
-              hint="Impuesto Agregado"
+              hint="Impuesto agregado"
               lazy-rules
-              :rules="[val => (val && val.length > 0) || 'Escriba Impuesto']"
+              :rules="[val => (val && val.length > 0) || 'Escriba impuesto']"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="storefront" />
@@ -134,7 +132,7 @@
               v-model="utilidad_prod"
               label="Utilidad"
               lazy-rules
-              :rules="[val => (val && val.length > 0) || 'Escriba Untilidad']"
+              :rules="[val => (val && val.length > 0) || 'Escriba utilidad']"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="storefront" />
@@ -149,7 +147,7 @@
               filled
               v-model="descripcion_prod"
               label="Descripción"
-              hint="Breve Descripción"
+              hint="Descripción"
               lazy-rules
               :rules="[val => (val && val.length > 0) || 'Escriba Descripción']"
             >
@@ -185,7 +183,7 @@
               standout
               bg-color="accent"
               label="Categoria "
-              hint="Seleccione Categoria"
+              hint="Seleccione categoria"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="person" />
@@ -246,7 +244,7 @@
               filled
               v-model="presentacionProdId"
               label="Presentación"
-              hint="Seleccione una Presentación"
+              hint="Seleccione presentación"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="person" />
@@ -267,11 +265,11 @@
               bg-color="accent"
               filled
               v-model="cantidad_inicial"
-              label="Cantidad Inicial"
-              hint="Valor Inicial"
+              label="Cantidad inicial"
+              hint="Valor inicial"
               lazy-rules
               :rules="[
-                val => (val && val.length > 0) || 'Escriba Cantidad Inicial'
+                val => (val && val.length > 0) || 'Escriba cantidad inicial'
               ]"
             >
               <template v-slot:prepend>
@@ -289,14 +287,14 @@
               filled
               v-model="cantidad_reservda"
               label="Notificación"
-              hint="Alerta sin Stock"
+              hint="Alerta sin stock"
               lazy-rules
               :rules="[
-                val => (val && val.length > 0) || 'Escriba Alerta',
+                val => (val && val.length > 0) || 'Escriba alerta',
                 //val =>  ( val === -(val))|| 'No se aceptan Numeros Negativos',
                 val =>
                   val < cantidadinicial ||
-                  'Debe indicar un valor menor a la Cantidad Inicial'
+                  'Debe indicar un valor menor a la cantidad inicial'
               ]"
             >
               <template v-slot:prepend>
@@ -306,8 +304,9 @@
           </div>
         </div>
         <div class="col-12 q-pt-md">
-          <q-btn label="Enviar" type="submit" color="primary" />
+          <q-btn label="Guardar" no-caps type="submit" color="primary" />
           <q-btn
+            no-caps
             label="Limpiar"
             type="reset"
             color="primary"
@@ -426,16 +425,18 @@ export default {
         if (add.status === 200) {
           Notify.create({
             type: 'positive',
-            message: 'Producto Agregado',
-            color: 'positive'
+            message: 'Producto agregado!',
+            color: 'positive',
+            position: 'bottom-right'
           })
           this.onReset()
         }
       } catch (error) {
-        console.log(error)
+       // throw new Error('error en la consulta', error)
+        //console.log(error)
         Notify.create({
           type: 'warning',
-          message: 'Error con el Servidor!',
+          message: 'Error con el servidor!',
           color: 'warning',
           position: 'center'
         })

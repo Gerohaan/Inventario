@@ -58,7 +58,7 @@
     <ModalEdit
       :persistent="persistent"
       :apiedit="this.editApi"
-      @closeModel="persistent"
+      @closeModel="persistent = $event"
     >
     </ModalEdit>
   </div>
@@ -78,7 +78,6 @@ const columns = [
     align: 'center',
     field: row => row.nacionalidad_per,
     format: val => `${val}`,
-    sortable: true
   },
   {
     name: 'documento_per',
@@ -100,7 +99,7 @@ const columns = [
   },
   {
     name: 'tlf_per',
-    label: 'Telefono',
+    label: 'Teléfono',
     align: 'center',
     field: 'tlf_per'
   },

@@ -57,7 +57,11 @@
         </q-table>
       </q-card-section>
     </q-card>
-    <ModalEdit :persistent="persistent" :apiedit="this.editempresa" @closeModel="persistent">
+    <ModalEdit
+      :persistent="persistent"
+      :apiedit="this.editempresa"
+      @closeModel="persistent = $event"
+    >
     </ModalEdit>
   </div>
 </template>
@@ -73,7 +77,7 @@ const columns = [
   {
     name: 'nombre_empre',
     required: true,
-    label: 'Nombre Empresa',
+    label: 'Nombre',
     align: 'center',
     field: row => row.nombre_empre,
     format: val => `${val}`
@@ -81,7 +85,7 @@ const columns = [
   {
     name: 'rif_empre',
     align: 'center',
-    label: 'Rif Empresa',
+    label: 'Rif',
     field: 'rif_empre'
   },
   {
@@ -94,15 +98,13 @@ const columns = [
     name: 'tlf_local_empre',
     align: 'center',
     label: 'Telefono de Conctacto',
-    field: 'tlf_local_empre',
-    sortable: true
+    field: 'tlf_local_empre'
   },
   {
     name: 'tipo_empre',
     align: 'center',
-    label: 'Tipo de Empresa',
-    field: 'tipo_empre',
-    sortable: true
+    label: 'Tipo',
+    field: 'tipo_empre'
   },
   {
     name: 'actions',
@@ -148,8 +150,8 @@ export default {
           Notify.create({
             type: 'positive',
             message: 'Empresa Eliminado!',
-            color: 'purple'
-            //position:'center'
+            color: 'positive',
+            position: 'bottom-right'
           })
         }
       } catch (error) {

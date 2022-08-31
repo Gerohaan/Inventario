@@ -7,7 +7,7 @@
   >
     <q-card class="bg-secondary text-white" style="width: 700px">
       <q-card-section>
-        <div class="text-h6">Editar Producto</div>
+        <div class="text-h6">Editar producto</div>
       </q-card-section>
 
       <q-card-section class="q-pt-none">
@@ -22,10 +22,10 @@
                 v-model="apiedit.nombre_prod"
                 standout
                 bg-color="accent"
-                label="Nombre del Producto"
-                hint="Nombre Identificatorio"
+                label="Nombre"
+                hint="Nombre identificatorio"
                 lazy-rules
-                :rules="[val => (val && val.length > 0) || 'Escriba el Nombre']"
+                :rules="[val => (val && val.length > 0) || 'Escriba nombre']"
               >
                 <template v-slot:prepend>
                   <q-icon color="primary" name="person" />
@@ -44,11 +44,11 @@
                 bg-color="accent"
                 filled
                 v-model="apiedit.descripcion_prod"
-                label="Breve Descripción"
+                label="Descripción"
                 hint="Descripción"
                 lazy-rules
                 :rules="[
-                  val => (val && val.length > 0) || 'Escriba Descripción'
+                  val => (val && val.length > 0) || 'Escriba descripción'
                 ]"
               >
                 <template v-slot:prepend>
@@ -70,10 +70,10 @@
                 filled
                 v-model="apiedit.codigo_prod"
                 label="Codificación"
-                hint=" Codigo Identificatorio"
+                hint=" Codigo identificatorio"
                 lazy-rules
                 min="0"
-                :rules="[val => val !== null && val !== '' || 'Escriba el Código']"
+                :rules="[val => val !== null && val !== '' || 'Escriba código']"
               >
                 <template v-slot:prepend>
                   <q-icon color="primary" name="person" />
@@ -145,7 +145,7 @@
                 standout
                 bg-color="accent"
                 label="Prsentación"
-                hint="Seleccione Prsentación"
+                hint="Seleccione presentación"
               >
                 <template v-slot:prepend>
                   <q-icon color="primary" name="person" />
@@ -183,7 +183,7 @@
                 standout
                 bg-color="accent"
                 label="Bodega"
-                hint="Seleccione Bodega"
+                hint="Seleccione bodega"
               >
                 <template v-slot:prepend>
                   <q-icon color="primary" name="person" />
@@ -199,14 +199,13 @@
             </div>
           </div>
           <div class="col-12 q-pt-md">
-            <q-btn label="Guardar" type="submit" color="primary" />
-            <q-btn
+            <q-btn label="Guardar" no-caps type="submit" color="primary" />
+            <q-btn no-caps
               label="Cancelar"
               color="primary"
               flat
               class="q-ml-sm"
               @click="closeModal()"
-              v-close-popup
             />
           </div>
         </q-form>
@@ -265,16 +264,16 @@ export default {
         if (updatedit.status === 200) {
           Notify.create({
             type: 'positive',
-            message: 'Producto Actualizado!',
-            color: 'positive'
-            //position:'center'
+            message: 'Producto actualizado!',
+            color: 'positive',
+            position:'bottom-right'
           })
         }
       } catch (error) {
         console.log(params)
         Notify.create({
           type: 'warning',
-          message: 'Error al intentar Actualizar el Producto!',
+          message: 'Error al intentar actualizar el producto!',
           color: 'warning',
           position: 'center'
         })

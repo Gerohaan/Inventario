@@ -8,15 +8,13 @@
         <div class="col col-md-12 col-lg-12 col-xs-12 col-sm-12">
           <q-card-section>
             <div class="col text-center text-primary text-bold text-h5">
-              Agregar Proveedor
+              Agregar proveedor
             </div>
-            <!--             <pre>{{apipersona}}</pre>
- -->
           </q-card-section>
         </div>
 
         <div class="col-12 text-left">
-          <p class="text-subtitle2">Status Proveedor</p>
+          <p class="text-subtitle2">Estado proveedor</p>
         </div>
       </div>
 
@@ -70,8 +68,8 @@
               map-options
               standout
               bg-color="accent"
-              label="Persona "
-              hint="Seleccione Persona"
+              label="Persona"
+              hint="Seleccione persona"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="person" />
@@ -107,7 +105,7 @@
               filled
               v-model="empresa"
               label="Empresa"
-              hint="Seleccione una Empresa"
+              hint="Seleccione empresa"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="person" />
@@ -123,11 +121,11 @@
             color="black"
             bg-color="accent"
             v-model="detalle"
-            label="Detalles"
-            hint="Escriba Algún detalle"
+            label="Detalle"
+            hint="Escriba algún detalle"
             lazy-rules
             :rules="[
-              val => (val && val.length > 0) || 'Razón Social no Valida'
+              val => (val && val.length > 0) || 'Detalle no valido'
             ]"
           >
             <template v-slot:prepend>
@@ -137,8 +135,8 @@
         </div>
 
         <div class="col-12 q-pt-md">
-          <q-btn label="Enviar" type="submit" color="primary" />
-          <q-btn
+          <q-btn label="Guardar" no-caps type="submit" color="primary" />
+          <q-btn no-caps
             label="Limpiar"
             type="reset"
             color="primary"
@@ -224,7 +222,8 @@ export default {
           Notify.create({
             type: 'positive',
             message: 'Proveedor Agregado',
-            color: 'positive'
+            color: 'positive',
+            position: 'bottom-right'
           })
           this.onReset()
         }

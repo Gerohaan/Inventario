@@ -7,7 +7,7 @@
   >
     <q-card class="bg-secondary text-white" style="width: 700px">
       <q-card-section>
-        <div class="text-h6">Editar Categoria</div>
+        <div class="text-h6">Editar categoria</div>
       </q-card-section>
 
       <q-card-section class="q-pt-none">
@@ -22,10 +22,10 @@
                 v-model="apiedit.nombre_categoria"
                 standout
                 bg-color="accent"
-                label="Nombre de la Categoria"
-                hint="Nombre Identificatorio"
+                label="Categoria"
+                hint="Nombre identificatorio"
                 lazy-rules
-                :rules="[val => (val && val.length > 0) || 'Escriba El Nombre']"
+                :rules="[val => (val && val.length > 0) || 'Escriba categoria']"
               >
                 <template v-slot:prepend>
                   <q-icon color="primary" name="person" />
@@ -41,11 +41,11 @@
                 bg-color="accent"
                 filled
                 v-model="apiedit.detalle_categoria"
-                label="Detalle de la Categoria"
-                hint="Breve Descripción"
+                label="Detalle"
+                hint="Descripción"
                 lazy-rules
                 :rules="[
-                  val => (val && val.length > 0) || 'Escriba El Detalle'
+                  val => (val && val.length > 0) || 'Escriba Detalle'
                 ]"
               >
                 <template v-slot:prepend>
@@ -68,10 +68,10 @@
                 true-value="ACTIVO"
                 false-value="INACTIVO"
                 v-model="apiedit.status_categoria"
-                label="Status"
+                label="Statu"
               ></q-toggle>
               <div class="q-px-sm">
-                Seleccione Un Status:
+                Seleccione un Statu:
                 <strong>
                   <q-chip outline text-color="primary ">{{
                     JSON.stringify(apiedit.status_categoria)
@@ -80,15 +80,15 @@
               </div>
             </div>
           </div>
-          <q-card-actions align="right" class="bg-white text-teal">
+          <q-card-actions align="right">
             <div class="col-12 q-pt-md">
-              <q-btn
-                label="Enviar"
+              <q-btn no-caps
+                label="Guardar"
                 type="submit"
                 color="primary"
                 v-close-popup
               />
-              <q-btn
+              <q-btn no-caps
                 label="Cancelar"
                 color="primary"
                 flat
@@ -148,8 +148,8 @@ export default {
           Notify.create({
             type: 'positive',
             message: 'Categoria Actualizada!',
-            color: 'positive'
-            //position:'center'
+            color: 'positive',
+            position:'botton-right'
           })
         }
       } catch (error) {

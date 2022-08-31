@@ -7,11 +7,11 @@
   >
     <q-card class="bg-secondary text-white" style="width: 700px">
       <q-card-section>
-        <div class="text-h6">Editar Bodega</div>
+        <div class="text-h6">Editar bodega</div>
       </q-card-section>
 
       <q-card-section class="q-pt-none">
-        <q-form id="form" @submit.prevent="updateUnidad()">
+        <q-form id="form" @submit.prevent="updateUnidad(), closeModal()">
           <div class="row">
             <div
               class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md"
@@ -22,10 +22,10 @@
                 v-model="apiedit.nombre_unidad"
                 standout
                 bg-color="accent"
-                label="Nombre de la Unidad de Medidad"
-                hint="Nombre Identificatorio"
+                label="Nombre"
+                hint="Nombre identificatorio"
                 lazy-rules
-                :rules="[val => (val && val.length > 0) || 'Escriba la Unidad']"
+                :rules="[val => (val && val.length > 0) || 'Escriba unidad']"
               >
                 <template v-slot:prepend>
                   <q-icon color="primary" name="person" />
@@ -44,11 +44,11 @@
                 bg-color="accent"
                 filled
                 v-model="apiedit.descripcion_unidad"
-                label="Breve Descripción"
+                label="Descripción"
                 hint="Descripción"
                 lazy-rules
                 :rules="[
-                  val => (val && val.length > 0) || 'Escriba la Descripción'
+                  val => (val && val.length > 0) || 'Escriba descripción'
                 ]"
               >
                 <template v-slot:prepend>
@@ -64,15 +64,16 @@
             >
               <q-input
                 dense
+                min="0"
                 standout
                 bg-color="accent"
                 filled
                 v-model="apiedit.cantidad_unidad"
-                label="Cantidad Contenida"
-                hint="Cantidad contenidad en la Unidad"
+                label="Cantidad"
+                hint="Cantidad contenidad en la unidad"
                 lazy-rules
                 :rules="[
-                  val => (val && val.length > 0) || 'Escriba la Cantidad'
+                  val => (val !== null && val !== '') || 'Escriba cantidad'
                 ]"
               >
                 <template v-slot:prepend>
@@ -95,10 +96,10 @@
                 true-value="ACTIVO"
                 false-value="INACTIVO"
                 v-model="apiedit.status_unidad"
-                label="Status"
+                label="Estado"
               ></q-toggle>
               <div class="q-px-sm">
-                Seleccione Un Status:
+                Seleccione estado:
                 <strong>
                   <q-chip outline text-color="primary ">{{
                     JSON.stringify(apiedit.status_unidad)
@@ -109,18 +110,13 @@
           </div>
 
           <div class="col-12 q-pt-md">
+            <q-btn no-caps label="Guardar" type="submit" color="primary" />
             <q-btn
-              label="Guardar"
-              type="submit"
-              color="primary"
-              v-close-popup
-            />
-            <q-btn
+              no-caps
               label="Cancelar"
               color="primary"
               flat
               class="q-ml-sm"
-              v-close-popup
               @click="closeModal()"
             />
           </div>
@@ -142,17 +138,15 @@ export default {
   },
   name: 'ModalEdit',
   data () {
-    return {
-
-    }
+    return {}
   },
   methods: {
     async updateUnidad (req, res) {
       let params = {
-      nombre_unidad: this.apiedit.nombre_unidad,
-      descripcion_unidad: this.apiedit.descripcion_unidad,
-      cantidad_unidad: this.apiedit.cantidad_unidad,
-      status_unidad: this.apiedit.status_unidad
+        nombre_unidad: this.apiedit.nombre_unidad,
+        descripcion_unidad: this.apiedit.descripcion_unidad,
+        cantidad_unidad: this.apiedit.cantidad_unidad,
+        status_unidad: this.apiedit.status_unidad
       }
       let persistent = false
       try {
@@ -166,16 +160,16 @@ export default {
           this.$emit('closeModel', persistent)
           Notify.create({
             type: 'positive',
-            message: 'Unidad de Medidad Actualizada!',
-            color: 'positive'
-            //position:'center'
+            message: 'Unidad de medidad actualizada!',
+            color: 'positive',
+            position: 'bottom-right'
           })
         }
       } catch (error) {
-        console.log(params)
+        //console.log(params)
         Notify.create({
           type: 'warning',
-          message: 'Error al intentar Actualizar la Unidad de Medidad!',
+          message: 'Error al intentar actualizar la unidad de medida!',
           color: 'warning',
           position: 'center'
         })

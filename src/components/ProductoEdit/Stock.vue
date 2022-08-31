@@ -21,9 +21,9 @@
         <q-card-section horizontal>
           <q-card-section class="col-6" vertical>
             <q-item-label caption class="q-pb-md q-pt-sm"
-              >Cantidad Inicial:
+              >Cantidad inicial:
             </q-item-label>
-            <q-item-label caption>Cantidad Dispinible: </q-item-label>
+            <q-item-label caption>Cantidad dispinible: </q-item-label>
             <q-item-label caption class="q-pt-md"
               >Notificar antes de:
             </q-item-label>

@@ -7,7 +7,7 @@
         <div class="col col-md-12 col-lg-12 col-xs-12 col-sm-12">
           <q-card-section>
             <div class="col text-center text-primary text-bold text-h5">
-              Agregar Categorias
+              Agregar categoria
             </div>
           </q-card-section>
         </div>
@@ -27,10 +27,10 @@
               v-model="nombre_categoria"
               standout
               bg-color="accent"
-              label="Nombre de la Categoria"
+              label="Categoria"
               hint="Nombre Identificatorio"
               lazy-rules
-              :rules="[val => (val && val.length > 0) || 'Escriba El Nombre']"
+              :rules="[val => (val && val.length > 0) || 'Escriba Categoria']"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="person" />
@@ -46,10 +46,10 @@
               bg-color="accent"
               filled
               v-model="detalle_categoria"
-              label="Detalle de la Categoria"
-              hint="Breve Descripción"
+              label="Detalle"
+              hint="Descripción"
               lazy-rules
-              :rules="[val => (val && val.length > 0) || 'Escriba El Detalle']"
+              :rules="[val => (val && val.length > 0) || 'Escriba Detalle']"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="person" />
@@ -71,10 +71,10 @@
               true-value="ACTIVO"
               false-value="INACTIVO"
               v-model="status_categoria"
-              label="Status"
+              label="Estado"
             ></q-toggle>
             <div class="q-px-sm">
-              Seleccione Un Status:
+              Seleccione un estado:
               <strong>
                 <q-chip outline text-color="primary ">{{
                   JSON.stringify(status_categoria)
@@ -85,8 +85,9 @@
         </div>
 
         <div class="col-12 q-pt-md">
-          <q-btn label="Enviar" type="submit" color="primary" />
+          <q-btn no-caps label="Guardar" type="submit" color="primary" />
           <q-btn
+            no-caps
             label="Limpiar"
             type="reset"
             color="primary"
@@ -137,7 +138,7 @@ export default {
     onReset () {
       this.nombre_categoria = null
       this.detalle_categoria = null
-      this.status_categoria = null
+      this.status_categoria = ''
     },
 
     async addCategoria (req, res) {
@@ -158,15 +159,16 @@ export default {
           this.onReset()
           Notify.create({
             type: 'positive',
-            message: 'Categoria Agregada!',
-            color: 'positive'
+            message: 'Categoria agregada!',
+            color: 'positive',
+            position:'bottom-right'
           })
         }
       } catch (error) {
         console.log(error)
         Notify.create({
           type: 'warning',
-          message: 'Error al intentar eliminar la Categoria!',
+          message: 'Error al intentar eliminar la categoria!',
           color: 'warning',
           position: 'center'
         })

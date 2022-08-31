@@ -7,7 +7,7 @@
         <div class="col col-md-12 col-lg-12 col-xs-12 col-sm-12">
           <q-card-section>
             <div class="col text-center text-primary text-bold text-h5">
-              Agregar Empresa
+              Agregar empresa
             </div>
           </q-card-section>
         </div>
@@ -27,10 +27,10 @@
               v-model="nombre_empre"
               standout
               bg-color="accent"
-              label="Nombre de la Empresa"
+              label="Nombre"
               hint="Nombre Identificatorio"
               lazy-rules
-              :rules="[val => (val && val.length > 0) || 'Escriba un Nombre']"
+              :rules="[val => (val && val.length > 0) || 'Escriba Nombre']"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="person" />
@@ -47,12 +47,10 @@
               v-model="rif_empre"
               standout
               bg-color="accent"
-              label="Rif de la Empresa"
+              label="Rif"
               hint="Documento Identificatorio"
               lazy-rules
-              :rules="[
-                val => (val && val.length > 0) || 'Escriba un Documento'
-              ]"
+              :rules="[val => (val && val.length > 0) || 'Escriba Documento']"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="person" />
@@ -68,11 +66,11 @@
               v-model="representante_empre"
               standout
               bg-color="accent"
-              label="Representante de la Empresa"
+              label="Representante"
               hint="Representante Legal"
               lazy-rules
               :rules="[
-                val => (val && val.length > 0) || 'Escriba un Representante'
+                val => (val && val.length > 0) || 'Escriba  Representante'
               ]"
             >
               <template v-slot:prepend>
@@ -90,11 +88,11 @@
               v-model="tlf_local_empre"
               standout
               bg-color="accent"
-              label="Telefono Local"
-              hint="Telefono local valido"
+              label="Teléfono local"
+              hint="Conctacto valido"
               lazy-rules
               :rules="[
-                val => (val && val.length > 0) || 'Escriba un numero valido'
+                val => (val && val.length > 0) || 'Escriba numero valido'
               ]"
             >
               <template v-slot:prepend>
@@ -112,11 +110,11 @@
               v-model="tlf_celular_empre"
               standout
               bg-color="accent"
-              label="Telefono Celular"
-              hint="Telefono de Conctacto"
+              label="Teléfono celular"
+              hint="Teléfono de conctacto"
               lazy-rules
               :rules="[
-                val => (val && val.length > 0) || 'Escriba un Telefono Valido'
+                val => (val && val.length > 0) || 'Escriba telefono valido'
               ]"
             >
               <template v-slot:prepend>
@@ -134,7 +132,7 @@
               type="email"
               standout
               bg-color="accent"
-              label="Correo de la Empresa"
+              label="Correo"
               hint="Dirección  Electronica"
               lazy-rules
               :rules="[
@@ -155,12 +153,10 @@
               v-model="direccion_empre"
               standout
               bg-color="accent"
-              label="Dirección de la Empresa"
+              label="Dirección"
               hint="Dirección de Ubicación"
               lazy-rules
-              :rules="[
-                val => (val && val.length > 0) || 'Escriba la Ubicación'
-              ]"
+              :rules="[val => (val && val.length > 0) || 'Escriba Ubicación']"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="person" />
@@ -177,10 +173,10 @@
               bg-color="accent"
               filled
               v-model="tipo_empre"
-              label="Tipo de Empresa"
+              label="Tipo de empresa"
               lazy-rules
               :rules="[
-                val => (val && val.length > 0) || 'Escriba el Tipo de Empresa'
+                val => (val && val.length > 0) || 'Escriba Tipo de Empresa'
               ]"
             >
               <template v-slot:prepend>
@@ -191,8 +187,9 @@
         </div>
 
         <div class="col-12 q-pt-md">
-          <q-btn label="Enviar" type="submit" color="primary" />
+          <q-btn label="Guardar" no-caps type="submit" color="primary" />
           <q-btn
+            no-caps
             label="Limpiar"
             type="reset"
             color="primary"
@@ -278,7 +275,8 @@ export default {
           Notify.create({
             type: 'positive',
             message: 'Empresa Agregada!',
-            color: 'positive'
+            color: 'positive',
+            position: 'bottom-right'
           })
         }
       } catch (error) {

@@ -19,8 +19,8 @@
         <q-separator />
         <q-card-section horizontal>
           <q-card-section class="col-6" vertical>
-            <q-item-label caption class="q-pb-md">Precio Costo: </q-item-label>
-            <q-item-label caption>Precio Venta: </q-item-label>
+            <q-item-label caption class="q-pb-md">Precio costo: </q-item-label>
+            <q-item-label caption>Precio venta: </q-item-label>
             <q-item-label caption class="q-pt-md">Impuesto: </q-item-label>
           </q-card-section>
           <q-card-section class="col-6" vertical>

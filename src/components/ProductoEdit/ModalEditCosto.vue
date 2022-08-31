@@ -7,7 +7,7 @@
   >
     <q-card class="bg-secondary text-white" style="width: 700px">
       <q-card-section>
-        <div class="text-h6">Editar Producto</div>
+        <div class="text-h6">Editar producto</div>
       </q-card-section>
 
       <q-card-section class="q-pt-none">
@@ -25,11 +25,11 @@
                 v-model="apiedit.cantidad_inicial"
                 standout
                 bg-color="accent"
-                label="Cantidad Inicial"
-                hint="Stock Inicial"
+                label="Cantidad inicial"
+                hint="Stock inicial"
                 lazy-rules
                 :rules="[
-                  val => (val !== null && val !== '') || 'Escriba Stock Inicial'
+                  val => (val !== null && val !== '') || 'Escriba stock inicial'
                 ]"
               >
                 <template v-slot:prepend>
@@ -52,11 +52,11 @@
                 bg-color="accent"
                 filled
                 v-model="apiedit.cantidad_actual"
-                label="Cantidad Actual"
+                label="Cantidad actual"
                 hint="Stock Actual"
                 lazy-rules
                 :rules="[
-                  val => (val !== null && val !== '') || 'Escriba Stock Actual'
+                  val => (val !== null && val !== '') || 'Escriba stock actual'
                 ]"
               >
                 <template v-slot:prepend>
@@ -82,7 +82,7 @@
                 lazy-rules
                 min="0"
                 :rules="[
-                  val => (val !== null && val !== '') || 'Escriba Notificación'
+                  val => (val !== null && val !== '') || 'Escriba notificación'
                 ]"
               >
                 <template v-slot:prepend>
@@ -92,8 +92,9 @@
             </div>
           </div>
           <div class="col-12 q-pt-md">
-            <q-btn label="Guardar" type="submit" color="primary" />
+            <q-btn label="Guardar" no-caps type="submit" color="primary" />
             <q-btn
+              no-caps
               label="Cancelar"
               color="primary"
               flat
@@ -146,16 +147,16 @@ export default {
           console.log(this.$route.params.id)
           Notify.create({
             type: 'positive',
-            message: 'Stock Actualizado!',
-            color: 'positive'
-            //position:'center'
+            message: 'Stock actualizado!',
+            color: 'positive',
+            position:'bottom-right'
           })
         }
       } catch (error) {
         console.log(params)
         Notify.create({
           type: 'warning',
-          message: 'Error al intentar Actualizar el Stock!',
+          message: 'Error al intentar actualizar el stock!',
           color: 'warning',
           position: 'center'
         })
@@ -164,7 +165,6 @@ export default {
     closeModal () {
       let persistent = false
       this.$emit('closeModel', persistent)
-      //console.log(this.persistent)
     }
   }
 }

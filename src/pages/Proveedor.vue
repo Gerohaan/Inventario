@@ -5,7 +5,7 @@
         class="text-bold text-primary text-h5"
         style="margin: 10px 0px 0px 40px"
       >
-        Proveedor
+        Proveedores
       </p>
     </div>
   </div>

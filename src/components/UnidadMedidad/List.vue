@@ -57,7 +57,7 @@
     <ModalEdit
       :persistent="persistent"
       :apiedit="this.editApi"
-      @closeModel="persistent"
+      @closeModel="persistent = $event"
     >
     </ModalEdit>
   </div>
@@ -74,11 +74,10 @@ const columns = [
   {
     name: 'nombre_unidad',
     required: true,
-    label: 'Unidad de Medidad',
+    label: 'Unidad de medida',
     align: 'center',
     field: row => row.nombre_unidad,
     format: val => `${val}`,
-    sortable: true
   },
   {
     name: 'descripcion_unidad',
@@ -94,7 +93,7 @@ const columns = [
   },
   {
     name: 'status_unidad',
-    label: 'Status',
+    label: 'Estado',
     align: 'center',
     field: 'status_unidad'
   },
@@ -153,16 +152,16 @@ export default {
         if (lista.status === 200) {
           Notify.create({
             type: 'positive',
-            message: 'Unidad de Medidad Eliminada!',
-            color: 'positive'
-            //position:'center'
+            message: 'Unidad de medidad eliminada!',
+            color: 'positive',
+            position:'bottom-right'
           })
         }
       } catch (error) {
         console.log(error)
         Notify.create({
           type: 'warning',
-          message: 'Error al intentar eliminar el Unidad de Medidad!',
+          message: 'Error al intentar eliminar la unidad de medida!',
           color: 'warning',
           position: 'center'
         })

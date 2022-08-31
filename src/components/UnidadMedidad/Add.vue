@@ -7,7 +7,7 @@
         <div class="col col-md-12 col-lg-12 col-xs-12 col-sm-12">
           <q-card-section>
             <div class="col text-center text-primary text-bold text-h5">
-              Agregar Unidad de Medidad
+              Agregar unidad de medida
             </div>
           </q-card-section>
         </div>
@@ -27,10 +27,10 @@
               v-model="nombre_unidad"
               standout
               bg-color="accent"
-              label="Nombre de la Unidad de Medidad"
+              label="Nombre"
               hint="Nombre Identificatorio"
               lazy-rules
-              :rules="[val => (val && val.length > 0) || 'Escriba la Unidad']"
+              :rules="[val => (val && val.length > 0) || 'Escriba Unidad']"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="person" />
@@ -49,12 +49,10 @@
               bg-color="accent"
               filled
               v-model="descripcion_unidad"
-              label="Breve Descripción de la Unidad"
+              label="Descripción"
               hint="Descripción"
               lazy-rules
-              :rules="[
-                val => (val && val.length > 0) || 'Escriba la Unidad de Medidad'
-              ]"
+              :rules="[val => (val && val.length > 0) || 'Escriba Descripción']"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="person" />
@@ -73,12 +71,10 @@
               bg-color="accent"
               filled
               v-model="cantidad_unidad"
-              label="Cantidad de la Unidad"
+              label="Cantidad"
               hint="Cantidad contenidad en la Unidad"
               lazy-rules
-              :rules="[
-                val => (val && val.length > 0) || 'Escriba la Cantidad'
-              ]"
+              :rules="[val => (val && val.length > 0) || 'Escriba Cantidad']"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="person" />
@@ -100,10 +96,10 @@
               true-value="ACTIVO"
               false-value="INACTIVO"
               v-model="status_unidad"
-              label="Status"
+              label="Estado"
             ></q-toggle>
             <div class="q-px-sm">
-              Seleccione Un Status:
+              Seleccione estado:
               <strong>
                 <q-chip outline text-color="primary ">{{
                   JSON.stringify(status_unidad)
@@ -114,8 +110,9 @@
         </div>
 
         <div class="col-12 q-pt-md">
-          <q-btn label="Enviar" type="submit" color="primary" />
+          <q-btn label="Guardar" no-caps type="submit" color="primary" />
           <q-btn
+            no-caps
             label="Limpiar"
             type="reset"
             color="primary"
@@ -138,7 +135,7 @@ export default {
     return {
       nombre_unidad: null,
       descripcion_unidad: null,
-     cantidad_unidad : null,
+      cantidad_unidad: null,
       accept: false,
       model: null,
       status_unidad: ''
@@ -188,15 +185,16 @@ export default {
           this.onReset()
           Notify.create({
             type: 'positive',
-            message: 'Unidad de Medidad Agregada',
-            color: 'positive'
+            message: 'Unidad de medidad agregada',
+            color: 'positive',
+            position: 'bottom-right'
           })
         }
       } catch (error) {
         console.log(addform)
         Notify.create({
           type: 'warning',
-          message: 'Error con el Servidor!',
+          message: 'Error con el servidor!',
           color: 'warning',
           position: 'center'
         })

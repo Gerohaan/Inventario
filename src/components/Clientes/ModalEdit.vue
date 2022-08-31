@@ -7,12 +7,10 @@
   >
     <q-card class="bg-secondary text-white" style="width: 700px">
       <q-card-section>
-        <div class="text-h6">Editar Cliente</div>
+        <div class="text-h6">Editar cliente</div>
       </q-card-section>
-      <!-- <pre>{{apipersona}}</pre>
- -->
       <q-card-section class="q-pt-none">
-        <q-form @submit.prevent="updateCliente()">
+        <q-form @submit.prevent="updateCliente(), closeModal()">
           <div class="row">
             <div class="col q-pt-none q-pl-md q-pr-md q-pb-md">
               <div class="q-gutter-sm">
@@ -77,12 +75,10 @@
                 v-model="apiedit.detalle_client"
                 standout
                 bg-color="accent"
-                label="Detalle Cliente"
+                label="Detalle"
                 hint="Detalle Cliente"
                 lazy-rules
-                :rules="[
-                  val => (val && val.length > 0) || 'Escriba un Detalle'
-                ]"
+                :rules="[val => (val && val.length > 0) || 'Escriba Detalle']"
               >
                 <template v-slot:prepend>
                   <q-icon color="primary" name="person" />
@@ -117,19 +113,14 @@
           </div>
 
           <div class="col-12 q-pt-md">
+            <q-btn no-caps label="Guardar" type="submit" color="primary" />
             <q-btn
-              label="Guardar"
-              type="submit"
-              color="primary"
-              v-close-popup
-            />
-            <q-btn
+              no-caps
               label="Cancelar"
               color="primary"
               flat
               class="q-ml-sm"
               @click="closeModal()"
-              v-close-popup
             />
           </div>
         </q-form>
@@ -173,16 +164,16 @@ export default {
           this.$emit('closeModel', persistent)
           Notify.create({
             type: 'positive',
-            message: 'Cliente Actualizada!',
-            color: 'positive'
-            //position:'center'
+            message: 'Cliente actualizado!',
+            color: 'positive',
+            position:'bottom-right'
           })
         }
       } catch (error) {
         console.log(error)
         Notify.create({
           type: 'warning',
-          message: 'Error al intentar Actualizar el Cliente!',
+          message: 'Error al intentar actualizar el cliente!',
           color: 'warning',
           position: 'center'
         })

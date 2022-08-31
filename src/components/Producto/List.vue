@@ -76,11 +76,10 @@ const columns = [
   {
     name: 'nombre_prod',
     required: true,
-    label: 'Nombre del Producto',
+    label: 'Nombre',
     align: 'center',
     field: row => row.nombre_prod,
     format: val => `${val}`,
-    sortable: true
   },
 
   {

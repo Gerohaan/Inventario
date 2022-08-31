@@ -7,7 +7,7 @@
         <div class="col col-md-12 col-lg-12 col-xs-12 col-sm-12">
           <q-card-section>
             <div class="col text-center text-primary text-bold text-h5">
-              Agregar Bodegas
+              Agregar bodega
             </div>
           </q-card-section>
         </div>
@@ -27,10 +27,10 @@
               v-model="nombre_bodega"
               standout
               bg-color="accent"
-              label="Nombre de la Bodega"
+              label="Nombre"
               hint="Nombre Identificatorio"
               lazy-rules
-              :rules="[val => (val && val.length > 0) || 'Escriba la Bodega']"
+              :rules="[val => (val && val.length > 0) || 'Escriba Bodega']"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="person" />
@@ -49,12 +49,10 @@
               bg-color="accent"
               filled
               v-model="descripcion_bodega"
-              label="Breve Descripción"
+              label="Descripción"
               hint="Descripción"
               lazy-rules
-              :rules="[
-                val => (val && val.length > 0) || 'Escriba la Descripción'
-              ]"
+              :rules="[val => (val && val.length > 0) || 'Escriba Descripción']"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="person" />
@@ -73,12 +71,10 @@
               bg-color="accent"
               filled
               v-model="ubicacion_bodega"
-              label="Ubicación de la Bodega"
+              label="Ubicación"
               hint="Dirección"
               lazy-rules
-              :rules="[
-                val => (val && val.length > 0) || 'Escriba la Dirección'
-              ]"
+              :rules="[val => (val && val.length > 0) || 'Escriba Dirección']"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="person" />
@@ -100,10 +96,10 @@
               true-value="ACTIVO"
               false-value="INACTIVO"
               v-model="theModel2"
-              label="Status"
+              label="Estado"
             ></q-toggle>
             <div class="q-px-sm">
-              Seleccione Un Status:
+              Seleccione estado:
               <strong>
                 <q-chip outline text-color="primary ">{{
                   JSON.stringify(theModel2)
@@ -114,8 +110,9 @@
         </div>
 
         <div class="col-12 q-pt-md">
-          <q-btn label="Enviar" type="submit" color="primary" />
+          <q-btn label="Guardar" no-caps type="submit" color="primary" />
           <q-btn
+            no-caps
             label="Limpiar"
             type="reset"
             color="primary"
@@ -188,8 +185,9 @@ export default {
           this.onReset()
           Notify.create({
             type: 'positive',
-            message: 'Bodega Agregada',
-            color: 'positive'
+            message: 'Bodega agregada',
+            color: 'positive',
+            position: 'bottom-right'
           })
         }
       } catch (error) {

@@ -7,11 +7,11 @@
   >
     <q-card class="bg-secondary text-white" style="width: 700px">
       <q-card-section>
-        <div class="text-h6">Editar Bodega</div>
+        <div class="text-h6">Editar presentación</div>
       </q-card-section>
 
       <q-card-section class="q-pt-none">
-        <q-form id="form" @submit.prevent="updatePresentacion()">
+        <q-form id="form" @submit.prevent="updatePresentacion(), closeModal()">
           <div class="row">
             <div
               class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md"
@@ -22,11 +22,11 @@
                 v-model="apiedit.nombre_present"
                 standout
                 bg-color="accent"
-                label="Nombre de la Presentación"
+                label="Nombre"
                 hint="Nombre Identificatorio"
                 lazy-rules
                 :rules="[
-                  val => (val && val.length > 0) || 'Escriba la Presentación'
+                  val => (val && val.length > 0) || 'Escriba Presentación'
                 ]"
               >
                 <template v-slot:prepend>
@@ -46,11 +46,11 @@
                 bg-color="accent"
                 filled
                 v-model="apiedit.descripcion_present"
-                label="Breve Descripción de la Presentación"
+                label="Descripción"
                 hint="Descripción"
                 lazy-rules
                 :rules="[
-                  val => (val && val.length > 0) || 'Escriba la Presentación'
+                  val => (val && val.length > 0) || 'Escriba Descripción'
                 ]"
               >
                 <template v-slot:prepend>
@@ -70,11 +70,11 @@
                 bg-color="accent"
                 filled
                 v-model="apiedit.abreviatura_present"
-                label="Abreviatura de la Presentación"
+                label="Abreviatura"
                 hint=" Abreviatura Identificatoria"
                 lazy-rules
                 :rules="[
-                  val => (val && val.length > 0) || 'Escriba la Abreviatura'
+                  val => (val && val.length > 0) || 'Escriba Abreviatura'
                 ]"
               >
                 <template v-slot:prepend>
@@ -85,7 +85,7 @@
           </div>
           <div class="row">
             <div
-              class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md"
+              class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pt-md"
             >
               <q-select
                 use-input
@@ -107,8 +107,8 @@
                 map-options
                 standout
                 bg-color="accent"
-                label="Unidad de Medidad"
-                hint="Seleccione Unidad"
+                label="Unidad de medidad"
+                hint="Seleccione unidad"
               >
                 <template v-slot:prepend>
                   <q-icon color="primary" name="person" />
@@ -136,10 +136,10 @@
                 true-value="ACTIVO"
                 false-value="INACTIVO"
                 v-model="apiedit.status_present"
-                label="Status"
+                label="Estado"
               ></q-toggle>
               <div class="q-px-sm">
-                Seleccione Un Status:
+                Seleccione Estado:
                 <strong>
                   <q-chip outline text-color="primary ">{{
                     JSON.stringify(apiedit.status_present)
@@ -150,14 +150,14 @@
           </div>
 
           <div class="col-12 q-pt-md">
-            <q-btn label="Guardar" type="submit" color="primary" v-close-popup/>
+            <q-btn label="Guardar" no-caps type="submit" color="primary" />
             <q-btn
+              no-caps
               label="Cancelar"
               color="primary"
               flat
               class="q-ml-sm"
               @click="closeModal()"
-              v-close-popup
             />
           </div>
         </q-form>
@@ -202,16 +202,16 @@ export default {
           this.$emit('closeModel', persistent)
           Notify.create({
             type: 'positive',
-            message: 'Presentación del Producto Actualizada!',
-            color: 'positive'
-            //position:'center'
+            message: 'Presentación del producto actualizada!',
+            color: 'positive',
+            position:'bottom-right'
           })
         }
       } catch (error) {
         console.log(params)
         Notify.create({
           type: 'warning',
-          message: 'Error al intentar Actualizar la Presentación!',
+          message: 'Error al intentar actualizar la presentación!',
           color: 'warning',
           position: 'center'
         })

@@ -7,7 +7,7 @@
         <div class="col col-md-12 col-lg-12 col-xs-12 col-sm-12">
           <q-card-section>
             <div class="col text-center text-primary text-bold text-h5">
-              Agregar Presentación
+              Agregar presentación
             </div>
           </q-card-section>
         </div>
@@ -27,11 +27,11 @@
               v-model="nombre_present"
               standout
               bg-color="accent"
-              label="Nombre de la Presentación"
+              label="Nombre"
               hint="Nombre Identificatorio"
               lazy-rules
               :rules="[
-                val => (val && val.length > 0) || 'Escriba la Presentación'
+                val => (val && val.length > 0) || 'Escriba Presentación'
               ]"
             >
               <template v-slot:prepend>
@@ -51,12 +51,10 @@
               bg-color="accent"
               filled
               v-model="descripcion_present"
-              label="Breve Descripción de la Presentación"
+              label="Descripción"
               hint="Descripción"
               lazy-rules
-              :rules="[
-                val => (val && val.length > 0) || 'Escriba la Presentación'
-              ]"
+              :rules="[val => (val && val.length > 0) || 'Escriba Descripción']"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="person" />
@@ -75,12 +73,10 @@
               bg-color="accent"
               filled
               v-model="abreviatura_present"
-              label="Abreviatura de la Presentación"
-              hint=" Abreviatura Identificatoria"
+              label="Abreviatura"
+              hint=" Abreviatura identificatoria"
               lazy-rules
-              :rules="[
-                val => (val && val.length > 0) || 'Escriba la Abreviatura'
-              ]"
+              :rules="[val => (val && val.length > 0) || 'Escriba abreviatura']"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="person" />
@@ -112,8 +108,8 @@
               map-options
               standout
               bg-color="accent"
-              label="Unidad de Medidad"
-              hint="Seleccione Unidad"
+              label="Unidad de medidad"
+              hint="Seleccione unidad"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="person" />
@@ -141,10 +137,10 @@
               true-value="ACTIVO"
               false-value="INACTIVO"
               v-model="status_present"
-              label="Status"
+              label="Estado"
             ></q-toggle>
             <div class="q-px-sm">
-              Seleccione Un Status:
+              Seleccione Estado:
               <strong>
                 <q-chip outline text-color="primary ">{{
                   JSON.stringify(status_present)
@@ -155,8 +151,9 @@
         </div>
 
         <div class="col-12 q-pt-md">
-          <q-btn label="Enviar" type="submit" color="primary" />
+          <q-btn label="Guardar" no-caps type="submit" color="primary" />
           <q-btn
+            no-caps
             label="Limpiar"
             type="reset"
             color="primary"
@@ -220,8 +217,7 @@ export default {
           descripcion_present: this.descripcion_present,
           unidadMedidadId: this.unidadMedidadId,
           abreviatura_present: this.abreviatura_present,
-          status_present: this.status_present,
-
+          status_present: this.status_present
         }
 
         const add = await axios.post(
@@ -234,15 +230,16 @@ export default {
           this.onReset()
           Notify.create({
             type: 'positive',
-            message: 'Presentación del Producto Agregada',
-            color: 'positive'
+            message: 'Presentación del producto agregada',
+            color: 'positive',
+            position: 'bottom-right'
           })
         }
       } catch (error) {
         console.log(addform)
         Notify.create({
           type: 'warning',
-          message: 'Error con el Servidor!',
+          message: 'Error con el servidor!',
           color: 'warning',
           position: 'center'
         })
@@ -262,7 +259,7 @@ export default {
           v => v.toLowerCase().indexOf(needle) > -1
         )
       })
-    },
+    }
   }
 }
 </script>

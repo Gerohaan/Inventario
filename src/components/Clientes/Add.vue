@@ -8,12 +8,12 @@
         <div class="col col-md-12 col-lg-12 col-xs-12 col-sm-12">
           <q-card-section>
             <div class="col text-center text-primary text-bold text-h5">
-              Agregar Cliente
+              Agregar cliente
             </div>
           </q-card-section>
         </div>
         <div class="col-12 text-left">
-          <p class="text-subtitle2">Tipo Cliente</p>
+          <p class="text-subtitle2">Tipo cliente</p>
         </div>
       </div>
       <q-form @submit.prevent="addCliente()" @reset="onReset">
@@ -76,10 +76,10 @@
               v-model="detalle"
               standout
               bg-color="accent"
-              label="Detalle Cliente"
+              label="Detalle"
               hint="Detalle Cliente"
               lazy-rules
-              :rules="[val => (val && val.length > 0) || 'Escriba un Detalle']"
+              :rules="[val => (val && val.length > 0) || 'Escriba detalle']"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="person" />
@@ -88,7 +88,7 @@
           </div>
         </div>
         <div class="col-12 text-left q-pt-md">
-          <p class="text-subtitle2">Status Cliente</p>
+          <p class="text-subtitle2">Estado cliente</p>
         </div>
         <div class="row">
           <div class="col q-pt-none q-pl-md q-pr-md q-pb-md">
@@ -114,8 +114,8 @@
         </div>
 
         <div class="col-12 q-pt-md">
-          <q-btn label="Enviar" type="submit" color="primary" />
-          <q-btn
+          <q-btn label="Guardar" no-caps type="submit" color="primary" />
+          <q-btn no-caps
             label="Limpiar"
             type="reset"
             color="primary"

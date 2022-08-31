@@ -7,10 +7,8 @@
   >
     <q-card class="bg-secondary text-white" style="width: 700px">
       <q-card-section>
-        <div class="text-h6">Editar Proveedor</div>
+        <div class="text-h6">Editar proveedor</div>
       </q-card-section>
-      <!-- <pre>{{apipersona}}</pre>
- -->
       <q-card-section class="q-pt-none">
         <q-form @submit.prevent="updateProveedor()">
           <div class="row">
@@ -62,7 +60,7 @@
                 standout
                 bg-color="accent"
                 label="Persona "
-                hint="Seleccione Persona"
+                hint="Seleccione persona"
               >
                 <template v-slot:prepend>
                   <q-icon color="primary" name="person" />
@@ -100,7 +98,7 @@
                 map-options
                 filled
                 label="Empresa"
-                hint="Seleccione una Empresa"
+                hint="Seleccione una empresa"
               >
                 <template v-slot:prepend>
                   <q-icon color="primary" name="person" />
@@ -117,10 +115,10 @@
               bg-color="accent"
               v-model="apiedit.detalle_prov"
               label="Detalles"
-              hint="Escriba Algún detalle"
+              hint="Escriba algún detalle"
               lazy-rules
               :rules="[
-                val => (val && val.length > 0) || 'Razón Social no Valida'
+                val => (val && val.length > 0) || 'Detalle no valido'
               ]"
             >
               <template v-slot:prepend>
@@ -130,14 +128,13 @@
           </div>
 
           <div class="col-12 q-pt-md">
-            <q-btn label="Guardar" type="submit" color="primary" v-close-popup />
-            <q-btn
+            <q-btn label="Guardar" no-caps type="submit" color="primary"  />
+            <q-btn no-caps
               label="Cancelar"
               color="primary"
               flat
               class="q-ml-sm"
               @click="closeModal()"
-              v-close-popup
             />
           </div>
         </q-form>
@@ -183,8 +180,8 @@ export default {
           Notify.create({
             type: 'positive',
             message: 'Proveedor Actualizado!',
-            color: 'positive'
-            //position:'center'
+            color: 'positive',
+            position:'bottom-right'
           })
         }
       } catch (error) {

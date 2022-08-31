@@ -60,7 +60,7 @@
       :apiedit="this.editApi"
       :apipersona="this.apipersona"
       :apiempresa="this.apiempresa"
-      @closeModel="persistent"
+      @closeModel="persistent = $event"
     >
     </ModalEdit>
   </div>
@@ -80,7 +80,6 @@ const columns = [
     align: 'center',
     field: row => row.Empresa.rif_empre,
     format: val => `${val}`,
-    sortable: true
   },
 
   {
@@ -97,13 +96,13 @@ const columns = [
   },
   {
     name: 'Persona.tlf_per',
-    label: 'Telefono',
+    label: 'Teléfono',
     align: 'center',
     field: row => row.Persona.tlf_per
   },
   {
     name: 'status_prov',
-    label: 'Status del Proveedor',
+    label: 'Estado',
     align: 'center',
     field: 'status_prov'
   },

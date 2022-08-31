@@ -77,25 +77,22 @@ const columns = [
   {
     name: 'nombre_categoria',
     required: true,
-    label: 'Nombre Categorias',
+    label: 'Nombre',
     align: 'center',
     field: row => row.nombre_categoria,
     format: val => `${val}`,
-    sortable: true
   },
   {
     name: 'detalle_categoria',
     align: 'center',
-    label: 'Detalle Categorias',
+    label: 'Detalle',
     field: 'detalle_categoria',
-    sortable: true
   },
   {
     name: 'status_categoria',
     align: 'center',
-    label: 'Status Categorias',
+    label: 'Estado',
     field: 'status_categoria',
-    sortable: true
   },
   {
     name: 'actions',
@@ -140,7 +137,8 @@ export default {
           Notify.create({
             type: 'positive',
             message: 'Categoria Eliminada!',
-            color: 'positive'
+            color: 'positive',
+            position: 'bottom-right'
           })
         }
       } catch (error) {

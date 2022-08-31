@@ -59,7 +59,7 @@
       :persistent="persistent"
       :apiedit="this.editcliente"
       :apipersona="this.apiList"
-      @closeModel="persistent"
+      @closeModel="persistent = $event "
     >
     </ModalEdit>
     <!--     <pre>{{apiList}}</pre>
@@ -81,7 +81,6 @@ const columns = [
     align: 'left',
     field: row => row.Persona.nombres_per,
     format: val => `${val}`,
-    sortable: true
   },
   {
     name: 'Persona.documento_per',
@@ -91,19 +90,19 @@ const columns = [
   },
   {
     name: 'detalle_client',
-    label: 'Detalle del Cliente',
+    label: 'Detalle',
     align: 'center',
     field: 'detalle_client'
   },
   {
     name: 'status_client',
-    label: 'Status Cliente',
+    label: 'Estado',
     align: 'center',
     field: 'status_client'
   },
   {
     name: 'tipo_client',
-    label: 'Tipo Cliente',
+    label: 'Tipo',
     align: 'center',
     field: 'tipo_client'
   },
@@ -161,8 +160,8 @@ export default {
           Notify.create({
             type: 'positive',
             message: 'Cliente Eliminado!',
-            color: 'positive'
-            //position:'center'
+            color: 'positive',
+            position: 'bottom-right'
           })
         }
       } catch (error) {

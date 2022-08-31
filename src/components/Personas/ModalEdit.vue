@@ -7,11 +7,11 @@
   >
     <q-card class="bg-secondary text-white" style="width: 700px">
       <q-card-section>
-        <div class="text-h6">Editar Categoria</div>
+        <div class="text-h6">Editar categoria</div>
       </q-card-section>
 
       <q-card-section class="q-pt-none">
-        <q-form id="form" @submit.prevent="updatePersona()">
+        <q-form id="form" @submit.prevent="updatePersona(),closeModal()">
           <div class="row">
             <div class="col q-pt-none q-pl-md q-pr-md q-pb-md">
               <div class="q-gutter-sm">
@@ -44,7 +44,7 @@
                 standout
                 bg-color="accent"
                 label="Nombres"
-                hint="Primero y Segundo Nombre"
+                hint="Primero y segundo"
                 lazy-rules
                 :rules="[
                   val => (val && val.length > 0) || 'Escriba sus Nombres'
@@ -63,7 +63,7 @@
                 filled
                 v-model="apiedit.apellidos_per"
                 label="Apellidos"
-                hint="Primero y Segundo Apellidos"
+                hint="Primero y segundo"
                 lazy-rules
                 :rules="[
                   val => (val && val.length > 0) || 'Escriba sus Apellidos'
@@ -96,13 +96,12 @@
                 borderless
                 dense
                 filled
-                color="purple-12"
                 v-model="apiedit.nacionalidad_per"
                 :options="options"
                 label="Tipo"
                 bg-color="accent"
                 :rules="[
-                  val => (val && val.length > 0) || 'Nacionalidad Invalidad'
+                  val => (val && val.length > 0) || 'Nacionalidad invalidad'
                 ]"
               >
                 <template v-slot:prepend>
@@ -136,7 +135,7 @@
                 q-pr-md q-pt-md
               "
             >
-              <p class="col text-subtitle2">Telefono</p>
+              <p class="col text-subtitle2">Teléfono</p>
               <q-input
                 dense
                 filled
@@ -144,12 +143,11 @@
                 v-model="apiedit.tlf_per"
                 standout
                 bg-color="accent"
-                label="Telefono"
-                hint="Telefono de Contacto"
+                label="Teléfono"
+                hint="Teléfono de contacto"
                 lazy-rules
                 :rules="[
-                  val =>
-                    (val && val.length > 0) || 'Telefono de Conctato No valido'
+                  val => (val && val.length > 0) || 'Conctato no valido'
                 ]"
               >
                 <template v-slot:prepend>
@@ -173,11 +171,10 @@
                 standout
                 bg-color="accent"
                 label="Corrreo"
-                hint="Correo de Contacto"
+                hint="Correo de contacto"
                 lazy-rules
                 :rules="[
-                  val =>
-                    (val && val.length > 0) || 'Correo de Conctato No valido'
+                  val => (val && val.length > 0) || 'Conctato no valido'
                 ]"
               >
                 <template v-slot:prepend>
@@ -195,12 +192,11 @@
               color="black"
               bg-color="accent"
               v-model="apiedit.fecha_nac_per"
-              hint="Fecha Nacimiento"
+              hint="Fecha nacimiento"
               type="date"
               lazy-rules
               :rules="[
-                val =>
-                  (val && val.length > 0) || 'Fecha de Nacimiento no Valida'
+                val => (val && val.length > 0) || 'Nacimiento no valido'
               ]"
             >
               <template v-slot:prepend>
@@ -230,32 +226,32 @@
             </div>
           </div>
           <div class="col-12 q-pr-md q-pt-md">
-            <p class="col text-subtitle2">Dirección de Habitación</p>
+            <p class="col text-subtitle2">Dirección de habitación</p>
             <q-input
               v-model="apiedit.direccion_per"
               filled
               clearable
               type="textarea"
               color="red-12"
-              label="Dirección de Habitacion"
+              label="Dirección de habitacion"
               input-style="height:2px"
               bg-color="accent"
             />
           </div>
           <div class="col-12 q-pt-md">
             <q-btn
+              no-caps
               label="Guardar"
               type="submit"
               color="primary"
-              v-close-popup
             />
             <q-btn
+              no-caps
               label="Cancelar"
               color="primary"
               flat
               class="q-ml-sm"
               @click="closeModal()"
-              v-close-popup
             />
           </div>
         </q-form>
@@ -312,11 +308,12 @@ export default {
         )
 
         if (updateP.status === 200) {
-          this.$emit('closeModel', persistent)
           Notify.create({
             type: 'positive',
             message: 'Persona Actualizada!',
-            color: 'positive'
+            color: 'positive',
+            position: 'bottom-right'
+
           })
         }
       } catch (error) {

@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-12">
       <p class="text-bold text-primary text-h5 q-pt-lg q-pl-xl">
-        Bodega
+        Bodegas
       </p>
     </div>
   </div>

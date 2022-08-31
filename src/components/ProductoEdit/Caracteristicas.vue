@@ -5,7 +5,7 @@
         <q-item class="bg-primary" dark>
           <q-item-section>
             <q-item-label class="text-center text-bold"
-              >Nombre Producto: {{ editApi.nombre_prod }}</q-item-label
+              >Nombre producto: {{ editApi.nombre_prod }}</q-item-label
             >
             <q-item-label class="text-right text-bold"
               >Codigo: {{ editApi.codigo_prod }}</q-item-label

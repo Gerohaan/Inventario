@@ -58,7 +58,7 @@
       :persistent="persistent"
       :apiedit="this.editApi"
       :apilista="this.apilista"
-      @closeModel="persistent"
+      @closeModel="persistent = $event"
     >
     </ModalEdit>
   </div>
@@ -75,11 +75,10 @@ const columns = [
   {
     name: 'nombre_present',
     required: true,
-    label: 'Nombre Presentación',
+    label: 'Nombre',
     align: 'center',
     field: row => row.nombre_present,
     format: val => `${val}`,
-    sortable: true
   },
   {
     name: 'descripcion_present',
@@ -89,7 +88,7 @@ const columns = [
   },
   {
     name: 'UnidadMedidad.nombre_unidad',
-    label: 'Unidad de Medidad',
+    label: 'Unidad de medidad',
     align: 'center',
     field: row => row.UnidadMedidad.nombre_unidad
   },
@@ -101,7 +100,7 @@ const columns = [
   },
   {
     name: 'status_present',
-    label: 'Status',
+    label: 'Estado',
     align: 'center',
     field: 'status_present'
   },
@@ -145,7 +144,8 @@ export default {
         )
         this.editApi = list.data
       } catch (error) {
-        console.log(error)
+        throw new Error('error en la consulta', error)
+        //console.log(error)
       }
     },
     openModal () {
@@ -160,16 +160,16 @@ export default {
         if (lista.status === 200) {
           Notify.create({
             type: 'positive',
-            message: 'Presentación del Producto Eliminada!',
-            color: 'positive'
-            //position:'center'
+            message: 'Presentación del producto eliminada!',
+            color: 'positive',
+            position:'bottom-right'
           })
         }
       } catch (error) {
         console.log(error)
         Notify.create({
           type: 'warning',
-          message: 'Error al intentar eliminar la Presentación del Producto!',
+          message: 'Error al intentar eliminar presentación del producto!',
           color: 'warning',
           position: 'center'
         })

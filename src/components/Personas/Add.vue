@@ -8,12 +8,12 @@
         <div class="col col-md-12 col-lg-12 col-xs-12 col-sm-12">
           <q-card-section>
             <div class="col text-center text-primary text-bold text-h5">
-              Agregar Persona
+              Agregar persona
             </div>
           </q-card-section>
         </div>
         <div class="col-12 text-left">
-          <p class="text-subtitle2">Tipo de Persona</p>
+          <p class="text-subtitle2">Tipo de persona</p>
         </div>
       </div>
       <q-form @submit.prevent="addPer()" @reset="onReset">
@@ -49,7 +49,7 @@
               standout
               bg-color="accent"
               label="Nombres"
-              hint="Primero y Segundo Nombre"
+              hint="Primero y Segundo"
               lazy-rules
               :rules="[val => (val && val.length > 0) || 'Escriba sus Nombres']"
             >
@@ -66,7 +66,7 @@
               filled
               v-model="apellido"
               label="Apellidos"
-              hint="Primero y Segundo Apellidos"
+              hint="Primero y segundo"
               lazy-rules
               :rules="[
                 val => (val && val.length > 0) || 'Escriba sus Apellidos'
@@ -99,7 +99,6 @@
               borderless
               dense
               filled
-              color="purple-12"
               v-model="nacionalidad"
               :options="options"
               label="Tipo"
@@ -141,7 +140,7 @@
                 q-pr-md q-pt-md
               "
           >
-            <p class="col text-subtitle2">Telefono</p>
+            <p class="col text-subtitle2">Teléfono</p>
             <q-input
               dense
               filled
@@ -149,12 +148,12 @@
               v-model="telefono"
               standout
               bg-color="accent"
-              label="Telefono"
-              hint="Telefono de Contacto"
+              label="Teléfono"
+              hint="Teléfono de Contacto"
               lazy-rules
               :rules="[
                 val =>
-                  (val && val.length > 0) || 'Telefono de Conctato No valido'
+                  (val && val.length > 0) || 'Conctato No valido'
               ]"
             >
               <template v-slot:prepend>
@@ -177,11 +176,11 @@
               type="email"
               standout
               bg-color="accent"
-              label="Corrreo"
+              label="Correo"
               hint="Correo de Contacto"
               lazy-rules
               :rules="[
-                val => (val && val.length > 0) || 'Correo de Conctato No valido'
+                val => (val && val.length > 0) || 'Conctato No valido'
               ]"
             >
               <template v-slot:prepend>
@@ -192,18 +191,17 @@
         </div>
 
         <div class="col-12 q-pr-md q-pt-md">
-          <p class="col text-subtitle2">Fecha de Nacimiento</p>
+          <p class="col text-subtitle2">Fecha de nacimiento</p>
           <q-input
             dense
-            standout="bg-teal text-blue"
-            color="black"
+            standout
             bg-color="accent"
             v-model="nacimiento"
-            hint="Fecha Nacimiento"
+            hint="Fecha nacimiento"
             type="date"
             lazy-rules
             :rules="[
-              val => (val && val.length > 0) || 'Fecha de Nacimiento no Valida'
+              val => (val && val.length > 0) || 'Nacimiento no valido'
             ]"
           >
             <template v-slot:prepend>
@@ -233,21 +231,21 @@
             </div>
             </div>
         <div class="col-12 q-pr-md q-pt-md">
-          <p class="col text-subtitle2">Dirección de Habitación</p>
+          <p class="col text-subtitle2">Dirección de habitación</p>
           <q-input
             v-model="direccion"
             filled
             clearable
             type="textarea"
             color="red-12"
-            label="Dirección de Habitacion"
+            label="Dirección"
             input-style="height:2px"
             bg-color="accent"
           />
         </div>
         <div class="col-12 q-pt-md">
-          <q-btn label="Enviar" type="submit" color="primary" />
-          <q-btn
+          <q-btn no-caps label="Guardar" type="submit" color="primary" />
+          <q-btn no-caps
             label="Limpiar"
             type="reset"
             color="primary"
@@ -338,7 +336,8 @@ export default {
           Notify.create({
             type: 'positive',
             message: 'Persona Agregada',
-            color: 'positive'
+            color: 'positive',
+            position: 'bottom-right'
           })
           this.onReset()
         }
