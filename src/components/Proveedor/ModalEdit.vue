@@ -5,141 +5,143 @@
     transition-show="scale"
     transition-hide="scale"
   >
-    <q-card class="bg-secondary text-white" style="width: 700px">
-      <q-card-section>
-        <div class="text-h6">Editar proveedor</div>
-      </q-card-section>
-      <q-card-section class="q-pt-none">
-        <q-form @submit.prevent="updateProveedor()">
-          <div class="row">
-            <div class="col q-pt-none q-pl-md q-pr-md q-pb-md">
-              <div class="q-gutter-sm">
-                <q-radio
-                  dense
-                  v-model="apiedit.status_prov"
-                  checked-icon="task_alt"
-                  unchecked-icon="panorama_fish_eye"
-                  val="ACTIVO"
-                  label="ACTIVO"
-                />
-                <q-radio
-                  dense
-                  v-model="apiedit.status_prov"
-                  checked-icon="task_alt"
-                  unchecked-icon="panorama_fish_eye"
-                  val="INACTIVO"
-                  label="INACTIVO"
-                />
+    <q-parallax src="~assets/fondo3.jpg" :speed="0.6" :height="400">
+      <q-card flat class="bg-transparent text-white">
+        <q-card-section>
+          <div class="text-h6">Editar proveedor</div>
+        </q-card-section>
+        <q-card-section class="q-pt-none">
+          <q-form @submit.prevent="updateProveedor()">
+            <div class="row">
+              <div class="col q-pt-none q-pl-md q-pr-md q-pb-md">
+                <div class="q-gutter-sm">
+                  <q-radio
+                    dense
+                    v-model="apiedit.status_prov"
+                    checked-icon="task_alt"
+                    unchecked-icon="panorama_fish_eye"
+                    val="ACTIVO"
+                    label="ACTIVO"
+                  />
+                  <q-radio
+                    dense
+                    v-model="apiedit.status_prov"
+                    checked-icon="task_alt"
+                    unchecked-icon="panorama_fish_eye"
+                    val="INACTIVO"
+                    label="INACTIVO"
+                  />
+                </div>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div
-              class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md"
-            >
-              <q-select
-                use-input
-                hide-selected
-                fill-input
-                input-debounce="0"
+            <div class="row">
+              <div
+                class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md"
+              >
+                <q-select
+                  use-input
+                  hide-selected
+                  fill-input
+                  input-debounce="0"
+                  dense
+                  filled
+                  v-model="apiedit.personaId"
+                  :options="apipersona"
+                  :option-label="
+                    apipersona =>
+                      apipersona === null
+                        ? null
+                        : apipersona.nombres_per +
+                          ' ' +
+                          apipersona.apellidos_per
+                  "
+                  :option-value="
+                    apipersona => (apipersona === null ? null : apipersona.id)
+                  "
+                  emit-value
+                  map-options
+                  standout
+                  bg-color="accent"
+                  label="Persona "
+                  hint="Seleccione persona"
+                >
+                  <template v-slot:prepend>
+                    <q-icon color="primary" name="person" />
+                  </template>
+                  <template v-slot:no-option>
+                    <q-item>
+                      <q-item-section class="text-grey">
+                        No results
+                      </q-item-section>
+                    </q-item>
+                  </template>
+                </q-select>
+              </div>
+              <div
+                class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pt-md"
+              >
+                <q-select
+                  dense
+                  standout
+                  bg-color="accent"
+                  v-model="apiedit.empresaId"
+                  :options="apiempresa"
+                  :option-label="
+                    apiempresa =>
+                      apiempresa === null
+                        ? null
+                        : apiempresa.nombre_empre +
+                          '  Rif:' +
+                          apiempresa.rif_empre
+                  "
+                  :option-value="
+                    apiempresa => (apiempresa === null ? null : apiempresa.id)
+                  "
+                  emit-value
+                  map-options
+                  filled
+                  label="Empresa"
+                  hint="Seleccione una empresa"
+                >
+                  <template v-slot:prepend>
+                    <q-icon color="primary" name="person" />
+                  </template>
+                </q-select>
+              </div>
+            </div>
+
+            <div class="col-12 q-pr-md q-pt-md">
+              <q-input
                 dense
-                filled
-                v-model="apiedit.personaId"
-                :options="apipersona"
-                :option-label="
-                  apipersona =>
-                    apipersona === null
-                      ? null
-                      : apipersona.nombres_per + ' ' + apipersona.apellidos_per
-                "
-                :option-value="
-                  apipersona => (apipersona === null ? null : apipersona.id)
-                "
-                emit-value
-                map-options
-                standout
+                color="black"
                 bg-color="accent"
-                label="Persona "
-                hint="Seleccione persona"
+                v-model="apiedit.detalle_prov"
+                label="Detalles"
+                hint="Escriba algún detalle"
+                lazy-rules
+                :rules="[val => (val && val.length > 0) || 'Detalle no valido']"
               >
                 <template v-slot:prepend>
-                  <q-icon color="primary" name="person" />
+                  <q-icon color="primary" name="storefront" />
                 </template>
-                <template v-slot:no-option>
-                  <q-item>
-                    <q-item-section class="text-grey">
-                      No results
-                    </q-item-section>
-                  </q-item>
-                </template>
-              </q-select>
+              </q-input>
             </div>
-            <div
-              class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pt-md"
-            >
-              <q-select
-                dense
-                standout
-                bg-color="accent"
-                v-model="apiedit.empresaId"
-                :options="apiempresa"
-                :option-label="
-                  apiempresa =>
-                    apiempresa === null
-                      ? null
-                      : apiempresa.nombre_empre +
-                        '  Rif:' +
-                        apiempresa.rif_empre
-                "
-                :option-value="
-                  apiempresa => (apiempresa === null ? null : apiempresa.id)
-                "
-                emit-value
-                map-options
-                filled
-                label="Empresa"
-                hint="Seleccione una empresa"
-              >
-                <template v-slot:prepend>
-                  <q-icon color="primary" name="person" />
-                </template>
-              </q-select>
+
+            <div class="col-12 q-pt-md">
+              <q-btn label="Guardar" no-caps type="submit" color="primary" />
+              <q-btn
+                no-caps
+                label="Cancelar"
+                color="primary"
+                flat
+                class="q-ml-sm"
+                @click="closeModal()"
+              />
             </div>
-          </div>
-
-          <div class="col-12 q-pr-md q-pt-md">
-            <q-input
-              dense
-              standout="bg-teal text-blue"
-              color="black"
-              bg-color="accent"
-              v-model="apiedit.detalle_prov"
-              label="Detalles"
-              hint="Escriba algún detalle"
-              lazy-rules
-              :rules="[
-                val => (val && val.length > 0) || 'Detalle no valido'
-              ]"
-            >
-              <template v-slot:prepend>
-                <q-icon color="primary" name="storefront" />
-              </template>
-            </q-input>
-          </div>
-
-          <div class="col-12 q-pt-md">
-            <q-btn label="Guardar" no-caps type="submit" color="primary"  />
-            <q-btn no-caps
-              label="Cancelar"
-              color="primary"
-              flat
-              class="q-ml-sm"
-              @click="closeModal()"
-            />
-          </div>
-        </q-form>
-      </q-card-section>
-    </q-card>
+          </q-form>
+        </q-card-section>
+      </q-card>
+    </q-parallax>
   </q-dialog>
 </template>
 <script>
@@ -179,16 +181,16 @@ export default {
           this.$emit('closeModel', persistent)
           Notify.create({
             type: 'positive',
-            message: 'Proveedor Actualizado!',
+            message: 'Proveedor actualizado!',
             color: 'positive',
-            position:'bottom-right'
+            position: 'bottom-right'
           })
         }
       } catch (error) {
         console.log(error)
         Notify.create({
           type: 'warning',
-          message: 'Error al intentar Actualizar el Proveedor!',
+          message: 'Error al intentar actualizar el proveedor!',
           color: 'warning',
           position: 'center'
         })
@@ -201,3 +203,7 @@ export default {
   }
 }
 </script>
+<style lang="sass" scoped>
+.bg-transparent
+   background: #fff0
+</style>

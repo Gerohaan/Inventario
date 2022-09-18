@@ -76,7 +76,7 @@ const columns = [
   {
     name: 'Empresa.rif_empre',
     required: true,
-    label: 'Rif Empresa',
+    label: 'Rif empresa',
     align: 'center',
     field: row => row.Empresa.rif_empre,
     format: val => `${val}`,

@@ -11,9 +11,9 @@
           @click="drawer = !drawer"
         />
         <q-toolbar-title class="text-secondary">
-          Inventario Activados
+          BambúStock
         </q-toolbar-title>
-        <q-input
+       <!--  <q-input
           rounded
           dense
           standout
@@ -31,13 +31,13 @@
               @click="text = ''"
             />
           </template>
-        </q-input>
-        <q-chip class="q-mr-sm q-ml-md">
+        </q-input> -->
+        <!-- <q-chip class="q-mr-sm q-ml-md">
           <q-avatar>
             <img src="https://cdn.quasar.dev/img/boy-avatar.png" />
           </q-avatar>
           John
-        </q-chip>
+        </q-chip> -->
         <q-btn
           flat
           round
@@ -185,7 +185,7 @@
                 to="/Proveedor"
                 size="14px"
                 flat
-                icon="group_add"
+                icon="person_add"
                 label="Proveedores"
                 color="primary"
                 no-caps

@@ -108,7 +108,7 @@
               hint="Seleccione empresa"
             >
               <template v-slot:prepend>
-                <q-icon color="primary" name="person" />
+                <q-icon color="primary" name="storefront" />
               </template>
             </q-select>
           </div>
@@ -129,7 +129,7 @@
             ]"
           >
             <template v-slot:prepend>
-              <q-icon color="primary" name="storefront" />
+              <q-icon color="primary" name="draw" />
             </template>
           </q-input>
         </div>

@@ -62,8 +62,6 @@
       @closeModel="persistent = $event "
     >
     </ModalEdit>
-    <!--     <pre>{{apiList}}</pre>
- -->
   </div>
 </template>
 
@@ -78,7 +76,7 @@ const columns = [
     name: 'Persona.nombres_per',
     required: true,
     label: 'Cliente',
-    align: 'left',
+    align: 'center',
     field: row => row.Persona.nombres_per,
     format: val => `${val}`,
   },
@@ -100,13 +98,6 @@ const columns = [
     align: 'center',
     field: 'status_client'
   },
-  {
-    name: 'tipo_client',
-    label: 'Tipo',
-    align: 'center',
-    field: 'tipo_client'
-  },
-
   {
     name: 'actions',
     align: 'center',

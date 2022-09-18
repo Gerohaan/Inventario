@@ -54,7 +54,7 @@
               :rules="[val => (val && val.length > 0) || 'Escriba sus Nombres']"
             >
               <template v-slot:prepend>
-                <q-icon color="primary" name="person" />
+                <q-icon color="primary" name="draw" />
               </template>
             </q-input>
           </div>
@@ -73,7 +73,7 @@
               ]"
             >
               <template v-slot:prepend>
-                <q-icon color="primary" name="person" />
+                <q-icon color="primary" name="draw" />
               </template>
             </q-input>
           </div>
@@ -205,7 +205,7 @@
             ]"
           >
             <template v-slot:prepend>
-              <q-icon color="primary" name="storefront" />
+              <q-icon color="primary" name="draw" />
             </template>
           </q-input>
         </div>

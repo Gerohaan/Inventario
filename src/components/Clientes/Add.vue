@@ -82,7 +82,7 @@
               :rules="[val => (val && val.length > 0) || 'Escriba detalle']"
             >
               <template v-slot:prepend>
-                <q-icon color="primary" name="person" />
+                <q-icon color="primary" name="draw" />
               </template>
             </q-input>
           </div>
