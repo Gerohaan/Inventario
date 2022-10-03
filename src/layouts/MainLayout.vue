@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf" class="shadow-2 rounded-borders">
     <q-header>
-      <q-toolbar class="bg-blue-grey-1 text-blue-grey-7">
+      <q-toolbar class="bg-white text-blue-grey-7">
         <q-btn
           flat
           dense
@@ -10,7 +10,7 @@
           aria-label="Menu"
           @click="drawer = !drawer"
         />
-        <q-toolbar-title class="text-secondary">
+        <q-toolbar-title class="text-primary">
           BambúStock
         </q-toolbar-title>
        <!--  <q-input
@@ -58,7 +58,7 @@
       </q-toolbar>
     </q-header>
     <q-drawer
-      class="bg-blue-grey-1"
+      class="bg-white"
       v-model="drawer"
       show-if-above
       :width="260"
@@ -339,7 +339,7 @@
     <q-page-container>
       <router-view />
     </q-page-container>
-    <q-footer class="bg-grey-1">
+    <!-- <q-footer class="bg-grey-1">
       <q-card-section class="col-12 text-right no-padding">
         <div class="text-body2 col-12 text-grey-8 text-weight-bold">
           © 2022 Inventario.
@@ -366,7 +366,7 @@
           ></q-btn>
         </div>
       </q-card-section>
-    </q-footer>
+    </q-footer> -->
   </q-layout>
 </template>
 
