@@ -1,13 +1,12 @@
 <template>
   <q-dialog
-    full-height
     v-model="persistent"
     persistent
     transition-show="scale"
     transition-hide="scale"
   >
-    <q-parallax src="~assets/fondo3.jpg">
-      <q-card flat class="text-white bg-transparent">
+   
+      <q-card flat class="text-primary bg-white" style="width: 700px; max-width: 80vw;">
         <q-card-section>
           <div class="text-h6">Editar persona</div>
         </q-card-section>
@@ -263,7 +262,6 @@
           </q-form>
         </q-card-section>
       </q-card>
-    </q-parallax>
   </q-dialog>
 </template>
 <script>

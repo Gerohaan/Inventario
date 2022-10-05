@@ -1,20 +1,15 @@
 <template>
-  <div class="row">
-    <div class="col-12">
-      <p
-        class="text-bold text-primary text-h5"
-        style="margin: 10px 0px 0px 40px"
-      >
+  <q-page class="fondo">
+    <div class="row">
+      <div class="col-12 q-ml-md q-mt-md text-bold text-primary text-h5">
         Personas
-      </p>
-      <!--       <pre>{{this.apiListPer}}</pre>
- -->
+      </div>
     </div>
-  </div>
   <div class="row">
-    <List :apiList="this.apiListPer" />
+    <List :apiList="apiListPer" />
     <Add />
   </div>
+  </q-page>
 </template>
 
 <script>
@@ -56,3 +51,8 @@ export default {
   }
 }
 </script>
+<style>
+.fondo{
+  background-image: url('src/assets/fondo2.jpg');
+}
+</style>
