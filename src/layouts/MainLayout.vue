@@ -13,7 +13,7 @@
         <q-toolbar-title class="text-secondary">
           BambúStock
         </q-toolbar-title>
-       <!--  <q-input
+        <!--  <q-input
           rounded
           dense
           standout
@@ -158,7 +158,7 @@
             icon="person"
             label="Terceros"
             no-caps
-          ><q-item-section side>
+            ><q-item-section side>
               <q-btn
                 size="14px"
                 to="/Persona"
@@ -294,7 +294,7 @@
                 </q-btn>
               </q-item-section>
             </q-expansion-item>
-             <q-expansion-item
+            <q-expansion-item
               :content-inset-level="0.5"
               expand-separator
               icon="schedule"
@@ -374,24 +374,24 @@
 import {
   fabGithub,
   fabFacebook,
-  fabInstagram,
-} from "@quasar/extras/fontawesome-v6";
-import EssentialLink from "components/EssentialLink.vue";
+  fabInstagram
+} from '@quasar/extras/fontawesome-v6'
+import EssentialLink from 'components/EssentialLink.vue'
 
 export default {
-  name: "MainLayout",
+  name: 'MainLayout',
   components: {
-    EssentialLink,
+    EssentialLink
   },
-  data() {
+  data () {
     return {
       drawer: false,
       miniState: true,
-      text: "",
+      text: '',
       fabGithub,
       fabFacebook,
-      fabInstagram,
-    };
-  },
-};
+      fabInstagram
+    }
+  }
+}
 </script>
