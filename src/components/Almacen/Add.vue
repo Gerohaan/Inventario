@@ -17,10 +17,8 @@
       </div>
 
       <q-form id="form" @submit.prevent="addBodega()" @reset="onReset">
-        <div class="row">
-          <div
-            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md"
-          >
+        <div class="row q-col-gutter-md">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <q-input
               dense
               filled
@@ -28,19 +26,19 @@
               standout
               bg-color="accent"
               label="Nombre"
-              hint="Nombre Identificatorio"
+              hint="Nombre identificatorio"
               lazy-rules
-              :rules="[val => (val && val.length > 0) || 'Escriba Bodega']"
+              :rules="[val => (val && val.length > 0) || 'Escriba bodega']"
             >
               <template v-slot:prepend>
-                <q-icon color="primary" name="person" />
+                <q-icon color="primary" name="draw" />
               </template>
             </q-input>
           </div>
           <div
             class="
               col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
-              q-pr-md q-pt-md
+
             "
           >
             <q-input
@@ -52,17 +50,17 @@
               label="Descripción"
               hint="Descripción"
               lazy-rules
-              :rules="[val => (val && val.length > 0) || 'Escriba Descripción']"
+              :rules="[val => (val && val.length > 0) || 'Escriba descripción']"
             >
               <template v-slot:prepend>
-                <q-icon color="primary" name="person" />
+                <q-icon color="primary" name="draw" />
               </template>
             </q-input>
           </div>
           <div
             class="
               col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
-              q-pr-md q-pt-md
+
             "
           >
             <q-input
@@ -74,20 +72,20 @@
               label="Ubicación"
               hint="Dirección"
               lazy-rules
-              :rules="[val => (val && val.length > 0) || 'Escriba Dirección']"
+              :rules="[val => (val && val.length > 0) || 'Escriba dirección']"
             >
               <template v-slot:prepend>
-                <q-icon color="primary" name="person" />
+                <q-icon color="primary" name="draw" />
               </template>
             </q-input>
           </div>
         </div>
 
-        <div class="row">
+        <div class="row q-col-gutter-md">
           <div
             class="
               col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
-              q-pr-md q-pt-md
+
             "
           >
             <q-toggle
@@ -98,7 +96,7 @@
               v-model="theModel2"
               label="Estado"
             ></q-toggle>
-            <div class="q-px-sm">
+            <div>
               Seleccione estado:
               <strong>
                 <q-chip outline text-color="primary ">{{
@@ -108,8 +106,7 @@
             </div>
           </div>
         </div>
-
-        <div class="col-12 q-pt-md">
+        <q-card-actions>
           <q-btn label="Guardar" no-caps type="submit" color="primary" />
           <q-btn
             no-caps
@@ -119,7 +116,7 @@
             flat
             class="q-ml-sm"
           />
-        </div>
+        </q-card-actions>
       </q-form>
     </q-card>
   </div>

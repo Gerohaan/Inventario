@@ -17,10 +17,27 @@
       </div>
 
       <q-form @submit.prevent="onSubmit, addEmpresa()" @reset="onReset">
-        <div class="row">
-          <div
-            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pt-sm"
-          >
+        <div class="row q-col-gutter-md">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <q-input
+              dense
+              min="0"
+              type="number"
+              filled
+              v-model="rif_empre"
+              standout
+              bg-color="accent"
+              label="Rif"
+              hint="Documento Identificatorio"
+              lazy-rules
+              :rules="[val => (val && val.length > 0) || 'Escriba Documento']"
+            >
+              <template v-slot:prepend>
+                <q-icon color="primary" name="draw" />
+              </template>
+            </q-input>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
             <q-input
               dense
               filled
@@ -37,29 +54,8 @@
               </template>
             </q-input>
           </div>
-          <div
-            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pt-sm"
-          >
-            <q-input
-              dense
-              type="number"
-              filled
-              v-model="rif_empre"
-              standout
-              bg-color="accent"
-              label="Rif"
-              hint="Documento Identificatorio"
-              lazy-rules
-              :rules="[val => (val && val.length > 0) || 'Escriba Documento']"
-            >
-              <template v-slot:prepend>
-                <q-icon color="primary" name="person" />
-              </template>
-            </q-input>
-          </div>
-          <div
-            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pt-sm"
-          >
+
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
             <q-input
               dense
               filled
@@ -78,9 +74,7 @@
               </template>
             </q-input>
           </div>
-          <div
-            class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md q-pt-sm"
-          >
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
             <q-input
               dense
               filled
@@ -100,9 +94,7 @@
               </template>
             </q-input>
           </div>
-          <div
-            class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md q-pt-sm"
-          >
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
             <q-input
               dense
               filled
@@ -122,9 +114,7 @@
               </template>
             </q-input>
           </div>
-          <div
-            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pt-sm"
-          >
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
             <q-input
               dense
               filled
@@ -144,29 +134,7 @@
               </template>
             </q-input>
           </div>
-          <div
-            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pt-sm"
-          >
-            <q-input
-              dense
-              filled
-              v-model="direccion_empre"
-              standout
-              bg-color="accent"
-              label="Dirección"
-              hint="Dirección de Ubicación"
-              lazy-rules
-              :rules="[val => (val && val.length > 0) || 'Escriba Ubicación']"
-            >
-              <template v-slot:prepend>
-                <q-icon color="primary" name="person" />
-              </template>
-            </q-input>
-          </div>
-
-          <div
-            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pt-md"
-          >
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
             <q-input
               dense
               standout
@@ -176,7 +144,7 @@
               label="Tipo de empresa"
               lazy-rules
               :rules="[
-                val => (val && val.length > 0) || 'Escriba Tipo de Empresa'
+                val => (val && val.length > 0) || 'Escriba tipo de empresa'
               ]"
             >
               <template v-slot:prepend>
@@ -184,9 +152,25 @@
               </template>
             </q-input>
           </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <q-input
+              dense
+              filled
+              v-model="direccion_empre"
+              standout
+              bg-color="accent"
+              label="Dirección"
+              hint="Dirección de ubicación"
+              lazy-rules
+              :rules="[val => (val && val.length > 0) || 'Escriba ubicación']"
+            >
+              <template v-slot:prepend>
+                <q-icon color="primary" name="person" />
+              </template>
+            </q-input>
+          </div>
         </div>
-
-        <div class="col-12 q-pt-md">
+        <q-card-actions>
           <q-btn label="Guardar" no-caps type="submit" color="primary" />
           <q-btn
             no-caps
@@ -196,7 +180,7 @@
             flat
             class="q-ml-sm"
           />
-        </div>
+        </q-card-actions>
       </q-form>
     </q-card>
   </div>

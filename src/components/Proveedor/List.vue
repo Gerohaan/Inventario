@@ -1,17 +1,16 @@
 <template>
-  <div class="col-md-8 col-lg-8 col-xs-12 col-sm-12">
-    <q-card flat>
-      <q-card-section>
+  <div class="col-md-8 col-lg-8 col-xs-12 col-sm-12 q-pa-md">
+    <q-card>
+      <q-card-section class="q-pa-none">
         <q-table
           :rows="datapi"
           :columns="columns"
           :row-key="row => row.id"
-          separator="none"
           dense
           :filter="filter"
           :pagination="initialPagination"
           class="text-center box-shadow"
-          style="margin: 10px 0px 0px 20px"
+
         >
           <template v-slot:top-left>
             <q-input

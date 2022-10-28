@@ -48,7 +48,7 @@
   </div>
   <div class="row">
     <Movimiento />
-    <Stock  :editApi="this.editApi" />
+    <Stock  :editApi="editApi" />
   </div>
 </template>
 <script>

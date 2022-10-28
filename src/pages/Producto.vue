@@ -1,22 +1,21 @@
 <template>
-  <div class="row">
-    <div class="col-12">
-      <p
-        class="text-bold text-primary text-h5"
-        style="margin: 10px 0px 0px 40px"
-      >
-        Productos
-      </p>
+  <q-page class="fondo">
+    <div class="row">
+      <div class="col-12">
+        <p class="text-bold text-primary text-h5 q-pt-md q-pl-md">
+          Productos
+        </p>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <List :datapi="this.apilist" />
-    <Add
-      :apibodega="this.apilist3"
-      :apicategoria="this.apilist2"
-      :apipresent="this.apilist4"
-    />
-  </div>
+    <div class="row">
+      <List :datapi="apilist" />
+      <Add
+        :apibodega="apilist3"
+        :apicategoria="apilist2"
+        :apipresent="apilist4"
+      />
+    </div>
+  </q-page>
 </template>
 
 <script>
@@ -87,3 +86,10 @@ export default {
   }
 }
 </script>
+<style>
+.fondo {
+  background-image: url('src/assets/bambu4.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>

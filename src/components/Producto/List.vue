@@ -6,12 +6,11 @@
           :rows="datapi"
           :columns="columns"
           :row-key="row => row.id"
-          separator="none"
           dense
           :filter="filter"
           :pagination="initialPagination"
           class="text-center box-shadow"
-          style="margin: 10px 0px 0px 20px"
+
         >
           <template v-slot:top-left>
             <q-input

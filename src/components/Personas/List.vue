@@ -1,6 +1,6 @@
 <template>
   <div class="col-md-8 col-lg-8 col-xs-12 col-sm-12 q-pa-md">
-    <q-card class="">
+    <q-card>
       <q-card-section class="q-pa-none">
         <q-table
           :rows="apiList"

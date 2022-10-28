@@ -1,6 +1,6 @@
 <template>
   <div
-    class="col col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 q-pt-md q-pr-lg"
+    class="col col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 q-pt-md q-pr-md"
   >
     <q-card class="my-card q-pa-md box-shadow">
       <div class="row">
@@ -15,12 +15,9 @@
           <p class="text-subtitle2">Caracteristicas</p>
         </div>
       </div>
-
       <q-form id="form" @submit.prevent="addUnidad()" @reset="onReset">
-        <div class="row">
-          <div
-            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md"
-          >
+        <div class="row q-col-gutter-md">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <q-input
               dense
               filled
@@ -28,19 +25,18 @@
               standout
               bg-color="accent"
               label="Nombre"
-              hint="Nombre Identificatorio"
+              hint="Nombre identificatorio"
               lazy-rules
-              :rules="[val => (val && val.length > 0) || 'Escriba Unidad']"
+              :rules="[val => (val && val.length > 0) || 'Escriba unidad']"
             >
               <template v-slot:prepend>
-                <q-icon color="primary" name="person" />
+                <q-icon color="primary" name="draw" />
               </template>
             </q-input>
           </div>
           <div
             class="
               col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
-              q-pr-md q-pt-md
             "
           >
             <q-input
@@ -52,42 +48,42 @@
               label="Descripción"
               hint="Descripción"
               lazy-rules
-              :rules="[val => (val && val.length > 0) || 'Escriba Descripción']"
+              :rules="[val => (val && val.length > 0) || 'Escriba descripción']"
             >
               <template v-slot:prepend>
-                <q-icon color="primary" name="person" />
+                <q-icon color="primary" name="draw" />
               </template>
             </q-input>
           </div>
           <div
             class="
               col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
-              q-pr-md q-pt-md
             "
           >
             <q-input
+              type="number"
+              min="0"
               dense
               standout
               bg-color="accent"
               filled
               v-model="cantidad_unidad"
               label="Cantidad"
-              hint="Cantidad contenidad en la Unidad"
+              hint="Cantidad contenidad en la unidad"
               lazy-rules
-              :rules="[val => (val && val.length > 0) || 'Escriba Cantidad']"
+              :rules="[val => (val && val.length > 0) || 'Escriba cantidad']"
             >
               <template v-slot:prepend>
-                <q-icon color="primary" name="person" />
+                <q-icon color="primary" name="draw" />
               </template>
             </q-input>
           </div>
         </div>
 
-        <div class="row">
+        <div class="row q-col-gutter-md">
           <div
             class="
               col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
-              q-pr-md q-pt-md
             "
           >
             <q-toggle
@@ -98,7 +94,7 @@
               v-model="status_unidad"
               label="Estado"
             ></q-toggle>
-            <div class="q-px-sm">
+            <div>
               Seleccione estado:
               <strong>
                 <q-chip outline text-color="primary ">{{
@@ -108,18 +104,10 @@
             </div>
           </div>
         </div>
-
-        <div class="col-12 q-pt-md">
+        <q-card-actions>
           <q-btn label="Guardar" no-caps type="submit" color="primary" />
-          <q-btn
-            no-caps
-            label="Limpiar"
-            type="reset"
-            color="primary"
-            flat
-            class="q-ml-sm"
-          />
-        </div>
+          <q-btn no-caps label="Limpiar" type="reset" color="primary" flat />
+        </q-card-actions>
       </q-form>
     </q-card>
   </div>

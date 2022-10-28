@@ -6,7 +6,6 @@
           :rows="vialist"
           :columns="columns"
           :row-key="row => row.id"
-          separator="none"
           dense
           :filter="filter"
           :pagination="initialPagination"

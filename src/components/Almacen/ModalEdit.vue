@@ -5,17 +5,18 @@
     transition-show="scale"
     transition-hide="scale"
   >
-    <q-card class="bg-secondary text-white" style="width: 700px">
+    <q-card
+      flat
+      class="text-primary bg-white"
+      style="width: 400px; max-width: 80vw;"
+    >
       <q-card-section>
         <div class="text-h6">Editar bodega</div>
       </q-card-section>
-
       <q-card-section class="q-pt-none">
         <q-form id="form" @submit.prevent="updateBodega(), closeModal()">
-          <div class="row">
-            <div
-              class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md"
-            >
+          <div class="row q-col-gutter-md">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
               <q-input
                 dense
                 filled
@@ -25,17 +26,16 @@
                 label="Nombre"
                 hint="Nombre Identificatorio"
                 lazy-rules
-                :rules="[val => (val && val.length > 0) || 'Escriba Bodega']"
+                :rules="[val => (val && val.length > 0) || 'Escriba bodega']"
               >
                 <template v-slot:prepend>
-                  <q-icon color="primary" name="person" />
+                  <q-icon color="primary" name="draw" />
                 </template>
               </q-input>
             </div>
             <div
               class="
               col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
-              q-pr-md q-pt-md
             "
             >
               <q-input
@@ -48,18 +48,17 @@
                 hint="Descripción"
                 lazy-rules
                 :rules="[
-                  val => (val && val.length > 0) || 'Escriba Descripción'
+                  val => (val && val.length > 0) || 'Escriba descripción'
                 ]"
               >
                 <template v-slot:prepend>
-                  <q-icon color="primary" name="person" />
+                  <q-icon color="primary" name="draw" />
                 </template>
               </q-input>
             </div>
             <div
               class="
               col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
-              q-pr-md q-pt-md
             "
             >
               <q-input
@@ -71,22 +70,19 @@
                 label="Ubicación"
                 hint="Dirección"
                 lazy-rules
-                :rules="[
-                  val => (val && val.length > 0) || 'Escriba Dirección'
-                ]"
+                :rules="[val => (val && val.length > 0) || 'Escriba dirección']"
               >
                 <template v-slot:prepend>
-                  <q-icon color="primary" name="person" />
+                  <q-icon color="primary" name="draw" />
                 </template>
               </q-input>
             </div>
           </div>
 
-          <div class="row">
+          <div class="row q-col-gutter-md">
             <div
               class="
               col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
-              q-pr-md q-pt-md
             "
             >
               <q-toggle
@@ -97,8 +93,8 @@
                 v-model="apiedit.status_bodega"
                 label="Estado"
               ></q-toggle>
-              <div class="q-px-sm">
-                Seleccione Un estado:
+              <div>
+                Seleccione un estado:
                 <strong>
                   <q-chip outline text-color="primary ">{{
                     JSON.stringify(apiedit.status_bodega)
@@ -107,21 +103,16 @@
               </div>
             </div>
           </div>
-
-          <div class="col-12 q-pt-md">
+          <q-card-actions align="right">
+            <q-btn label="Guardar" type="submit" color="primary" no-caps />
             <q-btn
-              label="Guardar"
-              type="submit"
-              color="primary" no-caps
-            />
-            <q-btn no-caps
+              no-caps
               label="Cancelar"
               color="primary"
               flat
-              class="q-ml-sm"
               @click="closeModal()"
             />
-          </div>
+          </q-card-actions>
         </q-form>
       </q-card-section>
     </q-card>
@@ -150,10 +141,10 @@ export default {
   methods: {
     async updateBodega (req, res) {
       let params = {
-      nombre_bodega: this.apiedit.nombre_bodega,
-      descripcion_bodega: this.apiedit.descripcion_bodega,
-      ubicacion_bodega: this.apiedit.ubicacion_bodega,
-      status_bodega: this.apiedit.status_bodega
+        nombre_bodega: this.apiedit.nombre_bodega,
+        descripcion_bodega: this.apiedit.descripcion_bodega,
+        ubicacion_bodega: this.apiedit.ubicacion_bodega,
+        status_bodega: this.apiedit.status_bodega
       }
       let persistent = false
       try {
@@ -169,7 +160,7 @@ export default {
             type: 'positive',
             message: 'Bodega actualizada!',
             color: 'positive',
-            position:'bottom-right'
+            position: 'bottom-right'
           })
         }
       } catch (error) {

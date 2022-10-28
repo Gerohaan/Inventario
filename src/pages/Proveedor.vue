@@ -1,18 +1,22 @@
 <template>
+  <q-page class="fondo">
   <div class="row">
-    <div class="col-12">
-      <p
-        class="text-bold text-primary text-h5"
-        style="margin: 10px 0px 0px 40px"
-      >
-        Proveedores
-      </p>
+    <div
+      class="
+      col-12 q-ml-md q-mt-md text-bold text-primary text-h5"
+    >
+      Proveedores
     </div>
   </div>
   <div class="row">
-    <List :datapi="this.apilist" :apipersona="this.apilist3" :apiempresa="this.apilist2" />
-    <Add :apiempresa="this.apilist2" :apipersona="this.apilist3" />
+    <List
+      :datapi="apilist"
+      :apipersona="apilist3"
+      :apiempresa="apilist2"
+    />
+    <Add :apiempresa="apilist2" :apipersona="apilist3" />
   </div>
+</q-page>
 </template>
 
 <script>
@@ -38,7 +42,6 @@ export default {
     this.listProveedor()
     this.ListEmpresa()
     this.ListPersona()
-
   },
   updated () {
     this.listProveedor()
@@ -73,3 +76,11 @@ export default {
   }
 }
 </script>
+<style>
+  .fondo{
+    background-image: url('src/assets/bambu4.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+  }
+  </style>

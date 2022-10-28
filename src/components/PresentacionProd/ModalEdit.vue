@@ -5,17 +5,18 @@
     transition-show="scale"
     transition-hide="scale"
   >
-    <q-card class="bg-secondary text-white" style="width: 700px">
+    <q-card
+      flat
+      class="text-primary bg-white"
+      style="width: 500px; max-width: 80vw;"
+    >
       <q-card-section>
         <div class="text-h6">Editar presentación</div>
       </q-card-section>
-
       <q-card-section class="q-pt-none">
         <q-form id="form" @submit.prevent="updatePresentacion(), closeModal()">
-          <div class="row">
-            <div
-              class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md"
-            >
+          <div class="row q-col-gutter-md">
+            <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 col-xl-7">
               <q-input
                 dense
                 filled
@@ -23,45 +24,20 @@
                 standout
                 bg-color="accent"
                 label="Nombre"
-                hint="Nombre Identificatorio"
+                hint="Nombre identificatorio"
                 lazy-rules
                 :rules="[
-                  val => (val && val.length > 0) || 'Escriba Presentación'
+                  val => (val && val.length > 0) || 'Escriba presentación'
                 ]"
               >
                 <template v-slot:prepend>
-                  <q-icon color="primary" name="person" />
+                  <q-icon color="primary" name="draw" />
                 </template>
               </q-input>
             </div>
             <div
               class="
-              col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
-              q-pr-md q-pt-md
-            "
-            >
-              <q-input
-                dense
-                standout
-                bg-color="accent"
-                filled
-                v-model="apiedit.descripcion_present"
-                label="Descripción"
-                hint="Descripción"
-                lazy-rules
-                :rules="[
-                  val => (val && val.length > 0) || 'Escriba Descripción'
-                ]"
-              >
-                <template v-slot:prepend>
-                  <q-icon color="primary" name="person" />
-                </template>
-              </q-input>
-            </div>
-            <div
-              class="
-              col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
-              q-pr-md q-pt-md
+              col-xs-5 col-sm-5 col-md-5 col-lg-5 col-xl-5
             "
             >
               <q-input
@@ -82,8 +58,6 @@
                 </template>
               </q-input>
             </div>
-          </div>
-          <div class="row">
             <div
               class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pt-md"
             >
@@ -122,12 +96,35 @@
                 </template>
               </q-select>
             </div>
-          </div>
-          <div class="row">
             <div
               class="
               col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
-              q-pr-md q-pt-md
+
+            "
+            >
+              <q-input
+                dense
+                standout
+                bg-color="accent"
+                filled
+                v-model="apiedit.descripcion_present"
+                label="Descripción"
+                hint="Descripción"
+                lazy-rules
+                :rules="[
+                  val => (val && val.length > 0) || 'Escriba Descripción'
+                ]"
+              >
+                <template v-slot:prepend>
+                  <q-icon color="primary" name="person" />
+                </template>
+              </q-input>
+            </div>
+          </div>
+          <div class="row q-col-gutter-md">
+            <div
+              class="
+              col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
             "
             >
               <q-toggle
@@ -138,7 +135,7 @@
                 v-model="apiedit.status_present"
                 label="Estado"
               ></q-toggle>
-              <div class="q-px-sm">
+              <div>
                 Seleccione Estado:
                 <strong>
                   <q-chip outline text-color="primary ">{{
@@ -148,18 +145,16 @@
               </div>
             </div>
           </div>
-
-          <div class="col-12 q-pt-md">
+          <q-card-actions align="right">
             <q-btn label="Guardar" no-caps type="submit" color="primary" />
             <q-btn
               no-caps
               label="Cancelar"
               color="primary"
               flat
-              class="q-ml-sm"
               @click="closeModal()"
             />
-          </div>
+          </q-card-actions>
         </q-form>
       </q-card-section>
     </q-card>
@@ -204,7 +199,7 @@ export default {
             type: 'positive',
             message: 'Presentación del producto actualizada!',
             color: 'positive',
-            position:'bottom-right'
+            position: 'bottom-right'
           })
         }
       } catch (error) {

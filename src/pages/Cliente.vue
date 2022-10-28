@@ -1,18 +1,15 @@
 <template>
+  <q-page class="fondo">
   <div class="row">
-    <div class="col-12">
-      <p
-        class="text-bold text-primary text-h5"
-        style="margin: 10px 0px 0px 40px"
-      >
+      <div class="col-12 q-ml-md q-mt-md text-bold text-primary text-h5">
         Clientes
-      </p>
     </div>
-  </div>
+    </div>
   <div class="row">
-    <List :pcapiList="this.apiListcliente" :apiList="this.apiListPer" />
-    <Add :apiList="this.apiListPer" />
+    <List :pcapiList="apiListcliente" :apiList="apiListPer" />
+    <Add :apiList="apiListPer" />
   </div>
+</q-page>
 </template>
 
 <script>
@@ -65,3 +62,10 @@ export default {
   }
 }
 </script>
+<style>
+  .fondo{
+    background-image: url('src/assets/bambu4.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  </style>

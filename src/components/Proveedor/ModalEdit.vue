@@ -5,143 +5,135 @@
     transition-show="scale"
     transition-hide="scale"
   >
-    <q-parallax src="~assets/fondo3.jpg" :speed="0.6" :height="400">
-      <q-card flat class="bg-transparent text-white">
-        <q-card-section>
-          <div class="text-h6">Editar proveedor</div>
-        </q-card-section>
-        <q-card-section class="q-pt-none">
-          <q-form @submit.prevent="updateProveedor()">
-            <div class="row">
-              <div class="col q-pt-none q-pl-md q-pr-md q-pb-md">
-                <div class="q-gutter-sm">
-                  <q-radio
-                    dense
-                    v-model="apiedit.status_prov"
-                    checked-icon="task_alt"
-                    unchecked-icon="panorama_fish_eye"
-                    val="ACTIVO"
-                    label="ACTIVO"
-                  />
-                  <q-radio
-                    dense
-                    v-model="apiedit.status_prov"
-                    checked-icon="task_alt"
-                    unchecked-icon="panorama_fish_eye"
-                    val="INACTIVO"
-                    label="INACTIVO"
-                  />
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div
-                class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md"
-              >
-                <q-select
-                  use-input
-                  hide-selected
-                  fill-input
-                  input-debounce="0"
-                  dense
-                  filled
-                  v-model="apiedit.personaId"
-                  :options="apipersona"
-                  :option-label="
-                    apipersona =>
-                      apipersona === null
-                        ? null
-                        : apipersona.nombres_per +
-                          ' ' +
-                          apipersona.apellidos_per
-                  "
-                  :option-value="
-                    apipersona => (apipersona === null ? null : apipersona.id)
-                  "
-                  emit-value
-                  map-options
-                  standout
-                  bg-color="accent"
-                  label="Persona "
-                  hint="Seleccione persona"
-                >
-                  <template v-slot:prepend>
-                    <q-icon color="primary" name="person" />
-                  </template>
-                  <template v-slot:no-option>
-                    <q-item>
-                      <q-item-section class="text-grey">
-                        No results
-                      </q-item-section>
-                    </q-item>
-                  </template>
-                </q-select>
-              </div>
-              <div
-                class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pt-md"
-              >
-                <q-select
-                  dense
-                  standout
-                  bg-color="accent"
-                  v-model="apiedit.empresaId"
-                  :options="apiempresa"
-                  :option-label="
-                    apiempresa =>
-                      apiempresa === null
-                        ? null
-                        : apiempresa.nombre_empre +
-                          '  Rif:' +
-                          apiempresa.rif_empre
-                  "
-                  :option-value="
-                    apiempresa => (apiempresa === null ? null : apiempresa.id)
-                  "
-                  emit-value
-                  map-options
-                  filled
-                  label="Empresa"
-                  hint="Seleccione una empresa"
-                >
-                  <template v-slot:prepend>
-                    <q-icon color="primary" name="person" />
-                  </template>
-                </q-select>
-              </div>
-            </div>
-
-            <div class="col-12 q-pr-md q-pt-md">
-              <q-input
+    <q-card
+      flat
+      class="text-primary bg-white"
+      style="width: 500px; max-width: 80vw;"
+    >
+      <q-card-section>
+        <div class="text-h6">Editar proveedor</div>
+      </q-card-section>
+      <q-card-section class="q-pt-none">
+        <q-form @submit.prevent="updateProveedor()">
+          <div class="row q-col-gutter-md q-pb-md">
+            <div class="q-gutter-sm">
+              <q-radio
                 dense
-                color="black"
-                bg-color="accent"
-                v-model="apiedit.detalle_prov"
-                label="Detalles"
-                hint="Escriba algún detalle"
-                lazy-rules
-                :rules="[val => (val && val.length > 0) || 'Detalle no valido']"
-              >
-                <template v-slot:prepend>
-                  <q-icon color="primary" name="storefront" />
-                </template>
-              </q-input>
-            </div>
-
-            <div class="col-12 q-pt-md">
-              <q-btn label="Guardar" no-caps type="submit" color="primary" />
-              <q-btn
-                no-caps
-                label="Cancelar"
-                color="primary"
-                flat
-                class="q-ml-sm"
-                @click="closeModal()"
+                v-model="apiedit.status_prov"
+                checked-icon="task_alt"
+                unchecked-icon="panorama_fish_eye"
+                val="ACTIVO"
+                label="ACTIVO"
+              />
+              <q-radio
+                dense
+                v-model="apiedit.status_prov"
+                checked-icon="task_alt"
+                unchecked-icon="panorama_fish_eye"
+                val="INACTIVO"
+                label="INACTIVO"
               />
             </div>
-          </q-form>
-        </q-card-section>
-      </q-card>
-    </q-parallax>
+          </div>
+          <div class="row q-col-gutter-md">
+            <div class="col col-12">
+              <q-select
+                use-input
+                hide-selected
+                fill-input
+                input-debounce="0"
+                dense
+                filled
+                v-model="apiedit.personaId"
+                :options="apipersona"
+                :option-label="
+                  apipersona =>
+                    apipersona === null
+                      ? null
+                      : apipersona.nombres_per + ' ' + apipersona.apellidos_per
+                "
+                :option-value="
+                  apipersona => (apipersona === null ? null : apipersona.id)
+                "
+                emit-value
+                map-options
+                standout
+                bg-color="accent"
+                label="Persona "
+                hint="Seleccione persona"
+              >
+                <template v-slot:prepend>
+                  <q-icon color="primary" name="person" />
+                </template>
+                <template v-slot:no-option>
+                  <q-item>
+                    <q-item-section class="text-grey">
+                      No results
+                    </q-item-section>
+                  </q-item>
+                </template>
+              </q-select>
+            </div>
+            <div class="col col-12">
+              <q-select
+                dense
+                standout
+                bg-color="accent"
+                v-model="apiedit.empresaId"
+                :options="apiempresa"
+                :option-label="
+                  apiempresa =>
+                    apiempresa === null
+                      ? null
+                      : apiempresa.nombre_empre +
+                        '  Rif:' +
+                        apiempresa.rif_empre
+                "
+                :option-value="
+                  apiempresa => (apiempresa === null ? null : apiempresa.id)
+                "
+                emit-value
+                map-options
+                filled
+                label="Empresa"
+                hint="Seleccione una empresa"
+              >
+                <template v-slot:prepend>
+                  <q-icon color="primary" name="person" />
+                </template>
+              </q-select>
+            </div>
+          </div>
+
+          <div class="col col-12 q-pt-md">
+            <q-input
+              dense
+              color="black"
+              bg-color="accent"
+              v-model="apiedit.detalle_prov"
+              label="Detalles"
+              hint="Escriba algún detalle"
+              lazy-rules
+              :rules="[val => (val && val.length > 0) || 'Detalle no valido']"
+            >
+              <template v-slot:prepend>
+                <q-icon color="primary" name="storefront" />
+              </template>
+            </q-input>
+          </div>
+        </q-form>
+      </q-card-section>
+      <q-card-actions align="right">
+        <q-btn label="Guardar" no-caps type="submit" color="primary" />
+        <q-btn
+          no-caps
+          label="Cancelar"
+          color="primary"
+          flat
+          @click="closeModal()"
+        />
+      </q-card-actions>
+    </q-card>
   </q-dialog>
 </template>
 <script>
@@ -203,7 +195,3 @@ export default {
   }
 }
 </script>
-<style lang="sass" scoped>
-.bg-transparent
-   background: #fff0
-</style>

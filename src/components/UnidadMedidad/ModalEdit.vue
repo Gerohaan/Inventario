@@ -5,17 +5,19 @@
     transition-show="scale"
     transition-hide="scale"
   >
-    <q-card class="bg-secondary text-white" style="width: 700px">
+    <q-card
+      flat
+      class="text-primary bg-white"
+      style="width: 400px; max-width: 80vw;"
+    >
       <q-card-section>
         <div class="text-h6">Editar bodega</div>
       </q-card-section>
 
       <q-card-section class="q-pt-none">
         <q-form id="form" @submit.prevent="updateUnidad(), closeModal()">
-          <div class="row">
-            <div
-              class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md"
-            >
+          <div class="row q-col-gutter-md">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
               <q-input
                 dense
                 filled
@@ -28,14 +30,14 @@
                 :rules="[val => (val && val.length > 0) || 'Escriba unidad']"
               >
                 <template v-slot:prepend>
-                  <q-icon color="primary" name="person" />
+                  <q-icon color="primary" name="draw" />
                 </template>
               </q-input>
             </div>
             <div
               class="
               col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
-              q-pr-md q-pt-md
+
             "
             >
               <q-input
@@ -52,14 +54,14 @@
                 ]"
               >
                 <template v-slot:prepend>
-                  <q-icon color="primary" name="person" />
+                  <q-icon color="primary" name="draw" />
                 </template>
               </q-input>
             </div>
             <div
               class="
               col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
-              q-pr-md q-pt-md
+
             "
             >
               <q-input
@@ -77,17 +79,17 @@
                 ]"
               >
                 <template v-slot:prepend>
-                  <q-icon color="primary" name="person" />
+                  <q-icon color="primary" name="draw" />
                 </template>
               </q-input>
             </div>
           </div>
 
-          <div class="row">
+          <div class="row q-col-gutter-md">
             <div
               class="
               col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
-              q-pr-md q-pt-md
+
             "
             >
               <q-toggle
@@ -98,7 +100,7 @@
                 v-model="apiedit.status_unidad"
                 label="Estado"
               ></q-toggle>
-              <div class="q-px-sm">
+              <div>
                 Seleccione estado:
                 <strong>
                   <q-chip outline text-color="primary ">{{
@@ -108,18 +110,16 @@
               </div>
             </div>
           </div>
-
-          <div class="col-12 q-pt-md">
+          <q-card-actions>
             <q-btn no-caps label="Guardar" type="submit" color="primary" />
             <q-btn
               no-caps
               label="Cancelar"
               color="primary"
               flat
-              class="q-ml-sm"
               @click="closeModal()"
             />
-          </div>
+          </q-card-actions>
         </q-form>
       </q-card-section>
     </q-card>

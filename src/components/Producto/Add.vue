@@ -1,9 +1,6 @@
 <template>
-  <div class="col col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 q-pa-sm">
-    <q-card
-      class="my-card q-pa-md box-shadow"
-      style="margin: 15px 20px 0px 10px"
-    >
+  <div class="col col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 q-pa-md">
+    <q-card class="my-card q-pa-md box-shadow">
       <div class="row">
         <div class="col col-md-12 col-lg-12 col-xs-12 col-sm-12">
           <q-card-section>
@@ -19,10 +16,8 @@
       </div>
 
       <q-form @submit.prevent="addProducto()" @reset="onReset">
-        <div class="row">
-          <div
-            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pb-xs"
-          >
+        <div class="row q-col-gutter-md">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <q-input
               dense
               standout
@@ -40,9 +35,7 @@
             </q-input>
           </div>
 
-          <div
-            class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md q-pb-xs"
-          >
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
             <q-input
               dense
               min="0"
@@ -63,7 +56,7 @@
               </template>
             </q-input>
           </div>
-          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md">
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
             <q-input
               dense
               min="0"
@@ -84,9 +77,7 @@
               </template>
             </q-input>
           </div>
-          <div
-            class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md q-pb-xs"
-          >
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
             <q-input
               dense
               min="0"
@@ -105,10 +96,11 @@
               </template>
             </q-input>
           </div>
-          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md">
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
             <q-input
               dense
               type="number"
+              min="0"
               standout
               bg-color="accent"
               filled
@@ -123,7 +115,7 @@
               </template>
             </q-input>
           </div>
-          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md">
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
             <q-input
               dense
               standout
@@ -139,7 +131,7 @@
               </template>
             </q-input>
           </div>
-          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md">
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
             <q-input
               dense
               standout
@@ -149,7 +141,7 @@
               label="Descripción"
               hint="Descripción"
               lazy-rules
-              :rules="[val => (val && val.length > 0) || 'Escriba Descripción']"
+              :rules="[val => (val && val.length > 0) || 'Escriba descripción']"
             >
               <template v-slot:prepend>
                 <q-icon color="primary" name="storefront" />
@@ -157,10 +149,8 @@
             </q-input>
           </div>
         </div>
-        <div class="row">
-          <div
-            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md"
-          >
+        <div class="row q-col-gutter-md">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <q-select
               use-input
               hide-selected
@@ -197,9 +187,7 @@
               </template>
             </q-select>
           </div>
-          <div
-            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pt-md"
-          >
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <q-select
               dense
               standout
@@ -224,9 +212,7 @@
               </template>
             </q-select>
           </div>
-          <div
-            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pt-md"
-          >
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <q-select
               dense
               standout
@@ -252,11 +238,11 @@
             </q-select>
           </div>
         </div>
-        <div class="row">
-          <div class="col-12 text-left q-pt-xs">
-            <p class="text-subtitle2">Stock</p>
-          </div>
-          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md">
+        <div class="col col-12 q-pt-xs">
+          <p class="text-subtitle2">Stock</p>
+        </div>
+        <div class="row q-col-gutter-md">
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
             <q-input
               dense
               min="0"
@@ -277,7 +263,7 @@
               </template>
             </q-input>
           </div>
-          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md">
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
             <q-input
               dense
               min="0"
@@ -303,7 +289,7 @@
             </q-input>
           </div>
         </div>
-        <div class="col-12 q-pt-md">
+        <q-card-actions class="q-pt-md">
           <q-btn label="Guardar" no-caps type="submit" color="primary" />
           <q-btn
             no-caps
@@ -311,9 +297,9 @@
             type="reset"
             color="primary"
             flat
-            class="q-ml-sm"
+
           />
-        </div>
+        </q-card-actions>
       </q-form>
     </q-card>
   </div>
@@ -432,7 +418,7 @@ export default {
           this.onReset()
         }
       } catch (error) {
-       // throw new Error('error en la consulta', error)
+        // throw new Error('error en la consulta', error)
         //console.log(error)
         Notify.create({
           type: 'warning',

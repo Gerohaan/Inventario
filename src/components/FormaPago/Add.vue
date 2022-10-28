@@ -1,6 +1,6 @@
 <template>
   <div
-    class="col col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 q-pl-md q-pr-lg q-pt-md"
+    class="col col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 q-pl-md q-pr-md q-pt-md"
   >
     <q-card class="my-card q-pa-md box-shadow">
       <div class="row">
@@ -17,9 +17,9 @@
       </div>
 
       <q-form @submit.prevent="onSubmit, addPago()" @reset="onReset">
-        <div class="row">
+        <div class="row q-col-gutter-md">
           <div
-            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pt-sm"
+            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
           >
             <q-input
               dense
@@ -38,7 +38,7 @@
             </q-input>
           </div>
           <div
-            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pt-md"
+            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
           >
             <q-input
               dense
@@ -62,7 +62,6 @@
           <div
             class="
               col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
-              q-pr-md q-pt-md
             "
           >
             <q-toggle
@@ -73,7 +72,7 @@
               v-model="status_pago"
               label="Estado"
             ></q-toggle>
-            <div class="q-px-sm">
+            <div>
               Seleccione un estado:
               <strong>
                 <q-chip outline text-color="primary ">{{
@@ -83,8 +82,7 @@
             </div>
           </div>
         </div>
-
-        <div class="col-12 q-pt-md">
+        <q-card-actions>
           <q-btn no-caps label="Guardar" type="submit" color="primary" />
           <q-btn
             no-caps
@@ -92,9 +90,8 @@
             type="reset"
             color="primary"
             flat
-            class="q-ml-sm"
           />
-        </div>
+        </q-card-actions>
       </q-form>
     </q-card>
   </div>

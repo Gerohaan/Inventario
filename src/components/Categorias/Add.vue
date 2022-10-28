@@ -17,10 +17,8 @@
       </div>
 
       <q-form @submit.prevent="onSubmit, addCategoria()" @reset="onReset">
-        <div class="row">
-          <div
-            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pt-sm"
-          >
+        <div class="row q-col-gutter-md">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <q-input
               dense
               filled
@@ -37,9 +35,7 @@
               </template>
             </q-input>
           </div>
-          <div
-            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pt-md"
-          >
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <q-input
               dense
               standout
@@ -58,11 +54,11 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row q-col-gutter-md">
           <div
             class="
               col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
-              q-pr-md q-pt-md
+
             "
           >
             <q-toggle
@@ -73,7 +69,7 @@
               v-model="status_categoria"
               label="Estado"
             ></q-toggle>
-            <div class="q-px-sm">
+            <div>
               Seleccione un estado:
               <strong>
                 <q-chip outline text-color="primary ">{{
@@ -83,8 +79,7 @@
             </div>
           </div>
         </div>
-
-        <div class="col-12 q-pt-md">
+        <q-card-actions>
           <q-btn no-caps label="Guardar" type="submit" color="primary" />
           <q-btn
             no-caps
@@ -94,7 +89,7 @@
             flat
             class="q-ml-sm"
           />
-        </div>
+        </q-card-actions>
       </q-form>
     </q-card>
   </div>
@@ -161,7 +156,7 @@ export default {
             type: 'positive',
             message: 'Categoria agregada!',
             color: 'positive',
-            position:'bottom-right'
+            position: 'bottom-right'
           })
         }
       } catch (error) {

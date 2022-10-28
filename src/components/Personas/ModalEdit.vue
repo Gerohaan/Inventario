@@ -16,31 +16,28 @@
 
       <q-card-section class="q-pt-none">
         <q-form id="form" @submit.prevent="updatePersona(), closeModal()">
-          <div class="row">
-            <div class="col q-pt-none q-pl-md q-pr-md q-pb-md">
-              <div class="q-gutter-sm">
-                <q-radio
-                  dense
-                  v-model="apiedit.tipo_per"
-                  checked-icon="task_alt"
-                  unchecked-icon="panorama_fish_eye"
-                  val="N"
-                  label="Persona Natural"
-                />
-                <q-radio
-                  dense
-                  v-model="apiedit.tipo_per"
-                  checked-icon="task_alt"
-                  unchecked-icon="panorama_fish_eye"
-                  val="J"
-                  label="Persona Juridica"
-                />
-              </div>
+          <div class="row q-col-gutter-md q-pb-md">
+            <div class="q-gutter-md">
+              <q-radio
+                dense
+                v-model="apiedit.tipo_per"
+                checked-icon="task_alt"
+                unchecked-icon="panorama_fish_eye"
+                val="N"
+                label="Persona Natural"
+              />
+              <q-radio
+                dense
+                v-model="apiedit.tipo_per"
+                checked-icon="task_alt"
+                unchecked-icon="panorama_fish_eye"
+                val="J"
+                label="Persona Juridica"
+              />
             </div>
           </div>
-
           <div class="row q-col-gutter-md">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 q-gutter-md">
+            <div class="col-12 col-md-6">
               <q-input
                 dense
                 filled
@@ -59,9 +56,7 @@
                 </template>
               </q-input>
             </div>
-            <div
-              class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 q-gutter-md"
-            >
+            <div class="col-12 col-md-6">
               <q-input
                 dense
                 standout
@@ -83,19 +78,17 @@
           </div>
           <div
             class="
-              col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6
+              col-12
               text-no-wrap
-             q-col-gutter-md
+             q-col-gutter-x-md
             "
           >
             <p class="col text-weight-medium">Documento</p>
           </div>
-          <div class="row">
+          <div class="row q-col-gutter-md">
             <div
               class="
-              col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4
-              text-no-wrap  q-gutter-md
-
+              col-12 col-md-2
             "
             >
               <q-select
@@ -104,7 +97,6 @@
                 filled
                 v-model="apiedit.nacionalidad_per"
                 :options="options"
-                label="Tipo"
                 bg-color="accent"
                 :rules="[
                   val => (val && val.length > 0) || 'Nacionalidad invalidad'
@@ -117,9 +109,7 @@
             </div>
             <div
               class="
-              col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xl-8
-              text-no-wrap  q-gutter-md
-
+              col-12 col-md-4
             "
             >
               <q-input
@@ -132,16 +122,11 @@
                 bg-color="accent"
               />
             </div>
-          </div>
-
-          <div class="row q-col-gutter-md">
             <div
               class="
-                col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 q-gutter-md
-
+                col-12 col-md-6
               "
             >
-              <p class="col text-subtitle2">Teléfono</p>
               <q-input
                 dense
                 filled
@@ -161,11 +146,12 @@
                 </template>
               </q-input>
             </div>
+          </div>
 
+          <div class="row q-col-gutter-md">
             <div
               class="
-                col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6
-                q-gutter-md
+                col-12 col-md-6
               "
             >
               <p class="col text-subtitle2">Correo</p>
@@ -188,9 +174,7 @@
                 </template>
               </q-input>
             </div>
-          </div>
-          <div class="row q-col-gutter-md">
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 ">
+            <div class="col-12 col-md-6">
               <p class="col text-subtitle2">Fecha de Nacimiento</p>
               <q-input
                 dense
@@ -209,8 +193,23 @@
                 </template>
               </q-input>
             </div>
+          </div>
 
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+          <div class="row q-col-gutter-md">
+            <div class="col-12 col-md-6">
+              <p class="col text-subtitle2">Dirección de habitación</p>
+              <q-input
+                v-model="apiedit.direccion_per"
+                filled
+                clearable
+                type="textarea"
+                color="red-12"
+                label="Dirección de habitacion"
+                input-style="height:2px"
+                bg-color="accent"
+              />
+            </div>
+            <div class="col-12 col-md-6">
               <p class="col text-subtitle2">Genero</p>
               <div class="q-gutter-sm">
                 <q-radio
@@ -232,36 +231,18 @@
               </div>
             </div>
           </div>
-          <div class="row q-col-gutter-md">
-            <div class="col q-gutter-md">
-              <p class="col text-subtitle2">Dirección de habitación</p>
-              <q-input
-                v-model="apiedit.direccion_per"
-                filled
-                clearable
-                type="textarea"
-                color="red-12"
-                label="Dirección de habitacion"
-                input-style="height:2px"
-                bg-color="accent"
-              />
-            </div>
-          </div>
-          <div class="row q-col-gutter-md q-pt-md">
-            <div class="col-12">
-              <q-btn no-caps label="Guardar" type="submit" color="primary" />
-              <q-btn
-                no-caps
-                label="Cancelar"
-                color="primary"
-                flat
-                class="q-ml-sm"
-                @click="closeModal()"
-              />
-            </div>
-          </div>
         </q-form>
       </q-card-section>
+      <q-card-actions align="right">
+        <q-btn no-caps label="Guardar" type="submit" color="primary" />
+        <q-btn
+          no-caps
+          label="Cancelar"
+          color="primary"
+          flat
+          @click="closeModal()"
+        />
+      </q-card-actions>
     </q-card>
   </q-dialog>
 </template>
@@ -338,7 +319,4 @@ export default {
   }
 }
 </script>
-<style lang="sass" scoped>
-.bg-transparent
-   background: #fff0
-</style>
+

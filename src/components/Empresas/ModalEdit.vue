@@ -5,17 +5,19 @@
     transition-show="scale"
     transition-hide="scale"
   >
-    <q-card class="bg-secondary text-white" style="width: 700px">
+    <q-card
+      flat
+      class="text-primary bg-white"
+      style="width: 500px; max-width: 80vw;"
+    >
       <q-card-section>
         <div class="text-h6">Editar empresa</div>
       </q-card-section>
 
       <q-card-section class="q-pt-none">
         <q-form @submit.prevent="onSubmit, updateEmpresa(), closeModal()">
-          <div class="row">
-            <div
-              class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pt-sm"
-            >
+          <div class="row q-col-gutter-md">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
               <q-input
                 disable
                 dense
@@ -24,7 +26,7 @@
                 standout
                 bg-color="accent"
                 label="Nombre"
-                hint="Nombre Identificatorio"
+                hint="Nombre identificatorio"
                 lazy-rules
                 :rules="[val => (val && val.length > 0) || 'Escriba un nombre']"
               >
@@ -33,9 +35,7 @@
                 </template>
               </q-input>
             </div>
-            <div
-              class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pt-sm"
-            >
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
               <q-input
                 dense
                 filled
@@ -43,10 +43,10 @@
                 standout
                 bg-color="accent"
                 label="Representante"
-                hint="Representante Legal"
+                hint="Representante legal"
                 lazy-rules
                 :rules="[
-                  val => (val && val.length > 0) || 'Escriba Representante'
+                  val => (val && val.length > 0) || 'Escriba representante'
                 ]"
               >
                 <template v-slot:prepend>
@@ -54,9 +54,7 @@
                 </template>
               </q-input>
             </div>
-            <div
-              class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md q-pt-sm"
-            >
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
               <q-input
                 dense
                 filled
@@ -76,9 +74,7 @@
                 </template>
               </q-input>
             </div>
-            <div
-              class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 q-pr-md q-pt-sm"
-            >
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
               <q-input
                 dense
                 filled
@@ -98,9 +94,7 @@
                 </template>
               </q-input>
             </div>
-            <div
-              class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pt-sm"
-            >
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
               <q-input
                 dense
                 filled
@@ -120,9 +114,25 @@
                 </template>
               </q-input>
             </div>
-            <div
-              class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pt-sm"
-            >
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+              <q-input
+                dense
+                standout
+                bg-color="accent"
+                filled
+                v-model="apiedit.tipo_empre"
+                label="Tipo de empresa"
+                lazy-rules
+                :rules="[
+                  val => (val && val.length > 0) || 'Escriba el tipo de empresa'
+                ]"
+              >
+                <template v-slot:prepend>
+                  <q-icon color="primary" name="person" />
+                </template>
+              </q-input>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
               <q-input
                 dense
                 filled
@@ -132,30 +142,7 @@
                 label="Dirección"
                 hint="Dirección de Ubicación"
                 lazy-rules
-                :rules="[
-                  val => (val && val.length > 0) || 'Escriba ubicación'
-                ]"
-              >
-                <template v-slot:prepend>
-                  <q-icon color="primary" name="person" />
-                </template>
-              </q-input>
-            </div>
-
-            <div
-              class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pt-md"
-            >
-              <q-input
-                dense
-                standout
-                bg-color="accent"
-                filled
-                v-model="apiedit.tipo_empre"
-                label="Tipo de Empresa"
-                lazy-rules
-                :rules="[
-                  val => (val && val.length > 0) || 'Escriba el Tipo de Empresa'
-                ]"
+                :rules="[val => (val && val.length > 0) || 'Escriba ubicación']"
               >
                 <template v-slot:prepend>
                   <q-icon color="primary" name="person" />
@@ -163,21 +150,17 @@
               </q-input>
             </div>
           </div>
-
-          <div class="col-12 q-pt-md">
-            <q-btn no-caps
-              label="Guardar"
-              type="submit"
-              color="primary"
-            />
-            <q-btn no-caps
+          <q-card-actions align="right">
+            <q-btn no-caps label="Guardar" type="submit" color="primary" />
+            <q-btn
+              no-caps
               label="Cancelar"
               color="primary"
               flat
               class="q-ml-sm"
               @click="closeModal()"
             />
-          </div>
+          </q-card-actions>
         </q-form>
       </q-card-section>
     </q-card>
@@ -233,7 +216,7 @@ export default {
             type: 'positive',
             message: 'Empresa actualizada!',
             color: 'positive',
-            position:'bottom-right'
+            position: 'bottom-right'
           })
         }
       } catch (error) {

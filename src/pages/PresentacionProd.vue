@@ -1,15 +1,17 @@
 <template>
+  <q-page class="fondo">
   <div class="row">
     <div class="col-12">
-      <p class="text-bold text-primary text-h5 q-pt-lg q-pl-xl">
+      <p class="text-bold text-primary text-h5 q-pt-md q-pl-md">
         Presentaciones
       </p>
     </div>
   </div>
   <div class="row">
-    <List :vialist="this.apiList" :apilista="this.apiLista"/>
-    <Add :apilista="this.apiLista" />
+    <List :vialist="apiList" :apilista="apiLista"/>
+    <Add :apilista="apiLista" />
   </div>
+</q-page>
 </template>
 
 <script>
@@ -61,3 +63,10 @@ export default {
   }
 }
 </script>
+<style>
+.fondo{
+  background-image: url('src/assets/bambu4.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>

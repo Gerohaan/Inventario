@@ -1,13 +1,13 @@
 <template>
   <div class="row">
     <div class="col-12">
-      <p class="text-bold text-primary text-h5 q-pt-lg q-pl-xl">
+      <p class="text-bold text-primary text-h5 q-pt-md q-pl-md">
         Unidad de medidas
       </p>
     </div>
   </div>
   <div class="row">
-     <List :vialist="this.apiList" />
+     <List :vialist="apiList" />
     <Add />
   </div>
 </template>

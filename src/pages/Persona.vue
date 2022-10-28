@@ -53,6 +53,8 @@ export default {
 </script>
 <style>
 .fondo{
-  background-image: url('src/assets/fondo2.jpg');
+  background-image: url('src/assets/bambu4.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 </style>

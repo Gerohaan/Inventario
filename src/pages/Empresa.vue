@@ -1,15 +1,17 @@
 <template>
+  <q-page class="fondo">
   <div class="row">
     <div class="col-12">
-      <p class="text-bold text-primary text-h5 q-pt-lg q-pl-lg">
+      <p class="text-bold text-primary text-h5 q-pl-md">
         Empresas
       </p>
     </div>
   </div>
   <div class="row">
-    <List :papiList="this.apiList" />
+    <List :papiList="apiList" />
     <Add />
   </div>
+</q-page>
 </template>
 
 <script>
@@ -48,3 +50,10 @@ export default {
   }
 }
 </script>
+<style>
+.fondo{
+  background-image: url('src/assets/bambu4.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>

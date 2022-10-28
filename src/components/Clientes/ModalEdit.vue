@@ -8,7 +8,7 @@
     <q-card
       flat
       class="text-primary bg-white"
-      style="width: 700px; max-width: 80vw;"
+      style="width: 400px; max-width: 80vw;"
     >
       <q-card-section>
         <div class="text-h6">Editar cliente</div>
@@ -88,7 +88,6 @@
             <p class="text-subtitle2">Estado cliente</p>
           </div>
           <div class="row q-col-gutter-md ">
-            <div class="q-gutter-sm">
               <q-radio
                 dense
                 v-model="apiedit.status_client"
@@ -106,21 +105,18 @@
                 label="INACTIVO"
               />
             </div>
-          </div>
-
-          <div class="col-12 q-pt-md">
-            <q-btn no-caps label="Guardar" type="submit" color="primary" />
-            <q-btn
-              no-caps
-              label="Cancelar"
-              color="primary"
-              flat
-              class="q-ml-sm"
-              @click="closeModal()"
-            />
-          </div>
         </q-form>
       </q-card-section>
+      <q-card-actions align="right">
+        <q-btn no-caps label="Guardar" type="submit" color="primary" />
+        <q-btn
+          no-caps
+          label="Cancelar"
+          color="primary"
+          flat
+          @click="closeModal()"
+        />
+      </q-card-actions>
     </q-card>
   </q-dialog>
 </template>
@@ -182,13 +178,3 @@ export default {
   }
 }
 </script>
-<style lang="sass" scoped>
-.bg-image
-      background: url(src/assets/fondo.jpg)
-      background-size: cover
-      background-position: center
-      background-attachment: fixed
-      background-repeat: no-repeat
-.bg-transparent
-   background: #fff0
-</style>

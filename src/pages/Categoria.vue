@@ -7,7 +7,7 @@
     </div>
   </div>
   <div class="row">
-    <List :papiList="this.apiList" />
+    <List :papiList="apiList" />
     <Add />
   </div>
 </template>

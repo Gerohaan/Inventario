@@ -1,6 +1,6 @@
 <template>
   <div
-    class="col col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 q-pt-md q-pr-lg"
+    class="col col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 q-pt-md q-pr-md"
   >
     <q-card class="my-card q-pa-md box-shadow">
       <div class="row">
@@ -15,11 +15,10 @@
           <p class="text-subtitle2">Caracteristicas</p>
         </div>
       </div>
-
       <q-form id="form" @submit.prevent="addPresent()" @reset="onReset">
-        <div class="row">
+        <div class="row q-col-gutter-md">
           <div
-            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md"
+            class="col-xs-7 col-sm-7 col-md-7 col-lg-7 col-xl-7"
           >
             <q-input
               dense
@@ -41,30 +40,8 @@
           </div>
           <div
             class="
-              col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
-              q-pr-md q-pt-md
-            "
-          >
-            <q-input
-              dense
-              standout
-              bg-color="accent"
-              filled
-              v-model="descripcion_present"
-              label="Descripción"
-              hint="Descripción"
-              lazy-rules
-              :rules="[val => (val && val.length > 0) || 'Escriba Descripción']"
-            >
-              <template v-slot:prepend>
-                <q-icon color="primary" name="person" />
-              </template>
-            </q-input>
-          </div>
-          <div
-            class="
-              col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
-              q-pr-md q-pt-md
+              col-xs-5 col-sm-5 col-md-5 col-lg-5 col-xl-5
+
             "
           >
             <q-input
@@ -83,10 +60,8 @@
               </template>
             </q-input>
           </div>
-        </div>
-        <div class="row">
           <div
-            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md"
+            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
           >
             <q-select
               use-input
@@ -123,12 +98,32 @@
               </template>
             </q-select>
           </div>
-        </div>
-        <div class="row">
           <div
             class="
               col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
-              q-pr-md q-pt-md
+            "
+          >
+            <q-input
+              dense
+              standout
+              bg-color="accent"
+              filled
+              v-model="descripcion_present"
+              label="Descripción"
+              hint="Descripción"
+              lazy-rules
+              :rules="[val => (val && val.length > 0) || 'Escriba Descripción']"
+            >
+              <template v-slot:prepend>
+                <q-icon color="primary" name="person" />
+              </template>
+            </q-input>
+          </div>
+        </div>
+        <div class="row q-col-gutter-md">
+          <div
+            class="
+              col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
             "
           >
             <q-toggle
@@ -139,8 +134,8 @@
               v-model="status_present"
               label="Estado"
             ></q-toggle>
-            <div class="q-px-sm">
-              Seleccione Estado:
+            <div>
+              Seleccione estado:
               <strong>
                 <q-chip outline text-color="primary ">{{
                   JSON.stringify(status_present)
@@ -149,8 +144,7 @@
             </div>
           </div>
         </div>
-
-        <div class="col-12 q-pt-md">
+        <q-card-actions>
           <q-btn label="Guardar" no-caps type="submit" color="primary" />
           <q-btn
             no-caps
@@ -158,9 +152,8 @@
             type="reset"
             color="primary"
             flat
-            class="q-ml-sm"
           />
-        </div>
+        </q-card-actions>
       </q-form>
     </q-card>
   </div>

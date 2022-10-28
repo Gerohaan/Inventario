@@ -5,16 +5,23 @@
     transition-show="scale"
     transition-hide="scale"
   >
-    <q-card class="bg-secondary text-white" style="width: 700px">
+    <q-card
+      flat
+      class="text-primary bg-white"
+      style="width: 400px; max-width: 80vw;"
+    >
       <q-card-section>
         <div class="text-h6">Editar categoria</div>
       </q-card-section>
 
       <q-card-section class="q-pt-none">
-        <q-form @submit.prevent="onSubmit, updateCategoria(), closeModal()" @reset="onReset">
-          <div class="row">
+        <q-form
+          @submit.prevent="onSubmit, updateCategoria(), closeModal()"
+          @reset="onReset"
+        >
+          <div class="row q-col-gutter-md">
             <div
-              class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pt-sm"
+              class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
             >
               <q-input
                 dense
@@ -33,7 +40,7 @@
               </q-input>
             </div>
             <div
-              class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pr-md q-pt-md"
+              class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
             >
               <q-input
                 dense
@@ -44,9 +51,7 @@
                 label="Detalle"
                 hint="Descripción"
                 lazy-rules
-                :rules="[
-                  val => (val && val.length > 0) || 'Escriba detalle'
-                ]"
+                :rules="[val => (val && val.length > 0) || 'Escriba detalle']"
               >
                 <template v-slot:prepend>
                   <q-icon color="primary" name="person" />
@@ -55,11 +60,10 @@
             </div>
           </div>
 
-          <div class="row">
+          <div class="row q-col-gutter-md">
             <div
               class="
               col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12
-              q-pr-md q-pt-md
             "
             >
               <q-toggle
@@ -68,9 +72,9 @@
                 true-value="ACTIVO"
                 false-value="INACTIVO"
                 v-model="apiedit.status_categoria"
-                label="EStado"
+                label="Estado"
               ></q-toggle>
-              <div class="q-px-sm">
+              <div>
                 Seleccione estado:
                 <strong>
                   <q-chip outline text-color="primary ">{{
@@ -81,20 +85,15 @@
             </div>
           </div>
           <q-card-actions align="right">
-            <div class="col-12 q-pt-md">
-              <q-btn no-caps
-                label="Guardar"
-                type="submit"
-                color="primary"
-              />
-              <q-btn no-caps
+              <q-btn no-caps label="Guardar" type="submit" color="primary" />
+              <q-btn
+                no-caps
                 label="Cancelar"
                 color="primary"
                 flat
                 class="q-ml-sm"
                 @click="closeModal()"
               />
-            </div>
           </q-card-actions>
         </q-form>
       </q-card-section>
@@ -147,7 +146,7 @@ export default {
             type: 'positive',
             message: 'Categoria actualizada!',
             color: 'positive',
-            position:'botton-right'
+            position: 'botton-right'
           })
         }
       } catch (error) {
