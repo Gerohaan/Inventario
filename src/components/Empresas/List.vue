@@ -58,7 +58,7 @@
       </q-card-section>
     </q-card>
     <ModalEdit
-      :persistent="persistent"
+      :persistent="this.persistent"
       :apiedit="this.editempresa"
       @closeModel="persistent = $event"
     >
